@@ -4,12 +4,12 @@
 
 ## 环境要求
 
-- PHP: 5.3 ~ 5.6，PHP 7.x 或 PHP 8.x 不支持。如要支持，请使用修改版本。
+- PHP: 5.3 ~ 5.6，必须扩展 mysql, mbstring, gd。PHP 7.x 或 PHP 8.x 不支持。如需支持，请使用 [修改版本](http://nexusphp.cn/2021/01/04/update-nexusphp-support-with-php7-and-php8/)。
 - Mysql: 5.0 ~ 8.0 均可，低于 5.0 不敢保证没有问题。
 - Memcache: 任意版本。这是可选的缓存组件，若要启用，PHP 需要安装 memcache 扩展（注意不是 memcached）。
 
 ::: tip
-PHP 需要安装 gd 扩展，并启用对 jpeg 的支持。可通过打印函数 `gd_info()` 的结果来确认是否已经支持。下边是已经支持的输出结果：
+PHP  gd 扩展必须启用对 jpeg 的支持。可通过打印函数 `gd_info()` 的结果来确认是否已经支持。下边是已经支持的输出结果：
 :::
 ```
 

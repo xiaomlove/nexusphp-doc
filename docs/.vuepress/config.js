@@ -1,10 +1,9 @@
 module.exports = {
   title: 'NexusPHP 使用文档',
-  description: 'Just playing around',
+  description: 'by xiaomlove',
   themeConfig: {
     sidebarDepth: 2,
     sidebar: [
-      '/',
       ['start', '起步'],
       ['installation', '安装'],
     ],
