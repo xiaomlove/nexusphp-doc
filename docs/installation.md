@@ -79,14 +79,22 @@ $BASIC=array(
 );
 ```
 
-更改网站目录拥有者为 PHP 运行用户（一般为 www-data），保证有 PHP 有权限对附件目录 attachments、字幕目录 subs、种子目录 torrents、imdb 缓存目录 imdb/cache 有读写权限。
+更改网站目录拥有者为 PHP 运行用户（一般为 www-data），保证有 PHP 有权限对以下目录进行读写。
+
+- 配置文件目录：config
+- 附件目录：attachments
+- 字幕目录：subs
+- 种子目录：torrents
+- imdb 页面缓存目录：imdb/cache
+- imdb 电影海报目录：imdb/images
+
 ```
 chown /YOUR_WEB_PATH www-data:www-data
 ```
 
 如果不知道 PHP 运行用户是哪个，亦可修改这几个目录的读取模式为 777（必须有执行权限，否则会有问题），在根目录下执行：
 ```
-chmod 777 attachments subs torrents imdb/cache
+chmod 777 config attachments subs torrents imdb/cache imdb/images
 ```
 
 这时访问网站 URL，不出问题会跳转到登录页。注册一个账号，成功后，将其设置为超级管理员。
