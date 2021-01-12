@@ -2,13 +2,13 @@
 
 ### 前提条件
 ::: warning
-v1.6 为了兼容 PHP7 & PHP8 以及修复大量 warning/notice 等级别错误对大量文件做了小修改，升级第一步就是要以新文件全量覆盖旧文件。
-- 如果你的网站没有对原 NP 没有任何改动，覆盖没有任何问题。
-- 如果你的网站对原文件没有改动，加了新的文件，那覆盖也没有任何问题。
-- 如果你的网站对原文件有改动，并且明确知道哪些是新增的，可以先复制出来，覆盖后再粘贴回去，也是可以的。但不建议新功能直接修改原文件，最好新增文件。
-- 如果你的网站对原文件有改动，并且不好分离变动内容，如能接受改动全部丢失，也可以升级。
-- 如果你的网站对原文件有改动，并且不好分离变动内容，不能接受改动丢失，有专业人士帮助的情况下，资讯专业人士看能否升级。
-- 如果你的网站对原文件有改动，并且不好分离变动内容，不能接受改动丢失，也无专业人士帮助，不要升级！
+v1.6 为了兼容 PHP7 & PHP8 以及修复大量 warning/notice 等级别错误对大量文件做了小修改，升级第一步就是要以新文件全量覆盖旧文件
+- 如果你的网站没有对原 NP 没有任何改动，覆盖没有任何问题 :chart:
+- 如果你的网站对原文件没有改动，加了新的文件，那覆盖也没有任何问题 :chart:
+- 如果你的网站对原文件有改动，并且明确知道哪些是新增的，可以先复制出来，覆盖后再粘贴回去，也是可以的。但不建议新功能直接修改原文件，最好新增文件 :chart:
+- 如果你的网站对原文件有改动，并且不好分离变动内容，如能接受改动全部丢失，也可以升级 :chart:
+- 如果你的网站对原文件有改动，并且不好分离变动内容，不能接受改动丢失，有专业人士帮助的情况下，资讯专业人士看能否升级 :interrobang:
+- 如果你的网站对原文件有改动，并且不好分离变动内容，不能接受改动丢失，也无专业人士帮助，不要升级！:x:
 
 :::
 
@@ -101,7 +101,23 @@ alter table suggest modify adddate datetime default null;
 alter table torrents modify added datetime default current_timestamp, modify last_action datetime default null, modify promotion_until datetime default null, modify picktime datetime default null, modify last_reseed datetime default null;
 ```
 
-### 导入【站点设定】初始数据
+### 【站点设定】数据入库
 
+登录数据库，新建 `settings` 表：
+```
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `value` mediumtext,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniqe_config_name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+```
+:::tip
+考虑到尽量兼容低版本，引擎仍然使用 MyISAM。编码使用 utf8，utf8mb4 需要 >= 5.5.3。时间字段使用 timestamp， datetime 如若要设置默认值为当前时间及自动更新，需要 >= 5.6.5。
+:::
 
+后续导入工作，由升级脚本完成。
 
