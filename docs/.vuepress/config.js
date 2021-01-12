@@ -6,6 +6,7 @@ module.exports = {
     sidebar: [
       ['start', '起步'],
       ['installation', '安装'],
+      ['update', '升级'],
     ],
     nav: [
         { text: 'Blog', link: 'http://nexusphp.cn/' },
