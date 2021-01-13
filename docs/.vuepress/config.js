@@ -7,6 +7,7 @@ module.exports = {
       ['start', '起步'],
       ['installation', '安装'],
       ['update', '升级'],
+      ['development', '开发'],
     ],
     nav: [
         { text: 'Blog', link: 'http://nexusphp.cn/' },
