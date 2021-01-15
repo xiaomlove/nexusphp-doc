@@ -31,7 +31,9 @@ REDIS_HOST=127.0.0.1
 REDIS_PORT=6379
 REDIS_DATABASE=0
 ```
-### users 表添加  page 字段
+### 新增字段
+
+#### usres 表添加 page 字段
 在【次要设定】中，保护用户位置若打开，会记录在 users 表的 page 字段。在 functions.php menu() 方法中：
 ```php
 if ($CURUSER){
@@ -39,7 +41,7 @@ if ($CURUSER){
     $USERUPDATESET[] = "page = ".sqlesc($selected);
 }
 ```
-但目前的建表语句中不包含 page 字段，因此需要补充之。
+但目前的建表语句中不包含 `page` 字段，因此需要补充之。
 
 在当前的建表语句中，时间相关默认值都给了 `0000-00-00 00:00:00`，在 Mysql 5.7 及以上默认的 sql_mode 中认为是非法的。统一改为标准的 `default null` 或当前时间。
 
@@ -50,7 +52,7 @@ if ($CURUSER){
 SET sql_mode=(SELECT REPLACE(@@sql_mode,"NO_ZERO_DATE", ""));
 ```
 
-执行以下语句添加 page 字段：
+执行以下语句添加 `page` 字段：
 ```
 alter table users
 modify column added datetime default current_timestamp,
@@ -71,34 +73,47 @@ modify column lastwarned datetime default null,
 add column page varchar(255) default '';
 ```
 
-【可选】其他表的时间字段建议也修改为标准格式。
+
+#### torrents 表添加 pt_gen 字段
+由于新加入了 PT-Gen 功能，需要在 `torrents` 表新增字段 `pt_gen`。
+
 ```
-alter table attachments modify added datetime default current_timestamp;
-alter table bans modify added datetime default current_timestamp;
-alter table bitbucket modify added datetime default current_timestamp;
-alter table cheaters modify added datetime default current_timestamp;
-alter table chronicle modify added datetime default current_timestamp;
-alter table comments modify added datetime default current_timestamp, modify editdate datetime default null;
-alter table fun modify added datetime default current_timestamp;
-alter table funds modify added datetime default current_timestamp;
-alter table funvotes modify added datetime default current_timestamp;
+alter table torrents 
+modify added datetime default null, 
+modify last_action datetime default null, 
+modify promotion_until datetime default null, 
+modify picktime datetime default null, 
+modify last_reseed datetime default null, 
+add pt_gen text default null;
+```
+
+#### 【可选】其他表的时间字段建议也修改为标准格式
+```
+alter table attachments modify added datetime default null;
+alter table bans modify added datetime default null;
+alter table bitbucket modify added datetime default null;
+alter table cheaters modify added datetime default null;
+alter table chronicle modify added datetime default null;
+alter table comments modify added datetime default null, modify editdate datetime default null;
+alter table fun modify added datetime default null;
+alter table funds modify added datetime default null;
+alter table funvotes modify added datetime default null;
 alter table invites modify time_invited datetime default null;
 alter table iplog modify access datetime default null;
-alter table loginattempts modify added datetime default current_timestamp;
-alter table messages modify added datetime default current_timestamp;
-alter table news modify added datetime default current_timestamp;
-alter table offers modify added datetime default current_timestamp, modify allowedtime datetime default null;
+alter table loginattempts modify added datetime default null;
+alter table messages modify added datetime default null;
+alter table news modify added datetime default null;
+alter table offers modify added datetime default null, modify allowedtime datetime default null;
 alter table peers modify started datetime default null, modify last_action datetime default null, modify prev_action datetime default null;
-alter table polls modify added datetime default current_timestamp;
-alter table posts modify added datetime default current_timestamp, modify editdate datetime default null;
-alter table prolinkclicks modify added datetime default current_timestamp;
-alter table reports modify added datetime default current_timestamp;
-alter table sitelog modify added datetime default current_timestamp;
+alter table polls modify added datetime default null;
+alter table posts modify added datetime default null, modify editdate datetime default null;
+alter table prolinkclicks modify added datetime default null;
+alter table reports modify added datetime default null;
+alter table sitelog modify added datetime default null;
 alter table snatched modify last_action datetime default null, modify startdat datetime default null, modify completedat datetime default null;
-alter table staffmessages modify added datetime default current_timestamp;
-alter table subs modify added datetime default current_timestamp;
+alter table staffmessages modify added datetime default null;
+alter table subs modify added datetime default null;
 alter table suggest modify adddate datetime default null;
-alter table torrents modify added datetime default current_timestamp, modify last_action datetime default null, modify promotion_until datetime default null, modify picktime datetime default null, modify last_reseed datetime default null;
 ```
 
 ### 【站点设定】数据入库
@@ -109,14 +124,14 @@ CREATE TABLE `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `value` mediumtext,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` datetime default null,
+  `updated_at` datetime default null,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uniqe_config_name` (`name`)
+  UNIQUE KEY `uniqe_name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ```
 :::tip
-考虑到尽量兼容低版本，引擎仍然使用 MyISAM。编码使用 utf8，utf8mb4 需要 >= 5.5.3。时间字段使用 timestamp， datetime 如若要设置默认值为当前时间及自动更新，需要 >= 5.6.5。
+考虑到尽量兼容低版本，引擎仍然使用 MyISAM。编码使用 utf8，utf8mb4 需要 >= 5.5.3。datetime 如若要设置默认值为当前时间及自动更新，需要 >= 5.6.5，故不设置。
 :::
 
 后续导入工作，由升级脚本完成。
