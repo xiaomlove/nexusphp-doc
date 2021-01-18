@@ -1,7 +1,6 @@
 ## 获取程序
 
-- 可到 [sourceforge.net](https://sourceforge.net/projects/nexusphp/) 切换到 Files ，下载 [起步](/start.html#适用版本) 中提到的版本。
-- 或者到此 [Github 仓库](https://github.com/xiaomlove/nexusphp) 选择 v1.5 这个 release 进行下载。二者是一样的。
+到此 [Github 仓库](https://github.com/xiaomlove/nexusphp)，克隆下来切换到 `php8` 分支。
 
 ## 初始化数据库
 

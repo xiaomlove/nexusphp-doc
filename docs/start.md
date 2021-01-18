@@ -1,12 +1,12 @@
 ## 适用版本
 
-本文档适用于 NexusPHP(以下简称 NP) 未经修改的原始版本，版本号：`nexusphp.v1.5.beta5.20120707`
+本文档适用于 NexusPHP(以下简称 NP) 经修改的版本，版本号：`1.6.*`
 
 ## 环境要求
 
-- PHP: 5.3 ~ 5.6，必须扩展 mysql, mbstring, gd。PHP 7.x 或 PHP 8.x 不支持。如需支持，请使用 [修改版本](http://nexusphp.cn/2021/01/04/update-nexusphp-support-with-php7-and-php8/)。
+- PHP: 7.2 或以上，必须扩展 mysqli, mbstring, gd。PHP 7.0/7.1未测试，PHP 5.x 不支持，如有需要，请使用 [v1.5 原始版本](https://github.com/xiaomlove/nexusphp/releases/tag/v1.5)。
 - Mysql: 5.0 ~ 8.0 均可，低于 5.0 不敢保证没有问题。
-- Memcache: 任意版本。这是可选的缓存组件，若要启用，PHP 需要安装 memcache 扩展（注意不是 memcached）。
+- Redis: 任意版本。这是可选的缓存组件，若要启用，PHP 需要安装 redis 扩展。强烈建议启用。
 
 ::: tip
 PHP  gd 扩展必须启用对 jpeg 的支持。可通过打印函数 `gd_info()` 的结果来确认是否已经支持。下边是已经支持的输出结果：
