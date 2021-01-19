@@ -65,6 +65,8 @@ server {
 
 ## 基本配置
 
+### 配置数据库连接
+
 在开始访问之前需要先配置下数据信息。打开 `config/allconfig.php`, 找到约 151 行的 $BASIC，修改为正确的值。
 ```php
 $BASIC=array(
@@ -77,6 +79,7 @@ $BASIC=array(
     'mysql_db' => 'nexusphp',
 );
 ```
+### 赋予储存目录读写权限
 
 更改网站目录拥有者为 PHP 运行用户（一般为 www-data），保证有 PHP 有权限对以下目录进行读写。
 
@@ -95,6 +98,14 @@ chown /YOUR_WEB_PATH www-data:www-data
 ```
 chmod 777 config attachments subs torrents imdb/cache imdb/images
 ```
+
+### 将存储目录链接到 WebRoot
+
+在根目录下，执行：
+```
+
+```
+
 
 这时访问网站 URL，不出问题会跳转到登录页。注册一个账号，成功后，将其设置为超级管理员。
 ```
