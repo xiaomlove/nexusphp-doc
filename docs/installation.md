@@ -63,7 +63,7 @@ server {
 ```
 
 ### 启用 https 配置
-启用 https，首先得拥有证书。如果使用 Cloudflare，有免费证书提供。
+启用 https，首先得准备好证书。
 ```
 server {
     listen 443 ssl;
@@ -176,3 +176,13 @@ ini_set('display_errors', 1);
 ::: danger
 修复错误后，记得把错误展示关闭！
 :::
+
+## 其他
+
+### 要不要启用 https
+
+建议启用。一是为了安全，二也为了去除浏览器碍眼的“不安全”字样。免费的证书有 [Let's Encrypt](https://letsencrypt.org/)，其他一些云服务器厂商也有提供。
+
+### 要不要上 Cloudflare
+
+没必要。国内 PT 站都喜欢上，但不备案不付费是没有国内节点提供的，上了反而慢很多。
