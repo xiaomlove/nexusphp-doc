@@ -34,6 +34,7 @@ Query OK, 0 rows affected (0.00 sec)
 
 ## 配置 Web 服务器
 
+### 不启用 https 配置
 以 nginx 为例，只需要最基本的配置即可。在 nginx 配置目录（一般为 /etc/nginx/conf.d/）下新增一个 nexusphp.conf
 
 ```
@@ -61,29 +62,67 @@ server {
 }
 ```
 
+### 启用 https 配置
+启用 https，首先得拥有证书。如果使用 Cloudflare，有免费证书提供。
+```
+server {
+    listen 443 ssl;
+    ssl_certificate /YOUR_CERTIFICATE_PATH/demo.nexusphp.cn.pem;
+    ssl_certificate_key /YOUR_CERTIFICATE_PATH/demo.nexusphp.cn.key;
+
+    # 以实际为准
+    root /YOUR_WEB_PATH; 
+
+    server_name demo.nexusphp.cn;
+
+    location / {
+        index index.html index.php;
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php {
+        # 以实际为准
+        fastcgi_pass 127.0.0.1:9000; 
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    access_log /var/log/nginx/demo.nexusphp.cn.access.log;
+    error_log /var/log/nginx/demo.nexusphp.cn.error.log;
+}
+# http 跳转 https
+server {
+    if ($host = demo.nexusphp.cn) {
+        return 301 https://$host$request_uri;
+    }
+    server_name demo.nexusphp.cn;
+    listen 80;
+    return 404;
+}
+```
+
 添加完成后，`nginx -t` 测试是否有错误，无错误 `nginx -s reload` 重启生效。
 
 ## 基本配置
 
 ### 配置数据库连接
 
-在开始访问之前需要先配置下数据信息。打开 `config/allconfig.php`, 找到约 151 行的 $BASIC，修改为正确的值。
-```php
-$BASIC=array(
-    'SITENAME' => 'NexusPHP',
-    'BASEURL' => 'demo.nexusphp.cn',
-    'announce_url' => 'demo.nexusphp.cn/announce.php',
-    'mysql_host' => 'localhost',
-    'mysql_user' => 'root',
-    'mysql_pass' => 'nexusphprocks',
-    'mysql_db' => 'nexusphp',
-);
+在开始访问之前需要先配置下数据信息。复制根目录下的 `.env.example` 命名为 `.env`，修改为正确的值。
+```
+MYSQL_HOST=127.0.0.1
+MYSQL_PORT=3306
+MYSQL_USERNAME=
+MYSQL_PASSWORD=
+MYSQL_DATABASE=nexusphp
+
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+REDIS_DATABASE=0
 ```
 ### 赋予储存目录读写权限
 
 更改网站目录拥有者为 PHP 运行用户（一般为 www-data），保证有 PHP 有权限对以下目录进行读写。
 
-- 配置文件目录：config
 - 附件目录：attachments
 - 字幕目录：subs
 - 种子目录：torrents
@@ -96,7 +135,7 @@ chown /YOUR_WEB_PATH www-data:www-data
 
 如果不知道 PHP 运行用户是哪个，亦可修改这几个目录的读取模式为 777（必须有执行权限，否则会有问题），在根目录下执行：
 ```
-chmod 777 config attachments subs torrents imdb/cache imdb/images
+chmod 777 attachments subs torrents imdb/cache imdb/images
 ```
 
 ### 将存储目录链接到 WebRoot
@@ -106,6 +145,7 @@ chmod 777 config attachments subs torrents imdb/cache imdb/images
 
 ```
 
+### 注册并设置超级管理员
 
 这时访问网站 URL，不出问题会跳转到登录页。注册一个账号，成功后，将其设置为超级管理员。
 ```
