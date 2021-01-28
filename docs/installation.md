@@ -1,6 +1,6 @@
 ## 获取程序
 
-到此 [Github 仓库](https://github.com/xiaomlove/nexusphp)，克隆下来切换到 `php8` 分支。
+克隆 [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp) 即可。
 
 ## 创建数据库
 
@@ -24,9 +24,9 @@ Query OK, 1 row affected (0.06 sec)
 server {
 
     # 以实际为准
-    root /YOUR_WEB_PATH; 
+    root /<WEB_ROOT>; 
 
-    server_name demo.nexusphp.cn;
+    server_name <DOMAIN>;
 
     location / {
         index index.html index.php;
@@ -40,8 +40,8 @@ server {
         include fastcgi_params;
     }
 
-    access_log /var/log/nginx/demo.nexusphp.cn.access.log;
-    error_log /var/log/nginx/demo.nexusphp.cn.error.log;
+    access_log /var/log/nginx/<DOMAIN>.access.log;
+    error_log /var/log/nginx/<DOMAIN>.error.log;
 }
 ```
 
@@ -50,13 +50,13 @@ server {
 ```
 server {
     listen 443 ssl;
-    ssl_certificate /YOUR_CERTIFICATE_PATH/demo.nexusphp.cn.pem;
-    ssl_certificate_key /YOUR_CERTIFICATE_PATH/demo.nexusphp.cn.key;
+    ssl_certificate /SOME/PATH/<DOMAIN>.pem;
+    ssl_certificate_key /SOME/PATH/<DOMAIN>.key;
 
     # 以实际为准
-    root /YOUR_WEB_PATH; 
+    root /<WEB_ROOT>; 
 
-    server_name demo.nexusphp.cn;
+    server_name <DOMAIN>;
 
     location / {
         index index.html index.php;
@@ -70,15 +70,15 @@ server {
         include fastcgi_params;
     }
 
-    access_log /var/log/nginx/demo.nexusphp.cn.access.log;
-    error_log /var/log/nginx/demo.nexusphp.cn.error.log;
+    access_log /var/log/nginx/<DOMAIN>.access.log;
+    error_log /var/log/nginx/<DOMAIN>.error.log;
 }
 # http 跳转 https
 server {
-    if ($host = demo.nexusphp.cn) {
+    if ($host = <DOMAIN>) {
         return 301 https://$host$request_uri;
     }
-    server_name demo.nexusphp.cn;
+    server_name <DOMAIN>;
     listen 80;
     return 404;
 }
@@ -86,9 +86,17 @@ server {
 
 添加完成后，`nginx -t` 测试是否有错误，无错误 `nginx -s reload` 重启生效。
 
-这里打开网站域名，不出问题会跳转到安装界面。
-
 ## 过程程序
+
+### 安装准备
+
+以下在<ROOT_PATH>下执行：
+- `composer install`，安装依赖 
+- `cp -R nexus/Install/install public/`，复制 `nexus/Install/install` 到 `public/`，保证最后 `public/install/install.php` 存在
+- `chown -R <PHP_USER>:<PHP_USER> <ROOT_PATH>`，设置根目录所有者为运行 PHP 的用户
+- 上面一步如果不知道 <PHP_USER> 是谁，亦可将整个目录赋予 0777 权限：`chmod -R 0777 <ROOT_PATH>`
+
+以上准备工作做完，打开网站域名正常会跳转安装界面。
 
 ### 第1步：环境检测
 检测 PHP 版本以及相关扩展是否符合要求。
