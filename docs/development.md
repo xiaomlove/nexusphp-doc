@@ -15,10 +15,17 @@ NP 是传统的多入口应用，根目录下每个文件都是入口。没有�
 
 |函数名|说明|
 |:---|:---|
-|dbconn()|连接数据库|
+|dbconn()|Web 端，连接数据库。在 v1.6 中不需要手动调用，会自动连接|
 |dbconn_announce()|Tracker 端，连接数据库|
 |userlogin()|设置登录态|
 |loggedinorreturn()|判断用户是否登录|
 |parked()|判断账号是否已经封存|
 |parse_imdb_id()|标准化 imdb_id，不足 7 位的补充前导 0|
+|do_log()|记录运行日志到文本|
+|get_setting()|读取站点设定数据|
+|env()|读取 .env 文件配置值|
+|config()|读取 config 目录下配置文件（allconfig.php除外）的值|
+|getSchemaAndHttpHost()|获取仅包含协议、主机、端口的 URL 地址|
+|getBaseUrl()|获取仅包含协议、主机、端口、路径的 URL 地址|
+
 

@@ -6,7 +6,6 @@ module.exports = {
     sidebar: [
       ['start', '起步'],
       ['installation', '安装'],
-      ['update', '升级'],
       ['configuration', '设置'],
       ['development', '开发'],
     ],
