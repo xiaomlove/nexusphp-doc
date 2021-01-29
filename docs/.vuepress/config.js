@@ -10,7 +10,7 @@ module.exports = {
       ['development', '开发'],
     ],
     nav: [
-        { text: 'Blog', link: 'http://nexusphp.cn/' },
+        { text: 'Blog', link: 'http://nexusphp.org/' },
         { text: 'Github', link: 'https://github.com/xiaomlove/nexusphp' }
     ]
   }

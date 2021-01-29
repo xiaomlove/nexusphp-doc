@@ -5,10 +5,10 @@
 ## 名词释义
 
 本文档所包含的一些专有名词含义：
-- ROOT_PATH，指部署应用的根目录，如 `/usr/share/nginx/html/demo.nexusphp.cn`
+- ROOT_PATH，指部署应用的根目录，如 `/usr/share/nginx/html/demo.nexusphp.org`
 - WEB_ROOT，指 Web 服务器访问到的根目录，在这里为 `ROOT_PATH . 'public'`
 - PHP_USER，指运行 PHP 的用户，一般为 `www-data`，以具体为准
-- DOMAIN, 指网站域名，如 `demo.nexusphp.cn`
+- DOMAIN, 指网站域名，如 `demo.nexusphp.org`
 
 ## 环境要求
 
