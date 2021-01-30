@@ -16,10 +16,6 @@
 
 <img :src="$withBase('/images/nexus_email_test.png')">
 
-## 运行日志
-
-【次要设定】-><运行日志路径>，默认为 `/tmp/nexus.log`。如果为空，会记录到系统临时目录下，命名为 `nexus_<Ymd>.log`。
-
 ## PT-Gen
 
 NP 默认带了 IMDB 信息，但对于国内玩家可能更习惯于豆瓣。依靠[Rhilip/pt-gen-cfworker](https://github.com/Rhilip/pt-gen-cfworker)提供接口，集成到了 NP 中。

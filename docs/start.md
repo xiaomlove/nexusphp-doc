@@ -12,7 +12,7 @@
 
 ## 环境要求
 
-- PHP: 7.2 或以上，必须扩展 mysqli, mbstring, gd。PHP 7.0/7.1未测试，PHP 5.x 不支持，如有需要，请使用 [v1.5 原始版本](https://github.com/xiaomlove/nexusphp/releases/tag/v1.5)。
+- PHP: 7.2 或以上，必须扩展 mysqli, mbstring, gd。PHP 7.0/7.1未测试。PHP 5.x 不支持，如有需要，请使用 [v1.5 原始版本](https://github.com/xiaomlove/nexusphp/releases/tag/v1.5)。
 - Mysql: 5.0 ~ 8.0 均可，低于 5.0 不敢保证没有问题。
 - Redis: 任意版本。这是可选的缓存组件，若要启用，PHP 需要安装 redis 扩展。强烈建议启用。
 

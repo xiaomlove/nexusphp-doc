@@ -1,6 +1,6 @@
 ## 获取程序
 
-克隆 [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp) 即可。
+克隆或下载 [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp) 即可。
 
 ## 创建数据库
 
@@ -129,7 +129,7 @@ catch_workers_out = yes
 php_admin_flag[log_errors] = on
 ```
 
-如果依然看不到错误，修改 `include/core.php` 约第 10 行，把 0 改为 1，把错误展示到页面上。
+如果依然看不到错误，修改 `include/core.php` 约第 15 行，把 0 改为 1，把错误展示到页面上。
 ``` php
 ini_set('display_errors', 1);
 ```
