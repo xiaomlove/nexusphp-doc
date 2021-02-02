@@ -32,6 +32,14 @@
 |目录|nexus|
 |目录|include|
 
+另外涉及多语言的，三种语言自行复制替换。涉及到的文件有（以 chs 为例）：
+- lang/chs/lang_details.php
+- lang/chs/lang_functions.php
+- lang/chs/lang_mybonus.php
+- lang/chs/lang_settings.php
+- lang/chs/lang_staffpanel.php
+
+
 ### 安装 composer
 到 [官网](https://getcomposer.org/) 按其文档进行安装。安装完成后，在 <ROOT_PATH> 下执行 `composer install`。
 
