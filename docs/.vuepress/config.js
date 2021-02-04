@@ -14,5 +14,20 @@ module.exports = {
         { text: 'Blog', link: 'http://nexusphp.org/' },
         { text: 'Github', link: 'https://github.com/xiaomlove/nexusphp' }
     ]
-  }
+  },
+  head: [
+    [
+      "script",
+      {},
+      `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?84c0d2679e49f1c63eb79fe1f08b6b11";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+        `
+    ]
+  ]
 }
