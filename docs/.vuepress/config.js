@@ -1,7 +1,9 @@
 module.exports = {
-  title: 'NexusPHP 使用文档',
-  description: 'by xiaomlove',
+  title: 'NexusPHP 文档 | Documentation',
+  description: '包含 NexusPHP 的安装、使用、设置、升级、开发等相关知识',
   themeConfig: {
+    lastUpdated: 'Last Updated', // string | boolean
+    smoothScroll: true,
     sidebarDepth: 2,
     sidebar: [
       ['start', '起步'],
@@ -28,6 +30,25 @@ module.exports = {
         s.parentNode.insertBefore(hm, s);
       })();
         `
+    ],
+    ['meta', { name: 'keywords', content: 'PT, BT, bitbucket, torrent, Private Tracker, Documentation, Doc, 使用文档'}],
+    ['meta', { name: 'keywords', content: 'NexusPHP, Install, Update, Configuration, Development'}]
+  ],
+  plugins: [
+    ['@vuepress/back-to-top'],
+    [
+      "vuepress-plugin-comment",
+      {
+        choosen: "valine",
+        // options选项中的所有参数，会传给Valine的配置
+        options: {
+          el: "#valine-vuepress-comment",
+          appId: "aMSykHHsQF27dUU9ucankbc9-gzGzoHsz",
+          appKey: "Oqf9pvRrAoFfuEL0C3CtJJId",
+          path: '<%- frontmatter.to.path %>',
+          visitor: true // 阅读量统计
+        }
+      }
     ]
   ]
 }

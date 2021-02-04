@@ -31,6 +31,7 @@
 |目录|public|
 |目录|nexus|
 |目录|include|
+|目录|resources|
 
 另外涉及多语言的，三种语言自行复制替换。涉及到的文件有（以 chs 为例）：
 - lang/chs/lang_details.php
@@ -45,7 +46,7 @@
 
 
 ### 复制升级程序
-将新版中的 `nexus/Install/update.php` 复制到 `public/update/update.php` 中。
+将新版中的 `nexus/Install/update/update.php` 复制到 `public/update/update.php` 中。
 
 以上步骤完成后，打开 `<DOMAIN>/update/update.php`，将进入升级界面。
 
