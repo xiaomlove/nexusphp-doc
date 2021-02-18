@@ -8,7 +8,7 @@
 
 【SMTP 设定】-><邮件函数类型>，选择外部。下边以 QQ 邮箱为例，具体参考你的邮件服务提供商文档。
 - SMTP 地址：smtp.qq.com
-- SMTP 端口：25
+- SMTP 端口：25。记得开放服务器的该端口，否则无法发送！
 - 用户名：QQ邮箱完整地址，包含 @qq.com 后缀。
 - 用户密码：授权码，不是邮箱密码。获取方式参考[这里](https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256)
 
