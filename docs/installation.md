@@ -1,6 +1,9 @@
 ## 获取程序
 
-克隆或下载 [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp) 即可。
+克隆 [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp)，然后切换到最新的 release 标签再安装，或者直接下载最新 [release](https://github.com/xiaomlove/nexusphp/releases)。
+:::warning
+克隆时务必切换到某个 release 进行安装。不要使用最新的开发代码！
+:::
 
 ## 创建数据库
 
@@ -85,6 +88,11 @@ server {
 ```
 
 添加完成后，`nginx -t` 测试是否有错误，无错误 `nginx -s reload` 重启生效。
+
+::: tip
+如果是宝塔面板，默认会禁用 `putenv, proc_open` 函数，需要移除，否则正常无法运行 `composer`。任务清理等需要用到 `exec` 函数，也需要从禁用函数中去掉。
+而且它创建的网站根目录包含`.user.ini` 文件，里边限制了 PHP 引入文件时可打开的目录，编辑它把 `open_basedir` 的第一个值改为上一层（即删掉 `public/`）。
+:::
 
 ## 过程程序
 
