@@ -147,6 +147,12 @@ server {
 完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
 :::
 
+### 第6步：创建后台任务
+创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
+```
+* * * * * cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule.log
+```
+
 ## 问题排查
 
 如果不能正常跳转安装界面，查看 nginx error log。  

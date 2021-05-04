@@ -50,6 +50,12 @@
 ### 第4步：导入数据
 将站点设定的新数据和旧数据合并，入库。
 
+### 第5步：创建后台任务
+创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
+```
+* * * * * cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule.log
+```
+
 ## 结语
 
 升级完成后，记得删除 `public/update` 目录，同时 <ROOT_PATH> 目录下的 .php 文件已不再使用，是否删除看个人需要。  
