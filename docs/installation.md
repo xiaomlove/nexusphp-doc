@@ -38,7 +38,7 @@ server {
 
     # 管理后台
     location ~* /admin(.*) {
-        root <ROOT_PATH>/admin/dsit;
+        root <ROOT_PATH>/admin/dist;
         try_files $uri $uri/ $1 /index.html =404;
     }
 
@@ -79,7 +79,7 @@ server {
 
     # 管理后台
     location ~* /admin(.*) {
-        root <ROOT_PATH>/admin/dsit;
+        root <ROOT_PATH>/admin/dist;
         try_files $uri $uri/ $1 /index.html =404;
     }
 
