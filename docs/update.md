@@ -16,29 +16,14 @@
 
 ## 准备工作
 
-### 增加新的目录及文件
-将新版本中的以下目录及文件复制到旧项目中，若已存在，进行覆盖。  
-以下均相对于 <ROOT_PATH> 而言。
-
-|类型|路径|
-|--|--|
-|文件|composer.json|
-|文件|.env.example|
-|文件|classes/class_cache_redis.php|
-|文件|config/database.php|
-|文件|config/nexus.php|
-|文件|_db/dbstructure_v1.6.sql|
-|目录|public|
-|目录|nexus|
-|目录|include|
-|目录|resources|
-
-另外涉及多语言的，三种语言自行复制替换。涉及到的文件有（以 chs 为例）：
-- lang/chs/lang_details.php
-- lang/chs/lang_functions.php
-- lang/chs/lang_mybonus.php
-- lang/chs/lang_settings.php
-- lang/chs/lang_staffpanel.php
+### 保留原资源数据
+由于变动较大，把新版本代码全部下载后，将旧项目的以下资源复制到对应目录中进行覆盖。
+- attachments
+- bitbucket
+- config/allconfig.php
+- imdb
+- subs
+- torrents
 
 
 ### 安装 composer
