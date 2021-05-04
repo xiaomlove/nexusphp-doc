@@ -36,6 +36,17 @@ server {
         try_files $uri $uri/ /index.php$is_args$args;
     }
 
+    # 管理后台
+    location ~* /admin(.*) {
+        root <ROOT_PATH>/admin/dsit;
+        try_files $uri $uri/ $1 /index.html =404;
+    }
+
+    # api 接口
+    location ^~ /api {
+        try_files $uri $uri/ /nexus.php$is_args$args;
+    }
+
     location ~ \.php {
         # 以实际为准
         fastcgi_pass 127.0.0.1:9000; 
@@ -64,6 +75,17 @@ server {
     location / {
         index index.html index.php;
         try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    # 管理后台
+    location ~* /admin(.*) {
+        root <ROOT_PATH>/admin/dsit;
+        try_files $uri $uri/ $1 /index.html =404;
+    }
+
+    # api 接口
+    location ^~ /api {
+        try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
     location ~ \.php {
