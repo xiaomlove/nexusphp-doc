@@ -1,17 +1,48 @@
 module.exports = {
-  title: 'NexusPHP 文档 | Documentation',
-  description: '包含 NexusPHP 的安装、使用、设置、升级、开发等相关知识',
+  locales: {
+    '/': {
+      lang: 'zh-CN',
+      title: 'NexusPHP 文档 | Documentation',
+      description: '包含 NexusPHP 的安装、使用、设置、升级、开发等相关知识',
+    },
+    '/en/': {
+      lang: 'en-US',
+      title: 'NexusPHP | Documentation',
+      description: 'Installation, usage, setting, upgrade and development about NexusPHP',
+    }
+  },
   themeConfig: {
     lastUpdated: 'Last Updated', // string | boolean
     smoothScroll: true,
     sidebarDepth: 2,
-    sidebar: [
-      ['start', '起步'],
-      ['installation', '安装'],
-      ['configuration', '设置'],
-      ['update', '升级'],
-      ['development', '开发'],
-    ],
+    locales: {
+      '/': {
+        selectText: '选择语言',
+        Label: '中文',
+        ariaLabel: '选择语言',
+        sidebar: [
+          ['start', '起步'],
+          ['installation', '安装'],
+          ['configuration', '设置'],
+          ['update', '升级'],
+          ['development', '开发'],
+        ],
+      },
+      '/en/': {
+        selectText: 'Languages',
+        Label: 'English',
+        ariaLabel: 'Languages',
+        sidebar: {
+          '/en/': [
+            ['start', 'Start'],
+            ['installation', 'Installation'],
+            ['configuration', 'Configuration'],
+            ['update', 'Upgrade'],
+            ['development', 'Devlopment'],
+          ]
+        }
+      }
+    },
     nav: [
         { text: 'Blog', link: 'http://nexusphp.org/' },
         { text: 'Github', link: 'https://github.com/xiaomlove/nexusphp' }

@@ -143,15 +143,14 @@ server {
 ### 第5步：创建系统管理员
 填写用户名、邮箱、密码，创建一个最高权限的系统管理员。
 
-:::danger
-完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
-:::
-
 ### 第6步：创建后台任务
 创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
 ```
 * * * * * cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule.log
 ```
+:::danger
+完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
+:::
 
 ## 问题排查
 
@@ -165,7 +164,7 @@ catch_workers_out = yes
 php_admin_flag[log_errors] = on
 ```
 
-如果依然看不到错误，修改 `include/core.php` 约第 15 行，把 0 改为 1，把错误展示到页面上。
+如果依然看不到错误，修改 `include/core.php` 约第 18 行，把 0 改为 1，把错误展示到页面上。
 ``` php
 ini_set('display_errors', 1);
 ```

@@ -25,7 +25,7 @@ NP 是传统的多入口应用，public 目录下每个文件都是入口。原�
 |get_row_count($table, $suffix = '')|计数查询，suffix 即是 where 条件（必须包含 where）|
 |do_log($log, $level = 'info')|记录日志到文本|
 |get_setting($name, $default = null)|读取站点设定数据|
-|env($name, $default = null)|读取 .env 文件配置值|
-|config($name, $default = null)|读取 config 目录下配置文件（allconfig.php除外）的值|
+|nexus_env($name, $default = null)|读取 .env 文件配置值|
+|nexus_config($name, $default = null)|读取 config 目录下配置文件（allconfig.php除外）的值|
 |getSchemaAndHttpHost()|获取仅包含协议、主机、端口的 URL 地址|
 |getBaseUrl()|获取仅包含协议、主机、端口、路径的 URL 地址|

@@ -13,7 +13,7 @@
 ## 环境要求
 
 - PHP: 7.3 或以上，必须扩展：ctype, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd。
-- Mysql: 推荐 5.6 或以上。
+- Mysql: 推荐 5.7 或以上。
 - Redis: 任意版本。这是可选的缓存组件，若要启用，PHP 需要安装 redis 扩展。强烈建议启用。
 
 
