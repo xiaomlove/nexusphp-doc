@@ -24,7 +24,7 @@ NP comes with IMDB information by default, but for Chinese players may be more u
 
 By default, the original author demo interface is used, if there is any problem, please refer to its documentation to build your own interface, fill in the [Main Settings] -> [PT-Gen api point].
 
-## Set hot, recommended, etc.
+## Set hot, classic, etc.
 
 In the edit page, you must be a Picker to see this option, and the system administrator is not allowed. Therefore, to set popular, recommended, etc., edit another user, set `rank` to at least: `[Site Settings]->Permissions Settings->Manage Torrents` in the rank, and set `Picker` to: `Yes`.
 
