@@ -1,3 +1,8 @@
+<InArticleAdsense
+    data-ad-client="ca-pub-5801780876442364"
+    data-ad-slot="3630490768">
+</InArticleAdsense>
+
 ## 邮件发送
 
 ### 设置发件人
@@ -7,8 +12,9 @@
 ### SMTP 设定
 
 【SMTP 设定】-><邮件函数类型>，选择外部。下边以 QQ 邮箱为例，具体参考你的邮件服务提供商文档。
-- SMTP 地址：smtp.qq.com。
-- SMTP 端口：465。
+- SMTP 地址：smtp.qq.com
+- SMTP 端口：465
+- 加密方式：ssl
 - 用户名：QQ邮箱完整地址，包含 @qq.com 后缀。
 - 用户密码：授权码，不是邮箱密码。获取方式参考[这里](https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256)。
 
@@ -16,6 +22,15 @@
 
 <img :src="$withBase('/images/nexus_email_test.png')">
 
+## 定时清理
+默认清理的执行是通过网页请求去触发，建议修改为定时任务触发。修改`.env`文件`USE_CRON_TRIGGER_CLEANUP`为`true`：
+```
+USE_CRON_TRIGGER_CLEANUP=true
+```
+创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
+```
+* * * * * flock -xn cd <ROOT_PATH> && php include/cleanup_cli.php >> /tmp/cleanup_cli_<DOMAIN>.log
+```
 ## PT-Gen
 
 NP 默认带了 IMDB 信息，但对于国内玩家可能更习惯于豆瓣。依靠[Rhilip/pt-gen-cfworker](https://github.com/Rhilip/pt-gen-cfworker)提供接口，集成到了 NP 中。

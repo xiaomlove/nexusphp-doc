@@ -11,6 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.8.0",
+    "vue-google-adsense": "^1.10.1",
+    "vue-script2": "^2.1.0",
     "vuepress": "^1.8.0",
     "vuepress-plugin-comment": "^0.7.3"
   }

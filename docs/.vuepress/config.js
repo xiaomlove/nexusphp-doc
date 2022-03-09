@@ -51,6 +51,14 @@ module.exports = {
   head: [
     [
       "script",
+      {
+        "data-ad-client": "ca-pub-5801780876442364",
+        async: true,
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      }
+    ],
+    [
+      "script",
       {},
       `
       var _hmt = _hmt || [];
@@ -67,19 +75,19 @@ module.exports = {
   ],
   plugins: [
     ['@vuepress/back-to-top'],
-    [
-      "vuepress-plugin-comment",
-      {
-        choosen: "valine",
-        // options选项中的所有参数，会传给Valine的配置
-        options: {
-          el: "#valine-vuepress-comment",
-          appId: "aMSykHHsQF27dUU9ucankbc9-gzGzoHsz",
-          appKey: "Oqf9pvRrAoFfuEL0C3CtJJId",
-          path: '<%- frontmatter.to.path %>',
-          visitor: true // 阅读量统计
-        }
-      }
-    ]
+    // [
+    //   "vuepress-plugin-comment",
+    //   {
+    //     choosen: "valine",
+    //     // options选项中的所有参数，会传给Valine的配置
+    //     options: {
+    //       el: "#valine-vuepress-comment",
+    //       appId: "aMSykHHsQF27dUU9ucankbc9-gzGzoHsz",
+    //       appKey: "Oqf9pvRrAoFfuEL0C3CtJJId",
+    //       path: '<%- frontmatter.to.path %>',
+    //       visitor: true // 阅读量统计
+    //     }
+    //   }
+    // ]
   ]
 }

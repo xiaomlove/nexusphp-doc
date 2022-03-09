@@ -1,8 +1,13 @@
+<InArticleAdsense
+    data-ad-client="ca-pub-5801780876442364"
+    data-ad-slot="3630490768">
+</InArticleAdsense>
+
 ## 获取程序
 
 克隆 [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp)，然后切换到最新的 release 标签再安装，或者直接下载最新 [release](https://github.com/xiaomlove/nexusphp/releases)。
 :::warning
-克隆时务必切换到某个 release 进行安装。不要使用最新的开发代码！
+克隆时务必切换到某个 release 进行安装。不要使用最新的开发代码！ 
 :::
 
 ## 创建数据库
@@ -128,25 +133,13 @@ server {
 
 以上准备工作做完，打开网站域名正常会跳转安装界面。
 
-### 第1步：环境检测
-检测 PHP 版本以及相关扩展是否符合要求。
+### 执行安装
+按实际情况填写每一步，点击下一步，直到完成。
 
-### 第2步：添加 .env 文件
-检测程序自带的 `.env.example` 是否存在。若存在，读取显示出来，按实际情况填写提交便会生成 `.env` 文件。
-
-### 第3步：创建数据表
-新建的所需要的数据表。
-
-### 第4步：导入数据
-导入默认的数据，并根据设定链接相关存储目录到 public 目录。
-
-### 第5步：创建系统管理员
-填写用户名、邮箱、密码，创建一个最高权限的系统管理员。
-
-### 第6步：创建后台任务
+### 创建后台任务
 创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
 ```
-* * * * * cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule.log
+* * * * * cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule_<DOMAIN>.log
 ```
 :::danger
 完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。

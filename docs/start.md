@@ -1,3 +1,8 @@
+<InArticleAdsense
+    data-ad-client="ca-pub-5801780876442364"
+    data-ad-slot="3630490768">
+</InArticleAdsense>
+
 ## 适用版本
 
 本文档适用于 NexusPHP(以下简称 NP) 经修改的版本，版本号：`1.6.*`
@@ -12,9 +17,9 @@
 
 ## 环境要求
 
-- PHP: 7.3 或以上，必须扩展：ctype, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd。
-- Mysql: 推荐 5.7 或以上。
-- Redis: 任意版本。这是可选的缓存组件，若要启用，PHP 需要安装 redis 扩展。强烈建议启用。
+- PHP: 8.0，必须扩展：bcmath, ctype, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis
+- Mysql: 推荐 5.7最新版 或以上
+- Redis: 1.0.0 或以上
 
 
 
