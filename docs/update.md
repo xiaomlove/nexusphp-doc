@@ -55,7 +55,7 @@ set sql_log_bin = 0;
 |styles|public/styles|
 |pic|public/pic|
 
-将以上文件夹覆盖之后，打开`config/allconf.php`，将`BASEURL`和`announce_url`修改为新的：
+将以上文件夹覆盖之后，打开`config/allconfig.php`，将`BASEURL`和`announce_url`修改为新的：
 ```
 $BASIC=array(
 	'SITENAME' => 'NexusPHP',
@@ -101,6 +101,12 @@ update `settings` set `value` = replace(`value`, '旧域名', '新域名') where
 
 ### 创建后台任务
 参见[安装](./installation.md#创建后台任务)。
+
+### 清理签到数据
+如果你网站原来已经有签到功能，它是每签到一次记录一条数据，新版改为每个用户一条数据，在根目录下执行以下命令进行多余数据的清理：
+```
+php artisan attendance:cleanup
+```
 
 ::: danger
 升级完成后，记得删除 `public/update` 目录，升级日志包含第敏感数据，不要泄露。
