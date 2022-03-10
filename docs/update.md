@@ -1,7 +1,4 @@
-<InArticleAdsense
-    data-ad-client="ca-pub-5801780876442364"
-    data-ad-slot="3630490768">
-</InArticleAdsense>
+<ArticleTopAd></ArticleTopAd>
 
 ## 说明
 
@@ -20,18 +17,30 @@
 
 ### 准备环境
 按要求准备好环境，可以与原网站在同一台机器，也可以不是同一台。不再赘述。
+::: tip
+如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, exec`。不要勾选：防跨站攻击(open_basedir)。
+:::
 
 ### 配置新的网站
 线上网站不要受到影响，配置一个新的二级域名或新域名指向一个新的网站目录，具体配置参考安装文档。
 
 ### 建立新的数据库
-导出原网站数据库，导入到一个新建的数据库中。由于旧表日期字段包含诸如`0000`之类的值，在新版数据库中是非法的，建议先登录数据库将 sql_mode 设置为空再执行导入：
+导出原网站数据库，导入到一个新建的数据库中。  
+`peers` 表使用的是 `memory` 引擎，如果数据量较大，为确保导入顺利，在 `my.cnf`（一般为 /etc/my.cnf）`[mysqld]`部分添加以下值保证表能装下全部数据，加完记得重启：
 ```
-set @@sql_mode='';
+tmp_table_size = 10G
+max_heap_table_size = 10G
+```
+为加快导入速度，登录终端后执行以下语句再使用`source`命令导入：
+```
+set sql_mode = '';
+set foreign_key_checks = 0;
+set unique_checks = 0;
+set sql_log_bin = 0;
 ```
 
 ### 获取新代码
-克隆或下载新的代码到新配置的网站根目录。
+克隆或下载新的代码到新配置的网站根目录<ROOT_PATH>。
 
 ### 保留原资源数据
 将旧网站的以下文件夹复制到新网站相应文件夹进行覆盖：
@@ -45,6 +54,19 @@ set @@sql_mode='';
 |torrents|torrents|
 |styles|public/styles|
 |pic|public/pic|
+
+将以上文件夹覆盖之后，打开`config/allconf.php`，将`BASEURL`和`announce_url`修改为新的：
+```
+$BASIC=array(
+	'SITENAME' => 'NexusPHP',
+	'BASEURL' => 'localhost',
+	'announce_url' => 'localhost/announce.php',
+	'mysql_host' => 'localhost',
+	'mysql_user' => 'root',
+	'mysql_pass' => 'nexusphprocks',
+	'mysql_db' => 'nexusphp',
+);
+```
 
 ### 安装 composer
 到 [官网](https://getcomposer.org/) 按其文档进行安装。安装完成后，在新网站根目录下执行 `composer install`。
@@ -78,10 +100,7 @@ update `settings` set `value` = replace(`value`, '旧域名', '新域名') where
 :::
 
 ### 创建后台任务
-创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
-```
-* * * * * cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule_<DOMAIN>.log
-```
+参见[安装](./installation.md#创建后台任务)。
 
 ::: danger
 升级完成后，记得删除 `public/update` 目录，升级日志包含第敏感数据，不要泄露。

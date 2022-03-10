@@ -1,7 +1,4 @@
-<InArticleAdsense
-    data-ad-client="ca-pub-5801780876442364"
-    data-ad-slot="3630490768">
-</InArticleAdsense>
+<ArticleTopAd></ArticleTopAd>
 
 ## 邮件发送
 
@@ -22,15 +19,6 @@
 
 <img :src="$withBase('/images/nexus_email_test.png')">
 
-## 定时清理
-默认清理的执行是通过网页请求去触发，建议修改为定时任务触发。修改`.env`文件`USE_CRON_TRIGGER_CLEANUP`为`true`：
-```
-USE_CRON_TRIGGER_CLEANUP=true
-```
-创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
-```
-* * * * * flock -xn cd <ROOT_PATH> && php include/cleanup_cli.php >> /tmp/cleanup_cli_<DOMAIN>.log
-```
 ## PT-Gen
 
 NP 默认带了 IMDB 信息，但对于国内玩家可能更习惯于豆瓣。依靠[Rhilip/pt-gen-cfworker](https://github.com/Rhilip/pt-gen-cfworker)提供接口，集成到了 NP 中。

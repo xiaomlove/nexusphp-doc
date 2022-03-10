@@ -1,7 +1,4 @@
-<InArticleAdsense
-    data-ad-client="ca-pub-5801780876442364"
-    data-ad-slot="3630490768">
-</InArticleAdsense>
+<ArticleTopAd></ArticleTopAd>
 
 ## 获取程序
 
@@ -32,7 +29,7 @@ Query OK, 1 row affected (0.06 sec)
 server {
 
     # 以实际为准
-    root /<WEB_ROOT>; 
+    root /<RUN_PATH>; 
 
     server_name <DOMAIN>;
 
@@ -73,7 +70,7 @@ server {
     ssl_certificate_key /SOME/PATH/<DOMAIN>.key;
 
     # 以实际为准
-    root /<WEB_ROOT>; 
+    root /<RUN_PATH>; 
 
     server_name <DOMAIN>;
 
@@ -117,8 +114,7 @@ server {
 添加完成后，`nginx -t` 测试是否有错误，无错误 `nginx -s reload` 重启生效。
 
 ::: tip
-如果是宝塔面板，默认会禁用 `putenv, proc_open` 函数，需要移除，否则正常无法运行 `composer`。任务清理等需要用到 `exec` 函数，也需要从禁用函数中去掉。
-而且它创建的网站根目录包含`.user.ini` 文件，里边限制了 PHP 引入文件时可打开的目录，编辑它把 `open_basedir` 的第一个值上移一层（即删掉末尾的 `public/`）。
+如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, exec`。不要勾选：防跨站攻击(open_basedir)。
 :::
 
 ## 过程程序
@@ -140,7 +136,14 @@ server {
 创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
 ```
 * * * * * cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule_<DOMAIN>.log
+* * * * * cd <ROOT_PATH> && php include/cleanup_cli.php >> /tmp/cleanup_cli_<DOMAIN>.log
 ```
+如果没有生效，查看 `/etc` 下是否有 `crontab` 文件，如果有，在里边编辑亦可：
+```
+* * * * * <PHP_USER> cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule_<DOMAIN>.log
+* * * * * <PHP_USER> cd <ROOT_PATH> && php include/cleanup_cli.php >> /tmp/cleanup_cli_<DOMAIN>.log
+```
+可通过查看重定向文件是否有内容输出确定是否生效。
 :::danger
 完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
 :::

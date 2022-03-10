@@ -1,7 +1,4 @@
-<InArticleAdsense
-    data-ad-client="ca-pub-5801780876442364"
-    data-ad-slot="3630490768">
-</InArticleAdsense>
+<ArticleTopAd></ArticleTopAd>
 
 ## 适用版本
 
@@ -11,7 +8,7 @@
 
 本文档所包含的一些专有名词含义：
 - ROOT_PATH，指部署应用的根目录，如 `/usr/share/nginx/html/demo.nexusphp.org`
-- WEB_ROOT，指 Web 服务器访问到的根目录，在这里为 `ROOT_PATH . 'public'`，**注意要配置到 public 目录！！！注意要配置到 public 目录！！！注意要配置到 public 目录！！！**
+- RUN_PATH，指入口文件所在目录，在这里为 `ROOT_PATH . 'public'`，**注意要配置到 public 目录！！！注意要配置到 public 目录！！！注意要配置到 public 目录！！！**
 - PHP_USER，指运行 PHP 的用户，一般为 `www-data 或 www`，以具体为准
 - DOMAIN, 指网站域名，如 `demo.nexusphp.org`
 
