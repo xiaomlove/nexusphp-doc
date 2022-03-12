@@ -11,7 +11,4 @@ features:
   details: 代码完全公开，任何人都可以使用并修改，无须为此支付费用。
 ---
 
-<InArticleAdsense
-    data-ad-client="ca-pub-5801780876442364"
-    data-ad-slot="3630490768">
-</InArticleAdsense>
+<ArticleTopAd></ArticleTopAd>

@@ -115,6 +115,10 @@ php artisan attendance:cleanup
 升级完成后，记得删除 `public/update` 目录，升级日志包含第敏感数据，不要泄露。
 :::
 
+## 视频教程
+以上有不懂的地方，可以参考视频教程：  
+[【B站】NexusPHP 1.5 升级 1.6 基本流程](https://www.bilibili.com/video/BV1XS4y137S3/)
+
 ## 1.6 之间升级
 
 如从 `1.6.0-beta1` 升级到 `1.6.0-beta2`，可以将新代码整个目录覆盖（不会删除已有资源，如种子、附件等），然后修改相关目录权限、执行 `composer install`，最后运行一遍升级程序，升级过程中获取文件勾选第一个`手工`。
