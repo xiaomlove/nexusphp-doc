@@ -14,7 +14,7 @@
 
 ## 环境要求
 
-- PHP: 8.0，必须扩展：bcmath, ctype, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis
+- PHP: 8.0，必须扩展：bcmath, ctype, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis。强烈建议开启 opcache！
 - Mysql: 推荐 5.7最新版 或以上
 - Redis: 1.0.0 或以上
 

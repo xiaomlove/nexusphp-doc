@@ -144,9 +144,15 @@ server {
 * * * * * <PHP_USER> cd <ROOT_PATH> && php include/cleanup_cli.php >> /tmp/cleanup_cli_<DOMAIN>.log
 ```
 可通过查看重定向文件是否有内容输出确定是否生效。
+
+如是是宝塔面板，其中一个示例如下：
+
+<img :src="$withBase('/images/NexusPHP_crontab.png')">
+
 :::danger
 完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
 :::
+
 
 ## 问题排查
 
