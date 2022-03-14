@@ -1,3 +1,5 @@
+<ArticleTopAd></ArticleTopAd>
+
 ## NP Basics
 
 ### Directory structure

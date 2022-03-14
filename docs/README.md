@@ -11,4 +11,6 @@ features:
   details: 代码完全公开，任何人都可以使用并修改，无须为此支付费用。
 ---
 
+<SocialAccount></SocialAccount>
+
 <ArticleTopAd></ArticleTopAd>

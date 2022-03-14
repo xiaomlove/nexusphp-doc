@@ -29,9 +29,9 @@ Query OK, 1 row affected (0.06 sec)
 server {
 
     # 以实际为准
-    root /<RUN_PATH>; 
+    root /{{RUN_PATH}}; 
 
-    server_name <DOMAIN>;
+    server_name {{DOMAIN}};
 
     location / {
         index index.html index.php;
@@ -40,7 +40,7 @@ server {
 
     # 管理后台
     location ~* /admin(.*) {
-        root <ROOT_PATH>/admin/dist;
+        root {{ROOT_PATH}}/admin/dist;
         try_files $uri $uri/ $1 /index.html =404;
     }
 
@@ -56,8 +56,8 @@ server {
         include fastcgi_params;
     }
 
-    access_log /var/log/nginx/<DOMAIN>.access.log;
-    error_log /var/log/nginx/<DOMAIN>.error.log;
+    access_log /var/log/nginx/{{DOMAIN}}.access.log;
+    error_log /var/log/nginx/{{DOMAIN}}.error.log;
 }
 ```
 
@@ -66,13 +66,13 @@ server {
 ```
 server {
     listen 443 ssl;
-    ssl_certificate /SOME/PATH/<DOMAIN>.pem;
-    ssl_certificate_key /SOME/PATH/<DOMAIN>.key;
+    ssl_certificate /SOME/PATH/{{DOMAIN}}.pem;
+    ssl_certificate_key /SOME/PATH/{{DOMAIN}}.key;
 
     # 以实际为准
-    root /<RUN_PATH>; 
+    root /{{RUN_PATH}}; 
 
-    server_name <DOMAIN>;
+    server_name {{DOMAIN}};
 
     location / {
         index index.html index.php;
@@ -81,7 +81,7 @@ server {
 
     # 管理后台
     location ~* /admin(.*) {
-        root <ROOT_PATH>/admin/dist;
+        root {{ROOT_PATH}}/admin/dist;
         try_files $uri $uri/ $1 /index.html =404;
     }
 
@@ -97,15 +97,15 @@ server {
         include fastcgi_params;
     }
 
-    access_log /var/log/nginx/<DOMAIN>.access.log;
-    error_log /var/log/nginx/<DOMAIN>.error.log;
+    access_log /var/log/nginx/{{DOMAIN}}.access.log;
+    error_log /var/log/nginx/{{DOMAIN}}.error.log;
 }
 # http 跳转 https
 server {
-    if ($host = <DOMAIN>) {
+    if ($host = {{DOMAIN}}) {
         return 301 https://$host$request_uri;
     }
-    server_name <DOMAIN>;
+    server_name {{DOMAIN}};
     listen 80;
     return 404;
 }
@@ -121,11 +121,11 @@ server {
 
 ### 安装准备
 
-以下在<ROOT_PATH>下执行：
+以下在{{ROOT_PATH}}下执行：
 - `composer install`，安装依赖 
 - `cp -R nexus/Install/install public/`，复制 `nexus/Install/install` 到 `public/`，保证最后 `public/install/install.php` 存在
-- `chown -R <PHP_USER>:<PHP_USER> <ROOT_PATH>`，设置根目录所有者为运行 PHP 的用户
-- 上面一步如果不知道 <PHP_USER> 是谁，亦可将整个目录赋予 0777 权限：`chmod -R 0777 <ROOT_PATH>`
+- `chown -R {{PHP_USER}}:{{PHP_USER}} {{ROOT_PATH}}`，设置根目录所有者为运行 PHP 的用户
+- 上面一步如果不知道 {{PHP_USER}} 是谁，亦可将整个目录赋予 0777 权限：`chmod -R 0777 {{ROOT_PATH}}`
 
 以上准备工作做完，打开网站域名正常会跳转安装界面。
 
@@ -133,15 +133,15 @@ server {
 按实际情况填写每一步，点击下一步，直到完成。
 
 ### 创建后台任务
-创建用户 <PHP_USER> 的定时任务，执行：crontab -u <PHP_USER> -e，在打开的界面输入以下：
+创建用户 {{PHP_USER}} 的定时任务，执行：crontab -u {{PHP_USER}} -e，在打开的界面输入以下：
 ```
-* * * * * cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule_<DOMAIN>.log
-* * * * * cd <ROOT_PATH> && php include/cleanup_cli.php >> /tmp/cleanup_cli_<DOMAIN>.log
+* * * * * cd {{ROOT_PATH}} && php artisan schedule:run >> /tmp/schedule_{{DOMAIN}}.log
+* * * * * cd {{ROOT_PATH}} && php include/cleanup_cli.php >> /tmp/cleanup_cli_{{DOMAIN}}.log
 ```
 如果没有生效，查看 `/etc` 下是否有 `crontab` 文件，如果有，在里边编辑亦可：
 ```
-* * * * * <PHP_USER> cd <ROOT_PATH> && php artisan schedule:run >> /tmp/schedule_<DOMAIN>.log
-* * * * * <PHP_USER> cd <ROOT_PATH> && php include/cleanup_cli.php >> /tmp/cleanup_cli_<DOMAIN>.log
+* * * * * {{PHP_USER}} cd {{ROOT_PATH}} && php artisan schedule:run >> /tmp/schedule_{{DOMAIN}}.log
+* * * * * {{PHP_USER}} cd {{ROOT_PATH}} && php include/cleanup_cli.php >> /tmp/cleanup_cli_{{DOMAIN}}.log
 ```
 可通过查看重定向文件是否有内容输出确定是否生效。
 
