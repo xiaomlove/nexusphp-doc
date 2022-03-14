@@ -103,7 +103,7 @@ To restore the old version, just transfer the new web configuration file and res
 :::
 
 ### Create background tasks
-See [installation](. /installation.md# Create background tasks).
+See [installation](./installation.md#create-background-task).
 
 ### Clean up check-in data
 If your site already had a check-in function, which recorded one piece of data per check-in, the new version changes to one piece of data per user, execute the following command in the root directory to clean up the excess data.

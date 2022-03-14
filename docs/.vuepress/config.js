@@ -40,6 +40,7 @@ module.exports = {
             ['configuration', 'Configuration'],
             ['update', 'Upgrade'],
             ['development', 'Devlopment'],
+            ['downloads', 'Downloads'],
           ]
         }
       }
