@@ -27,6 +27,7 @@ module.exports = {
           ['update', '升级'],
           ['development', '开发'],
           ['downloads', '下载'],
+          ['faq', '常见问题'],
         ],
       },
       '/en/': {
