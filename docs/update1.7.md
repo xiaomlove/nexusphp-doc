@@ -5,7 +5,7 @@
 
 ## 环境要求
 
-- PHP 扩展要求新增 pcntl, sokcets
+- PHP 扩展要求新增 pcntl, sockets, posix
 - PHP 函数 `pcntl_signal, pcntl_async_signals, pcntl_alarm` 不能被禁用
 
 ## 升级依赖
@@ -16,28 +16,21 @@
 
 ## 配置 announce URL
 
-### 更改设置
 1.7 重构了 announce 和 scrape 接口，默认的 announce URL 地址是 `api/announce`，旧的 `announce.php` 不再维护。  
 [站点设定]->[基础设定]->[Tracker地址] 修改为 `DOMAIN/api/announce`。    
 [站点设定]->[安全设定]->[HTTPS Tracker地址]，如果有填写，也更改之。  
-
-### 旧 announce 转发
-对于之前下载的种子，仍然会请求旧接口。
-如果配置了 Octane 加速，可以添加一个配置项，便会中转请求到新接口，否则依然使用旧的 announce 处理。由于不再维护，强烈建议配置 Octane 加速并配置转发。 
-在 .env 中添加一项：
-```
-TRACKER_API_LOCAL_HOST=http://127.0.0.1:8000
-```
 
 ## 配置 Octane 加速(推荐)
 可选驱动为 roadrunner 或 swoole。  
 如果使用 roadrunner，需要[下载其二进制文件](./downloads.md#roadrunner)放到 ROOT_PATH 下。  
 如果使用 swoole，需要安装 swoole PHP 扩展。  
 
-以下以 centos 7.9 为例：
-
 ### 安装 supervisor
+
+以下以 centos 7.9 手动安装为例：
+
 ```
+
 # 安装
 yum install supervisor 
  
@@ -73,6 +66,17 @@ supervisorctl start all
 
 日志文件位于 `/tmp/nexus-worker.log`，查看是否正常。
 
+***
+
+如果是宝塔用户，可以直接商店安装`Supervisor管理器`，点击添加守护进程，按以下格式填写(**注意替换 ROOT_PATH, PHP_USER**，其中 `--server=xxx` 根据自己选择使用 `swoole` 或 `roadrunner`)：
+```
+名称：nexus-worker
+启动用户：PHP_USER
+运行目录: ROOT_PATH
+启动命令：php -d variables_order=EGPCS artisan octane:start --server=xxx --host=0.0.0.0 --port=8000
+进程数量：1
+```
+
 ### 配置 nginx 转发
 
 在 nginx 配置的 `/api` 部分，注释掉 try_files，添加转发内容：
@@ -95,8 +99,15 @@ location ^~ /api {
 }
 ```
 
-重启 Nginx 后登录管理后台，看是否工作正常。如果正常，可以进入下一步执行升级，过程类似升级 1.6，不再赘述。
+重启 Nginx 后登录管理后台，看是否工作正常。如果正常，可以进一步配置下边的旧 announce 转发。
 
+### 旧 announce 转发
+对于之前下载的种子，仍然会请求旧接口。
+配置了 Octane 加速，可以添加一个配置项，便会中转请求到新接口，否则依然使用旧的 announce 处理。
+在 .env 中添加一项：
+```
+TRACKER_API_LOCAL_HOST=http://127.0.0.1:8000
+```
 
 
 ## 接入 Elasticsearch(可选)
