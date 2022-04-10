@@ -40,7 +40,8 @@ module.exports = {
             ['start', 'Start'],
             ['installation', 'Installation'],
             ['configuration', 'Configuration'],
-            ['update', 'Upgrade'],
+            ['update', 'Upgrade 1.6'],
+            ['update1.7', 'Upgrade 1.7'],
             ['development', 'Devlopment'],
             ['downloads', 'Downloads'],
           ]
