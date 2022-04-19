@@ -114,7 +114,7 @@ server {
 添加完成后，`nginx -t` 测试是否有错误，无错误 `nginx -s reload` 重启生效。
 
 ::: tip
-如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, exec`。不要勾选：防跨站攻击(open_basedir)。
+如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, proc_get_status, exec`。不要勾选：防跨站攻击(open_basedir)。
 
 如果有 js/css相关的 locaton 规则，管理后台那个规则必须要在 js/css 相关的规则之前，否则加载不了相关文件导致白屏无法登录管理后台！
 :::

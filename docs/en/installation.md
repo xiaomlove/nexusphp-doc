@@ -114,7 +114,7 @@ server {
 After adding, `nginx -t` test for errors, no errors `nginx -s reload` restart to take effect.
 
 ::: tip
-If it's a BT panel, make sure the following functions are not disabled: `symlink, putenv, proc_open, exec`. Do not check: prevent cross-site attacks (open_basedir).
+If it's a BT panel, make sure the following functions are not disabled: `symlink, putenv, proc_open, proc_get_status, exec`. Do not check: prevent cross-site attacks (open_basedir).
 
 If there are js/css related locaton rules, the management background of that rule must be in js/css related rules before, otherwise the relevant files can not be loaded resulting in a white screen can not log into the management background!
 :::

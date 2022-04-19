@@ -37,4 +37,8 @@ ln -s /你的ROOT_PATH路径/bitbucket /你的ROOT_PATH路径/public
 ln -s /你的ROOT_PATH路径/attachments /你的ROOT_PATH路径/public
 ```
 
-如果已经存在，尝试删除重新手工创建。
+如果已经存在，尝试删除这两个目录，程序会自动重新创建。
+
+## 热门种子不展示在热门模块
+
+热门模块需要展示封面，依靠 imdb，因此必须是填写了 imdb 地址的种子才会展示在热门模块。

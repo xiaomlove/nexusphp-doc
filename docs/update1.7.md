@@ -144,7 +144,7 @@ php artisan es:import
 
 
 ## 1.7 版本之间升级
-跟 1.6 一样。如果启用了 Octane 加速，记得重启它。进入 ROOT_PATH 执行(server 根据实际情况填写 `swoole` 或 `roadrunner`)：
+跟 1.6 一样。如果启用了 Octane 加速，记得重启 worker：
 ```
-php artisan octane:reload --server=xxx
+supervisorctl reload
 ```
