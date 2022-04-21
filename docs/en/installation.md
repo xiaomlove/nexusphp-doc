@@ -29,9 +29,9 @@ In the case of nginx, only the most basic configuration is required. Add a new n
 server {
 
     # whichever is more appropriate
-    root /{{RUN_PATH}}; 
+    root /RUN_PATH; 
 
-    server_name {{DOMAIN}};
+    server_name DOMAIN;
 
     location / {
         index index.html index.php;
@@ -40,7 +40,7 @@ server {
 
     # Admin backend
     location ~* ^/admin(.*) {
-        root {{ROOT_PATH}}/admin/dist;
+        root ROOT_PATH/admin/dist;
         try_files $uri $uri/ $1 /index.html =404;
     }
 
@@ -56,8 +56,8 @@ server {
         include fastcgi_params;
     }
 
-    access_log /var/log/nginx/{{DOMAIN}}.access.log;
-    error_log /var/log/nginx/{{DOMAIN}}.error.log;
+    access_log /var/log/nginx/DOMAIN.access.log;
+    error_log /var/log/nginx/DOMAIN.error.log;
 }
 ```
 
@@ -66,13 +66,13 @@ To enable https, you first have to prepare the certificate.
 ```
 server {
     listen 443 ssl;
-    ssl_certificate /SOME/PATH/{{DOMAIN}}.pem;
-    ssl_certificate_key /SOME/PATH/{{DOMAIN}}.key;
+    ssl_certificate /SOME/PATH/DOMAIN.pem;
+    ssl_certificate_key /SOME/PATH/DOMAIN.key;
 
     # whichever is true
-    root /{{RUN_PATH}}; 
+    root /RUN_PATH; 
 
-    server_name {{DOMAIN}};
+    server_name DOMAIN;
 
     location / {
         index index.html index.php;
@@ -81,7 +81,7 @@ server {
 
     # Admin backend
     location ~* ^/admin(.*) {
-        root {{ROOT_PATH}}/admin/dist;
+        root ROOT_PATH/admin/dist;
         try_files $uri $uri/ $1 /index.html =404;
     }
 
@@ -97,15 +97,15 @@ server {
         include fastcgi_params;
     }
 
-    access_log /var/log/nginx/{{DOMAIN}}.access.log;
-    error_log /var/log/nginx/{{DOMAIN}}.error.log;
+    access_log /var/log/nginx/DOMAIN.access.log;
+    error_log /var/log/nginx/DOMAIN.error.log;
 }
 # http jump https
 server {
-    if ($host = {{DOMAIN}}) {
+    if ($host = DOMAIN) {
         return 301 https://$host$request_uri;
     }
-    server_name {{DOMAIN}};
+    server_name DOMAIN;
     listen 80;
     return 404;
 }
@@ -123,11 +123,11 @@ If there are js/css related locaton rules, the management background of that rul
 
 ### Installation preparation
 
-The following is executed under {{ROOT_PATH}}.
+The following is executed under ROOT_PATH.
 - `composer install`, install the dependencies 
 - `cp -R nexus/Install/install public/`, copy `nexus/Install/install` to `public/`, make sure `public/install/install.php` is there at the end
-- `chown -R {{PHP_USER}}:{{PHP_USER}} {{ROOT_PATH}}`, set the root directory owner to the user running PHP
-- In the above step, if you don't know who {{PHP_USER}} is, you can also give the entire directory 0777 permissions: `chmod -R 0777 {{ROOT_PATH}}`
+- `chown -R PHP_USER:PHP_USER ROOT_PATH`, set the root directory owner to the user running PHP
+- In the above step, if you don't know who PHP_USER is, you can also give the entire directory 0777 permissions: `chmod -R 0777 ROOT_PATH`
 
 After the above preparations are done, open the website domain and the installation screen will jump normally.
 
@@ -135,15 +135,15 @@ After the above preparations are done, open the website domain and the installat
 Fill out each step as appropriate and click next until it is complete.
 
 ### Create background task
-Create a timed task for user {{PHP_USER}}, execute: crontab -u {{PHP_USER}} -e, and enter the following in the opened interface.
+Create a timed task for user PHP_USER, execute: crontab -u PHP_USER -e, and enter the following in the opened interface.
 ```
-* * * * * * cd {{ROOT_PATH}} && php artisan schedule:run >> /tmp/schedule_{{DOMAIN}}.log
-* * * * * * cd {{ROOT_PATH}} && php include/cleanup_cli.php >> /tmp/cleanup_cli_{{DOMAIN}}.log
+* * * * * cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
+* * * * * cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
 If it doesn't work, check to see if there is a `crontab` file under `/etc`, and if so, edit it there as well
 ```
-* * * * * * {{PHP_USER}} cd {{ROOT_PATH}} && php artisan schedule:run >> /tmp/schedule_{{DOMAIN}}.log
-* * * * * * {{PHP_USER}} cd {{ROOT_PATH}} && php include/cleanup_cli.php >> /tmp/cleanup_cli_{{DOMAIN}}.log
+* * * * * PHP_USER cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
+* * * * * PHP_USER cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
 You can determine if the redirect file is in effect by checking to see if there is content output.
 
