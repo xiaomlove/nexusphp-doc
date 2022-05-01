@@ -8,6 +8,22 @@
 - PHP-FPM 的错误日志，在宝塔上：软件商店->已安装->PHP-8.0->设置->日志 可查看
 - Nginx 的错误日志，在宝塔上：网站设置->网站日志->错误日志 可查看
 
+**没有错误日志，一切免谈！**
+<img :src="$withBase('/images/show-the-error-log.jpg')">
+
+**实在找不到相关的日志，可以把错误展示在页面上，解决问题后再关闭错误展示。**
+### 正常页面
+```php
+//include/core.php 第3行，display_errors 的值由 0 改为 1
+ini_set('display_errors', 1);
+```
+
+### 安装/升级
+```php
+//nexus/Install/install_update_start.php 第3行，display_errors 的值由 0 改为 1
+ini_set('display_errors', 1);
+```
+
 ## 日志太多撑爆硬盘
 NexusPHP 默认的日志级别为 `info` 即一般的日志都记录，如果过多可以修改为 `error` 只记录错误日志，将 .env 文件中 `LOG_LEVEL` 修改为 `error`：
 ```
