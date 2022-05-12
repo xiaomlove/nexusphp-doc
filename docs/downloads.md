@@ -10,6 +10,9 @@
 ### 1.7.0
 [vendor-1.7.0](/downloads/vendor-1.7.0.zip)
 
+### 1.7.10
+[vendor-1.7.10](/downloads/vendor-1.7.10.zip)
+
 ## roadrunner
 [roadrunner](/downloads/roadrunner-2.8.8-linux-amd64/rr)
 
@@ -22,9 +25,10 @@
 [nexusphp_0.2.0__20220315225627.apk](/downloads/nexusphp_0.2.0__20220315225627.apk)
 
 ### 0.3.0
-
+后端需要 1.7。
 #### Added:
 - 种子列表展示标签、优惠/热门/经典/H&R信息
-- 种子详情可以可以说谢谢、魔力赠送、添加评论
+- 种子详情支持说谢谢、赠送魔力、添加评论
+- 首页聚合新增消息、私信、投票
 
 [nexusphp_0.3.0__20220502231131.apk](/downloads/nexusphp_0.3.0__20220502231131.apk)
