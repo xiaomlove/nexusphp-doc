@@ -44,6 +44,7 @@ module.exports = {
             ['update1.7', 'Upgrade 1.7'],
             ['development', 'Devlopment'],
             ['downloads', 'Downloads'],
+            ['faq', 'FAQ'],
           ]
         }
       }
