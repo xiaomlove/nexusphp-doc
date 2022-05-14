@@ -142,7 +142,18 @@ After the data is imported successfully, you can set `ELASTICSEARCH_ENABLED` to 
 If you find that it is not working properly, you can change it to empty and not use it.
 
 ## Upgrade between versions 1.7
-Same as 1.6. If Octane acceleration is enabled, remember to restart it. Go to ROOT_PATH and execute (server fill in `swoole` or `roadrunner` as appropriate).
+Web page support as in 1.6.
+
+Command mode is supported since 1.7.10. Some versions have changes to large tables or data migrations, the web page tends to time out, so it is recommended to use commands to do so. After executing the code override, run the upgrade command under ROOT_PATH.
 ```
-php artisan octane:reload --server=xxx
+# Install the dependencies first
+composer install
+
+# and then run the upgrade command
+php artisan nexus:update
+```
+
+If Octane acceleration is enabled, remember to restart the worker.
+```
+supervisorctl reload
 ```
