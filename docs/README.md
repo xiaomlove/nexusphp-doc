@@ -4,7 +4,7 @@ actionText: 阅读文档 ->
 actionLink: /start.html
 features:
 - title: 功能全面
-  details: 发布、讨论、候选、字幕、考核、H&R、自定义标签、勋章、广告、论坛、多语言...应有尽有。
+  details: 特别区、审核、考核、审诉、H&R、认领、自定义标签、勋章...应有尽有。
 - title: 简单易用
   details: 界面友好，符合国人使用习惯。
 - title: 免费开源

@@ -14,13 +14,9 @@
 ## 执行升级
 类似升级 1.6，获取最新代码，进行覆盖，复制 `nexus/Install/update/update.php` 到 `public/update/update.php`，运行之。完成后检查各项功能是否正常。
 
-## 配置 announce URL
 
-1.7 重构了 announce 和 scrape 接口，默认的 announce URL 地址是 `api/announce`，旧的 `announce.php` 不再维护。  
-[站点设定]->[基础设定]->[Tracker地址] 修改为 `DOMAIN/api/announce`。    
-[站点设定]->[安全设定]->[HTTPS Tracker地址]，如果有填写，也更改之。  
 
-## 配置 Octane 加速(推荐)
+## 配置 Octane 加速(实验)
 可选驱动为 roadrunner 或 swoole。  
 如果使用 roadrunner，需要[下载其二进制文件](./downloads.md#roadrunner)放到 ROOT_PATH 下。  
 如果使用 swoole，需要安装 swoole PHP 扩展。  
@@ -76,6 +72,12 @@ supervisorctl start all
 启动命令：php -d variables_order=EGPCS artisan octane:start --server=xxx --host=0.0.0.0 --port=8000
 进程数量：1
 ```
+
+### 配置新 announce URL
+
+1.7 新增了 announce 和 scrape 接口，地址是 `api/announce`。  
+[站点设定]->[基础设定]->[Tracker地址] 修改为 `DOMAIN/api/announce`。    
+[站点设定]->[安全设定]->[HTTPS Tracker地址]，如果有填写，也更改之。  
 
 ### 配置 nginx 转发
 

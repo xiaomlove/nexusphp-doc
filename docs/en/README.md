@@ -4,7 +4,7 @@ actionText: Read ->
 actionLink: /en/start.html
 features:
 - title: Full-featured
-  details: Upload, discussion, offer, subtitle, exam, H&R, custom tags, advertisement, forum, i18n, and more...
+  details: Special section, Approval, Exam, Complain, H&R, Claim, Custom tag, Medal and more...
 - title: Easy usage
   details: User-friendly interface, in line with people's habits
 - title: Free and open source

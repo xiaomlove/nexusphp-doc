@@ -14,7 +14,7 @@ The meanings of some of the proper nouns included in this document.
 
 ## Environment requirements
 
-- PHP: 8.0, must have extensions: bcmath, ctype, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis. opcache is highly recommended!
+- PHP: 8.0, must have extensions: bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix. opcache is highly recommended!
 - Mysql: 5.7 latest version or above is recommended
 - Redis: 1.0.0 or above
 

@@ -12,15 +12,9 @@ This document guides you to upgrade from 1.6 to 1.7. For the original 1.5 versio
 If you are running `composer install` manually, you can do it normally. If you are downloading dependencies manually, please download the dependencies for 1.7 from the download page.
 
 ## Perform upgrade
-Similar to upgrade 1.6, get the latest code, overwrite it, copy `nexus/Install/update/update.php` to `public/update/update.php`, and run it. Check that all functions are working after completion.
+Similar to upgrade 1.6, get the latest code, overwrite it, copy `nexus/Install/update/update.php` to `public/update/update.php`, and run it. Check that all functions are working after completion. 
 
-## Configuring the announce URL
-
-1.7 refactored the announce and scrape interfaces, the default announce URL is `api/announce` and the old `announce.php` is no longer maintained.  
-[Site Settings]->[Basic Settings]->[Tracker Address] is changed to `DOMAIN/api/announce`.    
-[Site Settings]->[Security Settings]->[HTTPS Tracker Address], change it too if it is filled in.  
-
-## Configure Octane (recommended)
+## Configure Octane (experimental)
 The optional driver is roadrunner or swoole.  
 If you use roadrunner, you need to [download its binary](./downloads.md#roadrunner) under ROOT_PATH.  
 If you are using swoole, you need to install the swoole PHP extension.  
@@ -75,6 +69,12 @@ Running directory: ROOT_PATH
 Start command: php -d variables_order=EGPCS artisan octane:start --server=xxx --host=0.0.0.0 --port=8000
 Number of processes: 1
 ```
+
+### Configuring the announce URL
+
+1.7 add new announce and scrape interfaces, the URL is `api/announce`.  
+[Site Settings]->[Basic Settings]->[Tracker Address] is changed to `DOMAIN/api/announce`.    
+[Site Settings]->[Security Settings]->[HTTPS Tracker Address], change it too if it is filled in. 
 
 ### Configuring nginx forwarding
 
