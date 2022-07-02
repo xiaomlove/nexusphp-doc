@@ -35,17 +35,11 @@ server {
 
     location / {
         index index.html index.php;
-        try_files $uri $uri/ /index.php$is_args$args;
+        try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
-    # 管理后台
-    location ~* ^/admin(.*) {
-        root ROOT_PATH/admin/dist;
-        try_files $uri $uri/ $1 /index.html =404;
-    }
-
-    # api 接口
-    location ^~ /api {
+    # Filament
+    location ^~ /filament {
         try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
@@ -76,17 +70,11 @@ server {
 
     location / {
         index index.html index.php;
-        try_files $uri $uri/ /index.php$is_args$args;
+        try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
-    # 管理后台
-    location ~* ^/admin(.*) {
-        root ROOT_PATH/admin/dist;
-        try_files $uri $uri/ $1 /index.html =404;
-    }
-
-    # api 接口
-    location ^~ /api {
+    # Filament
+    location ^~ /filament {
         try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
@@ -115,12 +103,6 @@ server {
 
 ::: tip
 如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, proc_get_status, exec`。不要勾选：防跨站攻击(open_basedir)。
-
-如果有 js/css相关的 locaton 规则，管理后台那个规则必须要在 js/css 相关的规则之前，否则加载不了相关文件导致白屏无法登录管理后台！
-
-**切记：宝塔用户创建的网站，也需要编辑其配置文件手工加上 api 和管理后台部分：**
-
-<img :src="$withBase('/images/BT-web-config-addtional.png')">
 :::
 
 ## 过程程序

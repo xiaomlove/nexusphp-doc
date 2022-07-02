@@ -14,6 +14,9 @@ For those who don't want to toss composer, you can download the dependencies her
 ### 1.7.10
 [vendor-1.7.10](/downloads/vendor-1.7.10.zip)
 
+### 1.7.17
+[vendor-1.7.10](/downloads/vendor-1.7.17.zip)
+
 ## roadrunner
 [roadrunner](/downloads/roadrunner-2.8.8-linux-amd64/rr)
 

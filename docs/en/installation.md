@@ -2,7 +2,7 @@
 
 ## Get the program
 
-Clone [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp) and switch to the latest release tab before installing it, or just download the latest [release](https://github.com/xiaomlove/ nexusphp/releases).
+Clone [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp) and switch to the latest release tab before installing it, or just download the latest [release](https://github.com/xiaomlove/nexusphp/releases).
 :::warning
 Be sure to switch to a release for installation when cloning. Do not use the latest development code! 
 :::
@@ -35,17 +35,11 @@ server {
 
     location / {
         index index.html index.php;
-        try_files $uri $uri/ /index.php$is_args$args;
+        try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
-    # Admin backend
-    location ~* ^/admin(.*) {
-        root ROOT_PATH/admin/dist;
-        try_files $uri $uri/ $1 /index.html =404;
-    }
-
-    # api interface
-    location ^~ /api {
+    # Filament
+    location ^~ /filament {
         try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
@@ -76,17 +70,11 @@ server {
 
     location / {
         index index.html index.php;
-        try_files $uri $uri/ /index.php$is_args$args;
+        try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
-    # Admin backend
-    location ~* ^/admin(.*) {
-        root ROOT_PATH/admin/dist;
-        try_files $uri $uri/ $1 /index.html =404;
-    }
-
-    # api interface
-    location ^~ /api {
+    # Filament
+    location ^~ /filament {
         try_files $uri $uri/ /nexus.php$is_args$args;
     }
 
@@ -115,8 +103,6 @@ After adding, `nginx -t` test for errors, no errors `nginx -s reload` restart to
 
 ::: tip
 If it's a BT panel, make sure the following functions are not disabled: `symlink, putenv, proc_open, proc_get_status, exec`. Do not check: prevent cross-site attacks (open_basedir).
-
-If there are js/css related locaton rules, the management background of that rule must be in js/css related rules before, otherwise the relevant files can not be loaded resulting in a white screen can not log into the management background!
 :::
 
 ## Procedure
