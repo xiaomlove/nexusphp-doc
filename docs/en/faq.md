@@ -49,11 +49,6 @@ Please refer to [configuration](./configuration.md#smtp-settings) section for co
 - SMTP address should not have a protocol like `ssl://` at the beginning, only the host address.
 - Choose the right encryption method, if you don't choose `none`, refer to your mail service provider
 
-## White screen on the admin backend
-
-Make sure the js/css-related location rule in the nginx configuration is after the [admin backend] rule.
-
-<img :src="$withBase('/images/nginx_config_admin.png')">
 
 ## can not make symbolic link
 

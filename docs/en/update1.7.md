@@ -14,6 +14,27 @@ If you are running `composer install` manually, you can do it normally. If you a
 ## Perform upgrade
 Similar to upgrade 1.6, get the latest code, overwrite it, copy `nexus/Install/update/update.php` to `public/update/update.php`, and run it. Check that all functions are working after completion. 
 
+## Upgrade between versions 1.7
+Web page support as in 1.6.
+
+Command mode is supported since 1.7.10. Some versions have changes to large tables or data migrations, the web page tends to time out, so it is recommended to use commands to do so. After executing the code override, run the upgrade command under ROOT_PATH.
+```
+# Install the dependencies first
+composer install
+
+# and then run the upgrade command
+php artisan nexus:update
+```
+
+If Octane acceleration is enabled, remember to restart the worker.
+```
+supervisorctl reload
+```
+
+:::warning
+The following functions are not necessary for general users!
+:::
+
 ## Configure Octane (experimental)
 The optional driver is roadrunner or swoole.  
 If you use roadrunner, you need to [download its binary](./downloads.md#roadrunner) under ROOT_PATH.  
@@ -141,19 +162,3 @@ php artisan es:import
 After the data is imported successfully, you can set `ELASTICSEARCH_ENABLED` to 1, then check the seed list, add/update/delete/favorite torrents to see if it works properly.  
 If you find that it is not working properly, you can change it to empty and not use it.
 
-## Upgrade between versions 1.7
-Web page support as in 1.6.
-
-Command mode is supported since 1.7.10. Some versions have changes to large tables or data migrations, the web page tends to time out, so it is recommended to use commands to do so. After executing the code override, run the upgrade command under ROOT_PATH.
-```
-# Install the dependencies first
-composer install
-
-# and then run the upgrade command
-php artisan nexus:update
-```
-
-If Octane acceleration is enabled, remember to restart the worker.
-```
-supervisorctl reload
-```

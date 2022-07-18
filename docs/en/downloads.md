@@ -3,6 +3,9 @@
 ## Dependency package (vendor)
 
 For those who don't want to toss composer, you can download the dependencies here and copy the vendor directory to the root directory after unpacking, which eliminates the need to install composer and execute `composer install`.
+:::warning
+Availability is not guaranteed and it is highly recommended to run `composer install` in the root directory to install the dependencies!
+:::
 
 ### 1.6.0
 
@@ -15,7 +18,7 @@ For those who don't want to toss composer, you can download the dependencies her
 [vendor-1.7.10](/downloads/vendor-1.7.10.zip)
 
 ### 1.7.17
-[vendor-1.7.10](/downloads/vendor-1.7.17.zip)
+[vendor-1.7.17](/downloads/vendor-1.7.17.zip)
 
 ## roadrunner
 [roadrunner](/downloads/roadrunner-2.8.8-linux-amd64/rr)

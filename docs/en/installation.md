@@ -118,7 +118,7 @@ The following is executed under ROOT_PATH.
 After the above preparations are done, open the website domain and the installation screen will jump normally.
 
 ### Execute the installation
-Fill out each step as appropriate and click next until it is complete.
+Fill in each step according to the actual situation, **pay attention to choose the right time zone, otherwise the time is not correct, more likely the client can not report**. Click Next until you are done.
 
 ### Create background task
 Create a timed task for user PHP_USER, execute: crontab -u PHP_USER -e, and enter the following in the opened interface.

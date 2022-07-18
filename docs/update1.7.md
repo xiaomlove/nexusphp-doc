@@ -14,7 +14,26 @@
 ## 执行升级
 类似升级 1.6，获取最新代码，进行覆盖，复制 `nexus/Install/update/update.php` 到 `public/update/update.php`，运行之。完成后检查各项功能是否正常。
 
+## 1.7 版本之间升级
+跟 1.6 一样支持网页进行。
 
+1.7.10 起支持命令模式。某些版本对大表进行改动或有数据迁移，网页容易超时，建议使用命令进行。执行代码覆盖后，在 ROOT_PATH 下运行升级命令：
+```
+#先安装依赖
+composer install
+
+#再执行升级
+php artisan nexus:update
+```
+
+如果启用了 Octane 加速，记得重启 worker：
+```
+supervisorctl reload
+```
+
+:::warning
+以下功能，一般用户无须理会！
+:::
 
 ## 配置 Octane 加速(实验)
 可选驱动为 roadrunner 或 swoole。  
@@ -143,21 +162,3 @@ php artisan es:import
 
 数据导入成功后，好可将 `ELASTICSEARCH_ENABLED` 设置为 1，然后查看种子列表、新增/更新/删除/收藏种子看是否工作正常。  
 如果发现不正常，可以修改为空不使用。
-
-
-## 1.7 版本之间升级
-跟 1.6 一样支持网页进行。
-
-1.7.10 起支持命令模式。某些版本对大表进行改动或有数据迁移，网页容易超时，建议使用命令进行。执行代码覆盖后，在 ROOT_PATH 下运行升级命令：
-```
-#先安装依赖
-composer install
-
-#再执行升级
-php artisan nexus:update
-```
-
-如果启用了 Octane 加速，记得重启 worker：
-```
-supervisorctl reload
-```

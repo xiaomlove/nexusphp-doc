@@ -49,12 +49,6 @@ LOG_LEVEL=error
 - SMTP 地址开头不要有协议如 `ssl://`，只需要要主机地址
 - 正确选择加密方式，如果没有选择 `none`，参考你的邮件服务商
 
-## 管理后台白屏
-
-确保 nginx 配置中 js/css 相关的 location 规则在 [管理后台] 的规则之后。
-
-<img :src="$withBase('/images/nginx_config_admin.png')">
-
 ## can not make symbolic link
 
 无法创建软链接。这一般是 PHP 权限不足，保证把 ROOT_PATH 拥有者设置为了 PHP_USER，或者直接设置了 777 权限。如果还是不行，可以手工创建：
