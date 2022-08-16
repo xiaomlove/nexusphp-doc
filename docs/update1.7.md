@@ -33,13 +33,12 @@ php artisan nexus:update
 # >= 1.7.20，支持直接下载远程代码进行覆盖并安装依赖：
 php artisan nexus:update --tag=v1.7.21 --include_composer
 ```
-
+<!--
 如果启用了 Octane 加速，记得重启 worker：
 ```
 supervisorctl reload
 ```
 
-<!--
 :::warning
 以下功能，一般用户无须理会！
 :::

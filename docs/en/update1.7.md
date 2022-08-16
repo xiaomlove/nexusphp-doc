@@ -33,12 +33,12 @@ php artisan nexus:update
 # >= 1.7.20, supports direct download of remote code to overwrite and install dependencies: 
 php artisan nexus:update --tag=v1.x.x --include_composer
 ```
-
+<!--
 If Octane acceleration is enabled, remember to restart the worker.
 ```
 supervisorctl reload
 ```
-<!--
+
 :::warning
 The following functions are not necessary for general users!
 :::
