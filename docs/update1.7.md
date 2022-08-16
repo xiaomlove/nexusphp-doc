@@ -24,6 +24,9 @@ composer install
 
 #再执行升级
 php artisan nexus:update
+
+# >= 1.7.20，支持直接下载远程代码进行覆盖并安装依赖，执行(v.xxx 表示具体某一版本号)：
+php artisan nexus:update --tag=v.xxx --include_composer
 ```
 
 如果启用了 Octane 加速，记得重启 worker：
@@ -31,6 +34,7 @@ php artisan nexus:update
 supervisorctl reload
 ```
 
+<!--
 :::warning
 以下功能，一般用户无须理会！
 :::
@@ -162,3 +166,4 @@ php artisan es:import
 
 数据导入成功后，好可将 `ELASTICSEARCH_ENABLED` 设置为 1，然后查看种子列表、新增/更新/删除/收藏种子看是否工作正常。  
 如果发现不正常，可以修改为空不使用。
+-->

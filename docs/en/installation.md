@@ -56,7 +56,7 @@ server {
 ```
 
 ### Enable https configuration
-To enable https, you first have to prepare the certificate.
+To enable https, you first have to prepare the certificate, see [About https] below.
 ```
 server {
     listen 443 ssl;
@@ -121,11 +121,13 @@ After the above preparations are done, open the website domain and the installat
 Fill in each step according to the actual situation, **pay attention to choose the right time zone, otherwise the time is not correct, more likely the client can not report**. Click Next until you are done.
 
 ### Create background task
+**------Manual users look here------**  
 Create a timed task for user PHP_USER, execute: crontab -u PHP_USER -e, and enter the following in the opened interface.
 ```
 * * * * * cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
 * * * * * cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
+
 If it doesn't work, check to see if there is a `crontab` file under `/etc`, and if so, edit it there as well
 ```
 * * * * * PHP_USER cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
@@ -133,7 +135,8 @@ If it doesn't work, check to see if there is a `crontab` file under `/etc`, and 
 ```
 You can determine if the redirect file is in effect by checking to see if there is content output.
 
-If it is a BT panel, one of the examples is as follows.
+**------BT panel users look here, the upper side does not need to do------**  
+If it is a BT panel, one of the examples is as follows(Note: The tasks are still 2 in number and both need to be configured).
 
 <img :src="$withBase('/images/NexusPHP_crontab.png')">
 
@@ -165,6 +168,6 @@ After fixing the error, remember to turn off the error display!
 
 ## Other
 
-### To enable https or not
+### About https
 
-It is recommended to enable it. One is for security, and the other is to remove the browser's obtrusive "not secure" wording. Free certificates are available from [Let's Encrypt](https://letsencrypt.org/), and some other cloud server vendors offer them.
+It is recommended to use cloudflare's DNS resolution service, which provides free ssl certificates. Under the SSL/TLS menu, select Full or Strict encryption mode, create the certificate under the [Source Server] submenu, save and upload it to the source server, and configure it as described in the above document.

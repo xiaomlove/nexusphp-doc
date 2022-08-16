@@ -24,13 +24,16 @@ composer install
 
 # and then run the upgrade command
 php artisan nexus:update
+
+# >= 1.7.20, supports direct download of remote code to overwrite and install dependencies, executes (v.xxx indicates a specific version number): 
+php artisan nexus:update --tag=v.xxx --include_composer
 ```
 
 If Octane acceleration is enabled, remember to restart the worker.
 ```
 supervisorctl reload
 ```
-
+<!--
 :::warning
 The following functions are not necessary for general users!
 :::
@@ -161,4 +164,4 @@ php artisan es:import
 
 After the data is imported successfully, you can set `ELASTICSEARCH_ENABLED` to 1, then check the seed list, add/update/delete/favorite torrents to see if it works properly.  
 If you find that it is not working properly, you can change it to empty and not use it.
-
+-->
