@@ -17,16 +17,21 @@ Similar to upgrade 1.6, get the latest code, overwrite it, copy `nexus/Install/u
 ## Upgrade between versions 1.7
 Web page support as in 1.6.
 
-Command mode is supported since 1.7.10. Some versions have changes to large tables or data migrations, the web page tends to time out, so it is recommended to use commands to do so. After executing the code override, run the upgrade command under ROOT_PATH.
+Command mode is supported since 1.7.10. Some versions make changes to large tables or have data migrated, the web page tends to time out, so it is recommended to use commands for this. After executing the code override, just run the command `nexus:update` under ROOT_PATH.
+
+Since 1.7.20, we support downloading remote code directly to overwrite and install dependencies.  
+`--tag=v1.x.x` specifies a certain version number (`dev` for the latest development code, other `v` + version number).  
+`---include_composer` Whether to update composer, when the dependency is updated (see release announcement), otherwise you can not update. After updating the dependency, if there is a plugin installed, you need to reinstall the plugin, see the blog for details.  
+
 ```
-# Install the dependencies first
+# >= 1.7.10, Install the dependencies first
 composer install
 
 # and then run the upgrade command
 php artisan nexus:update
 
-# >= 1.7.20, supports direct download of remote code to overwrite and install dependencies, executes (v.xxx indicates a specific version number): 
-php artisan nexus:update --tag=v.xxx --include_composer
+# >= 1.7.20, supports direct download of remote code to overwrite and install dependencies: 
+php artisan nexus:update --tag=v1.x.x --include_composer
 ```
 
 If Octane acceleration is enabled, remember to restart the worker.
