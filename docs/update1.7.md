@@ -20,7 +20,7 @@
 1.7.10 起支持命令模式。某些版本对大表进行改动或有数据迁移，网页容易超时，建议使用命令进行。执行代码覆盖后，在 ROOT_PATH 下运行命令 `nexus:update` 命令即可。
 
 1.7.20 起支持直接下载远程代码进行覆盖并安装依赖。  
-`--tag=v1.x.x` 指定某一版本号(最新开发代码用 `dev` 指定，其他 `v` + 版本号)。  
+`--tag=1.x.x` 指定某一版本号(最新开发代码用 `dev`)。  
 `--include_composer` 是否更新 composer，当依赖有更新时候(看发版公告)需要，否则可以不更新。更新依赖后，若有安装插件，需要重新安装插件，具体看博客说明。  
 
 ```
@@ -31,7 +31,7 @@ composer install
 php artisan nexus:update
 
 # >= 1.7.20，支持直接下载远程代码进行覆盖并安装依赖：
-php artisan nexus:update --tag=v1.7.21 --include_composer
+php artisan nexus:update --tag=1.7.22 --include_composer
 ```
 <!--
 如果启用了 Octane 加速，记得重启 worker：
