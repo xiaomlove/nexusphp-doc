@@ -9,7 +9,7 @@ This document guides you to upgrade from 1.6 to 1.7. For the original 1.5 versio
 - PHP functions `pcntl_signal, pcntl_async_signals, pcntl_alarm` cannot be disabled
 
 ## Upgrade dependencies
-If you are running `composer install` manually, you can do it normally. If you are downloading dependencies manually, please download the dependencies for 1.7 from the download page.
+Run `composer install`. 
 
 ## Perform upgrade
 Similar to upgrade 1.6, get the latest code, overwrite it, copy `nexus/Install/update/update.php` to `public/update/update.php`, and run it. Check that all functions are working after completion. 

@@ -50,7 +50,7 @@ module.exports = {
       }
     },
     nav: [
-        { text: 'Blog', link: 'http://nexusphp.org/' },
+        { text: 'Blog', link: 'https://nexusphp.org/' },
         { text: 'Github', link: 'https://github.com/xiaomlove/nexusphp' }
     ]
   },

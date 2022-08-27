@@ -1,26 +1,5 @@
 <ArticleTopAd></ArticleTopAd>
 
-## 依赖包(vendor)
-
-对于不方便折腾 composer 的，可以在此下载依赖包，将解压后的 vendor 目录复制到根目录即可，这样免了安装 composer 并执行 `composer install` 这一步。
-:::warning
-不保证可用，强烈建议根目录下执行 `composer install` 安装依赖！
-:::
-
-### 1.6.0
-[vendor-1.6.0](/downloads/vendor-1.6.0.zip)
-
-### 1.7.0
-[vendor-1.7.0](/downloads/vendor-1.7.0.zip)
-
-### 1.7.10
-[vendor-1.7.10](/downloads/vendor-1.7.10.zip)
-
-### 1.7.17
-[vendor-1.7.17](/downloads/vendor-1.7.17.zip)
-
-## roadrunner
-[roadrunner](/downloads/roadrunner-2.8.8-linux-amd64/rr)
 
 ## 移动端 apk
 

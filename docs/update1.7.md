@@ -9,7 +9,7 @@
 - PHP 函数 `pcntl_signal, pcntl_async_signals, pcntl_alarm` 不能被禁用
 
 ## 升级依赖
-如果是手动执行 `composer install` 的，正常执行即可。如果是手动下载依赖包的，请到下载页面下载适用 1.7 的依赖包。
+手动执行 `composer install` 即可。
 
 ## 执行升级
 类似升级 1.6，获取最新代码，进行覆盖，复制 `nexus/Install/update/update.php` 到 `public/update/update.php`，运行之。完成后检查各项功能是否正常。
