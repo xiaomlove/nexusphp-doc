@@ -137,10 +137,15 @@ server {
 
 **------宝塔用户看这里，上边的不需要做------**  
 如是是宝塔面板，其中一个示例如下(注意：任务依然是 2 个都需要配置)：
+```
+su -c "cd /www/wwwroots/xxx.com && php include/cleanup_cli.php >> /tmp/cleanup_cli_xxx.com.log" -s /bin/sh www
 
+su -c "cd /www/wwwroots/xxx.com && php artisan schedule:run >> /tmp/schedule_xxx.com.log" -s /bin/sh www
+```
 <img :src="$withBase('/images/NexusPHP_crontab.png')">
 
 :::danger
+**特别提醒：运行周期是每分钟，不能修改！这里的配置只是一个入口，实际运行频率是程序控制**  
 完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
 :::
 

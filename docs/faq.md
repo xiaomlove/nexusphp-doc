@@ -62,3 +62,10 @@ ln -s /你的ROOT_PATH路径/attachments /你的ROOT_PATH路径/public
 ## 热门种子不展示在热门模块
 
 热门模块需要展示封面，请确保填写了 imdb 链接，或描述里边包含了海报图片。
+
+## 宝塔面板装不上 gmp 扩展
+
+一般发生在 Debian 或 Ubuntu 系统上，尝试先安装 `libgmp-dev`: 
+```
+apt-get install libgmp-dev
+```
