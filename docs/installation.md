@@ -102,10 +102,22 @@ server {
 添加完成后，`nginx -t` 测试是否有错误，无错误 `nginx -s reload` 重启生效。
 
 ::: tip
-如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, proc_get_status, exec`。不要勾选：防跨站攻击(open_basedir)。
+如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, proc_get_status, exec`。不要勾选：防跨站攻击(open_basedir)。  
+**宝塔创建后网站好，在配置文件加入以下内容：**
+```
+location / {
+    index index.html index.php;
+    try_files $uri $uri/ /nexus.php$is_args$args;
+}
+
+# Filament
+location ^~ /filament {
+    try_files $uri $uri/ /nexus.php$is_args$args;
+}
+```
 :::
 
-## 过程程序
+## 安装过程
 
 ### 安装准备
 
@@ -133,19 +145,22 @@ server {
 * * * * * PHP_USER cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
 * * * * * PHP_USER cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
-可通过查看重定向文件是否有内容输出确定是否生效。
+可通过查看重定向文件（也就是 >> 后面指向的那个文件）是否有内容输出确定是否生效。
 
 **------宝塔用户看这里，上边的不需要做------**  
-如是是宝塔面板，其中一个示例如下(注意：任务依然是 2 个都需要配置)：
+如是是宝塔面板，创建两个计划任务，脚本内容如下（记得把 DOMAIN 替换为自己的域名）：
 ```
-su -c "cd /www/wwwroots/xxx.com && php include/cleanup_cli.php >> /tmp/cleanup_cli_xxx.com.log" -s /bin/sh www
+su -c "cd /www/wwwroots/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
 
-su -c "cd /www/wwwroots/xxx.com && php artisan schedule:run >> /tmp/schedule_xxx.com.log" -s /bin/sh www
+su -c "cd /www/wwwroots/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
 ```
+其中一个示例如下(注意是配置 2 个，一个任务用其中一行，不是一个任务写 2 行。)：
+
 <img :src="$withBase('/images/NexusPHP_crontab.png')">
 
 :::danger
-**特别提醒：运行周期是每分钟，不能修改！这里的配置只是一个入口，实际运行频率是程序控制**  
+**特别提醒：执行周期是每分钟，不能修改！这里的配置只是一个入口，实际运行频率是程序控制的，修改频率整个网站运行不正常！比如魔力不会如期增涨！**  
+
 完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
 :::
 

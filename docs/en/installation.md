@@ -103,6 +103,18 @@ After adding, `nginx -t` test for errors, no errors `nginx -s reload` restart to
 
 ::: tip
 If it's a BT panel, make sure the following functions are not disabled: `symlink, putenv, proc_open, proc_get_status, exec`. Do not check: prevent cross-site attacks (open_basedir).
+**After the BT is created site well and add the following to the configuration file.**
+```
+location / {
+    index index.html index.php;
+    try_files $uri $uri/ /nexus.php$is_args$args;
+}
+
+# Filament
+location ^~ /filament {
+    try_files $uri $uri/ /nexus.php$is_args$args;
+}
+```
 :::
 
 ## Procedure
@@ -136,11 +148,19 @@ If it doesn't work, check to see if there is a `crontab` file under `/etc`, and 
 You can determine if the redirect file is in effect by checking to see if there is content output.
 
 **------BT panel users look here, the upper side does not need to do------**  
-If it is a BT panel, one of the examples is as follows(Note: The tasks are still 2 in number and both need to be configured).
+If it is a BT panel, create two scheduled tasks with the following script (remember to replace DOMAIN with your own domain name).
+```
+su -c "cd /www/wwwroots/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
+
+su -c "cd /www/wwwroots/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
+```
+One of the examples is as follows (note that it is configured 2, a task with one of the lines, not a task to write 2 lines.):
 
 <img :src="$withBase('/images/NexusPHP_crontab.png')">
 
 :::danger
+Special reminder: the implementation cycle is every minute, can not be modified! Here the configuration is only an entrance, the actual frequency of operation is program control, modify the frequency of the entire site does not run properly! For example, the bonus will not increase as expected!  
+
 When finished, delete the `public/install` directory. The installation logs contain sensitive data and should not be leaked.
 :::
 
