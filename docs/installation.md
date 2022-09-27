@@ -150,9 +150,9 @@ location ^~ /filament {
 **------宝塔用户看这里，上边的不需要做------**  
 如是是宝塔面板，创建两个计划任务，脚本内容如下（记得把 DOMAIN 替换为自己的域名）：
 ```
-su -c "cd /www/wwwroots/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
+su -c "cd /www/wwwroot/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
 
-su -c "cd /www/wwwroots/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
+su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
 ```
 其中一个示例如下(注意是配置 2 个，一个任务用其中一行，不是一个任务写 2 行。)：
 

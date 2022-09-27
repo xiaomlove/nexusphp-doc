@@ -21,7 +21,7 @@
 
 1.7.20 起支持直接下载远程代码进行覆盖并安装依赖。  
 `--tag=1.x.x` 指定某一版本号(最新开发代码用 `dev`)。  
-`--include_composer` 是否更新 composer，当依赖有更新时候(看发版公告)需要，否则可以不更新。更新依赖后，若有安装插件，需要重新安装插件，具体看博客说明。  
+`--include_composer` 是否更新 composer，当依赖有更新时候(看发版公告)需要，否则不需要。若更新了，插件需要重新安装，具体看[博客说明](https://nexusphp.org/plugin-usage/)。  
 
 ```
 # >= 1.7.10 先安装依赖
@@ -30,8 +30,8 @@ composer install
 # 再执行升级
 php artisan nexus:update
 
-# >= 1.7.20，支持直接下载远程代码进行覆盖并安装依赖：
-php artisan nexus:update --tag=1.7.22 --include_composer
+# >= 1.7.20，支持直接下载远程代码进行覆盖：
+php artisan nexus:update --tag=1.7.22
 ```
 <!--
 如果启用了 Octane 加速，记得重启 worker：

@@ -21,7 +21,7 @@ Command mode is supported since 1.7.10. Some versions make changes to large tabl
 
 Since 1.7.20, we support downloading remote code directly to overwrite and install dependencies.  
 `--tag=1.x.x` specifies a certain version number (`dev` for the latest development code).  
-`---include_composer` Whether to update composer, when the dependency is updated (see release announcement), otherwise you can not update. After updating the dependency, if there is a plugin installed, you need to reinstall the plugin, see the blog for details.  
+`---include_composer` Whether to update composer, when the dependency has been updated (see the release announcement) need, otherwise not. If updated, the plugin needs to be reinstalled, see [blog description](https://nexusphp.org/plugin-usage/).
 
 ```
 # >= 1.7.10, Install the dependencies first
@@ -30,8 +30,8 @@ composer install
 # and then run the upgrade command
 php artisan nexus:update
 
-# >= 1.7.20, supports direct download of remote code to overwrite and install dependencies: 
-php artisan nexus:update --tag=1.7.22 --include_composer
+# >= 1.7.20, supports direct download of remote code to overwrite: 
+php artisan nexus:update --tag=1.7.22
 ```
 <!--
 If Octane acceleration is enabled, remember to restart the worker.

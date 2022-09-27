@@ -150,9 +150,9 @@ You can determine if the redirect file is in effect by checking to see if there 
 **------BT panel users look here, the upper side does not need to do------**  
 If it is a BT panel, create two scheduled tasks with the following script (remember to replace DOMAIN with your own domain name).
 ```
-su -c "cd /www/wwwroots/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
+su -c "cd /www/wwwroot/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
 
-su -c "cd /www/wwwroots/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
+su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
 ```
 One of the examples is as follows (note that it is configured 2, a task with one of the lines, not a task to write 2 lines.):
 

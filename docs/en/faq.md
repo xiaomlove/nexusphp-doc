@@ -63,3 +63,11 @@ If they already exist, try to delete both directories and the program will autom
 ## Popular seeds are not shown in popular modules
 
 Popular modules need to show the cover, please make sure the imdb link is filled in, or the description contains the poster image.
+
+## Forgot administrator password
+
+You can execute the command to reset it. The parameters are: {UID} {New password} {Confirm the new password}.  
+In the site root directory: 
+```
+php artisan user:reset_password {uid} {password} {password_confirmation}
+```

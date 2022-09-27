@@ -69,3 +69,11 @@ ln -s /你的ROOT_PATH路径/attachments /你的ROOT_PATH路径/public
 ```
 apt-get install libgmp-dev
 ```
+
+## 忘记管理员密码
+
+可以执行命令重置。参数是：UID 新密码 确认新密码。  
+在网站根目录下：
+```
+php artisan user:reset_password {uid} {password} {password_confirmation}
+```
