@@ -2,7 +2,7 @@
 
 ## 适用版本
 
-本文档适用于 NexusPHP(以下简称 NP) 经修改的版本，版本号：`1.6.*`
+本文档适用于 NexusPHP(以下简称 NP) 经修改的版本，版本号：>= `1.6`
 
 ## 名词释义
 
@@ -14,7 +14,7 @@
 
 ## 环境要求
 
-- PHP: 8.0，必须扩展：`bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp`。强烈建议开启 `opcache`！
+- PHP: 8.0，必须扩展：`bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache`
 - Mysql: 推荐 5.7 最新版或以上
 - Redis: 2.6.12 或以上
 

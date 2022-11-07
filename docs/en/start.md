@@ -2,7 +2,7 @@
 
 ## Applicable Versions
 
-This document applies to the modified version of NexusPHP (hereafter referred to as NP), version number: `1.6.*`.
+This document applies to the modified version of NexusPHP (hereafter referred to as NP), version number: >= `1.6`.
 
 ## Definition of the term
 
@@ -14,7 +14,7 @@ The meanings of some of the proper nouns included in this document.
 
 ## Environment requirements
 
-- PHP: 8.0, must have extensions: `bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp`. `opcache` is highly recommended!
+- PHP: 8.0, must have extensions: `bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache`
 - Mysql: 5.7 latest version or above is recommended
 - Redis: 2.6.12 or above
 

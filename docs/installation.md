@@ -164,6 +164,49 @@ su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAI
 完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
 :::
 
+### 创建队列守护进程(>=1.8需要)
+
+**------手工用户看这里------**  
+安装好 supervisor，在其配置目录（一般为 /etc/supervisor/conf.d/）下新增一个配置文件 nexus-queue.conf，**注意替换 ROOT_PATH, PHP_USER**，其中 numprocs 是启动的进程数，一般为自己 CPU 核心数即可。
+```
+[program:nexus-queue]
+process_name=%(program_name)s_%(process_num)02d
+command=php ROOT_PATH/artisan queue:work --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=PHP_USER
+numprocs=2
+redirect_stderr=true
+stopwaitsecs=3600
+stdout_logfile=/tmp/nexus-queue.log
+```
+保存好后执行以下命令启动之：
+```
+# 启动
+supervisord -c /etc/supervisor/supervisord.conf
+
+# 重新读取配置文件
+supervisorctl reread
+
+# 更新进程组
+supervisorctl update
+
+# 启动
+supervisorctl start nexus-queue:*
+```
+
+**------宝塔用户看这里，上边的不需要做------**  
+商店安装`Supervisor管理器`，点击添加守护进程，按以下格式填写(**注意替换 ROOT_PATH, PHP_USER**)：
+```
+名称：nexus-queue
+启动用户：PHP_USER
+运行目录: ROOT_PATH
+启动命令：php ROOT_PATH/artisan queue:work --tries=3 --max-time=3600
+进程数量：2
+```
+
 
 ## 问题排查
 
