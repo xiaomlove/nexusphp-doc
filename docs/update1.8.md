@@ -9,6 +9,10 @@
 
 ## 执行升级
 
+:::warning
+注意：`1.8.x` 标签目前没有打，请自觉将以下的 `1.8.x` 替换为 `dev` 使用最新开发代码
+:::
+
 首先下载升级命令的执行文件 `app/Console/Commands/NexusUpdate.php` 进行覆盖之。可直接通过 wget 命令下载再复制到相应目录：
 ```
 wget https://raw.githubusercontent.com/xiaomlove/nexusphp/php8/app/Console/Commands/NexusUpdate.php
@@ -22,7 +26,7 @@ php artisan nexus:update --tag=1.8.0 --include_composer
 # 安装依赖
 composer install
 
-# 执行升级，注意要
+# 执行升级
 php artisan nexus:update
 php artisan filament:upgrade
 ```
@@ -54,4 +58,12 @@ composer require xiaomlove/nexusphp-xxx:dev-master
 
 ## 1.8 版本之间升级
 
-同 [1.7](./update1.7.md#17-版本之间升级)
+以下针对没有修改代码的用户：
+
+```
+# 下载代码
+php artisan nexus:update --tag=1.8.x
+
+# 执行更新
+php artisan nexus:update
+```

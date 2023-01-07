@@ -77,3 +77,35 @@ apt-get install libgmp-dev
 ```
 php artisan user:reset_password {uid} {password} {password_confirmation}
 ```
+
+## 做种积分是什么东西
+
+做种积分就是原始无加成的做种魔力。用户可以在 [魔力使用] 页，[每小时合计获得的魔力值] 部分中，[基本奖励] 行 [基础魔力] 字段就是做种积分。
+
+<img :src="$withBase('/images/seed_points.png')">
+
+## 如何快速获得做种积分
+
+做种积分获取快慢由管理员设定，一般为做种人数越少、发布时间越久远、体积越大的种子保种越容易获得高积分。除了保种，没有其他获取途径。
+
+## 管理后台 500 错误
+极有可能是日志文件 `/tmp/nexus-202x-xx-xx.log` 无法写入，可以尝试执行 
+```
+chmod 777 /tmp/nexus-202x-xx-xx.log
+```
+或者直接删除之。如果还是无法解决，请参考本页开头查看相关日志。
+
+## 管理后台 404
+确保网站的 Nginx 配置文件已经有如下内容：
+```
+location / {
+    index index.html index.php;
+    try_files $uri $uri/ /nexus.php$is_args$args;
+}
+
+# Filament
+location ^~ /filament {
+    try_files $uri $uri/ /nexus.php$is_args$args;
+}
+```
+**并且已经重启过 Nginx。**
