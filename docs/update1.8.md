@@ -31,7 +31,7 @@ php artisan nexus:update
 php artisan filament:upgrade
 ```
 
-**有插件用户**，手工变更依赖。按下图，扩展新增 zend-opcache，filament 修改为 `2.16.52`
+**有插件用户**，手工变更依赖。按下图，扩展新增 `zend-opcache`，filament 修改为 `2.17.14`，添加 `"meilisearch/meilisearch-php": "^1.1",`
 
 <img :src="$withBase('/images/composer.json_1.8.png')">
 
