@@ -164,6 +164,48 @@ Special reminder: the implementation cycle is every minute, can not be modified!
 When finished, delete the `public/install` directory. The installation logs contain sensitive data and should not be leaked.
 :::
 
+### Create queue daemon (>=1.8 required)
+
+**------ manual users look here ------**  
+After installing the supervisor, add a new configuration file nexus-queue.conf to its configuration directory (usually /etc/supervisor/conf.d/), **Note that you replace ROOT_PATH, PHP_USER**, where numprocs is the number of processes started, usually the number of your own CPU cores is the number of CPU cores you have.
+```
+[program:nexus-queue]
+process_name=%(program_name)s_%(process_num)02d
+command=php ROOT_PATH/artisan queue:work --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=PHP_USER
+numprocs=2
+redirect_stderr=true
+stopwaitsecs=3600
+stdout_logfile=/tmp/nexus-queue.log
+```
+After saving it, execute the following command to start it:
+```
+# Start
+supervisord -c /etc/supervisor/supervisord.conf
+
+# Reread the configuration file
+supervisorctl reread
+
+# Update the process group
+supervisorctl update
+
+# Start
+supervisorctl start nexus-queue:*
+```
+
+**------ BT panel users look here, the top ones don't need to do ------**  
+Store install ``Supervisor Manager``, click add daemon, fill in the following format (**Note replace ROOT_PATH, PHP_USER**):
+```
+Name: nexus-queue
+Startup user: PHP_USER
+Running directory: ROOT_PATH
+Start command: php ROOT_PATH/artisan queue:work --tries=3 --max-time=3600
+Number of processes: 2
+```
 
 ## Troubleshooting
 

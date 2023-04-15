@@ -71,3 +71,35 @@ In the site root directory:
 ```
 php artisan user:reset_password {uid} {password} {password_confirmation}
 ```
+
+## What are seeding points?
+
+Seeding points are the raw un-added seeding bonus. Users can find seeding points in the [base bonus] row of the [base bonus] field in the [bonus use] page, in the [bonus gained per hour total] section.
+
+<img :src="$withBase('/images/seed_points.png')">
+
+## How to get seeding points quickly
+
+The speed of seeding points acquisition is set by the administrator, generally the fewer the number of torrents, the longer the release time and the larger the torrents, the easier it is to get high points. There is no other way to get points except for seed saving.
+
+## Admin backend 500 error
+Most likely the log file `/tmp/nexus-202x-xx-xx.log` could not be written, you can try to execute 
+```
+chmod 777 /tmp/nexus-202x-xx-xx.log
+```
+or just delete it. If you still can't solve it, please refer to the beginning of this page to check the related logs.
+
+## Admin backend 404
+Make sure that the site's Nginx configuration file already has the following content:
+```
+location / {
+    index index.html index.php.
+    try_files $uri $uri/ /nexus.php$is_args$args.
+}
+
+# Filament
+location ^~ /filament {
+    try_files $uri $uri/ /nexus.php$is_args$args.
+}
+```
+**And have restarted Nginx.**

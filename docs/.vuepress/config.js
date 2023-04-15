@@ -43,6 +43,7 @@ module.exports = {
             ['configuration', 'Configuration'],
             ['update', 'Upgrade 1.6'],
             ['update1.7', 'Upgrade 1.7'],
+            ['update1.8', 'Upgrade 1.8'],
             ['development', 'Devlopment'],
             ['downloads', 'Downloads'],
             ['faq', 'FAQ'],
