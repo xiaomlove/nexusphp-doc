@@ -8,6 +8,9 @@ This document guides you through the upgrade from 1.7 to 1.8. The original 1.5 v
 - PHP extensions require the addition of `zend-opcache`
 
 ## Performing the upgrade
+:::warning
+For data tables with a large amount of changes, it is recommended to shut down (e.g. stop Nginx) for updates!
+:::
 
 First download the update command executable `app/Console/Commands/NexusUpdate.php` and overwrite it. This can be downloaded directly via the wget command and copied to the appropriate directory:
 ```

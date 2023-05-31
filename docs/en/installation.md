@@ -102,7 +102,7 @@ server {
 After adding, `nginx -t` test for errors, no errors `nginx -s reload` restart to take effect.
 
 ::: tip
-If it's a BT panel, make sure the following functions are not disabled: `symlink, putenv, proc_open, proc_get_status, exec`. Do not check: prevent cross-site attacks (open_basedir).
+If it's a BT panel, make sure the following functions are not disabled: `symlink, putenv, proc_open, proc_get_status, exec, pcntl_signal, pcntl_alarm, pcntl_async_signals`. Do not check: prevent cross-site attacks (open_basedir).
 **After the BT is created site well and add the following to the configuration file.**
 ```
 location / {

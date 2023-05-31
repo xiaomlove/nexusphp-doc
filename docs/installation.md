@@ -102,7 +102,7 @@ server {
 添加完成后，`nginx -t` 测试是否有错误，无错误 `nginx -s reload` 重启生效。
 
 ::: tip
-如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, proc_get_status, exec`。不要勾选：防跨站攻击(open_basedir)。  
+如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, proc_get_status, exec, pcntl_signal, pcntl_alarm, pcntl_async_signals`。不要勾选：防跨站攻击(open_basedir)。  
 **宝塔创建后网站好，在配置文件加入以下内容：**
 ```
 location / {
