@@ -2,7 +2,7 @@
 
 ## 获取程序
 
-克隆 [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp)，然后切换到最新的 release 标签再安装，或者直接下载最新 [release](https://github.com/xiaomlove/nexusphp/releases)。
+克隆 [xiaomlove/nexusphp](https://github.com/xiaomlove/nexusphp)，然后切换到最新的 release 标签再安装，或者直接下载最新 [release](https://github.com/xiaomlove/nexusphp/releases/latest)。
 :::warning
 克隆时务必切换到某个 release 进行安装。不要使用最新的开发代码！ 
 :::
@@ -101,21 +101,6 @@ server {
 
 添加完成后，`nginx -t` 测试是否有错误，无错误 `nginx -s reload` 重启生效。
 
-::: tip
-如果是宝塔面板，确保以下函数没有被禁用：`symlink, putenv, proc_open, proc_get_status, exec, pcntl_signal, pcntl_alarm, pcntl_async_signals`。不要勾选：防跨站攻击(open_basedir)。  
-**宝塔创建后网站好，在配置文件加入以下内容：**
-```
-location / {
-    index index.html index.php;
-    try_files $uri $uri/ /nexus.php$is_args$args;
-}
-
-# Filament
-location ^~ /filament {
-    try_files $uri $uri/ /nexus.php$is_args$args;
-}
-```
-:::
 
 ## 安装过程
 
@@ -134,7 +119,6 @@ location ^~ /filament {
 
 ### 创建后台任务
 
-**------手工用户看这里------**  
 创建用户 PHP_USER 的定时任务，执行：crontab -u PHP_USER -e，在打开的界面输入以下：
 ```
 * * * * * cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
@@ -146,27 +130,12 @@ location ^~ /filament {
 * * * * * PHP_USER cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
 可通过查看重定向文件（也就是 >> 后面指向的那个文件）是否有内容输出确定是否生效。
-
-**------宝塔用户看这里，上边的不需要做------**  
-如是是宝塔面板，创建两个计划任务，脚本内容如下（记得把 DOMAIN 替换为自己的域名）：
-```
-su -c "cd /www/wwwroot/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
-
-su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
-```
-其中一个示例如下(注意是配置 2 个，一个任务用其中一行，不是一个任务写 2 行。)：
-
-<img :src="$withBase('/images/NexusPHP_crontab.png')">
-
 :::danger
-**特别提醒：执行周期是每分钟，不能修改！这里的配置只是一个入口，实际运行频率是程序控制的，修改频率整个网站运行不正常！比如魔力不会如期增涨！**  
-
 完成后，删除 `public/install` 目录。安装日志包含敏感数据，不要泄露。
 :::
 
 ### 创建队列守护进程(>=1.8需要)
 
-**------手工用户看这里------**  
 安装好 supervisor，在其配置目录（一般为 /etc/supervisor/conf.d/）下新增一个配置文件 nexus-queue.conf，**注意替换 ROOT_PATH, PHP_USER**，其中 numprocs 是启动的进程数，一般为自己 CPU 核心数即可。
 ```
 [program:nexus-queue]
@@ -196,17 +165,6 @@ supervisorctl update
 # 启动
 supervisorctl start nexus-queue:*
 ```
-
-**------宝塔用户看这里，上边的不需要做------**  
-商店安装`Supervisor管理器`，点击添加守护进程，按以下格式填写(**注意替换 ROOT_PATH, PHP_USER**)：
-```
-名称：nexus-queue
-启动用户：PHP_USER
-运行目录: ROOT_PATH
-启动命令：php ROOT_PATH/artisan queue:work --tries=3 --max-time=3600
-进程数量：2
-```
-
 
 ## 问题排查
 
