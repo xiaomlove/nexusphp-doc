@@ -79,7 +79,7 @@ yum install -y libgmp-dev
 1. 在宝塔面板中点击 `网站`。
 2. 点击 `添加站点`。
 3. 按提示填写域名，选择 PHP 版本，数据库，类型选择 MySQL，并使用 utf8mb4 编码。填写账号名称，如：nexusphp，然后点击提交。
-4. 创建后网站好，点击对应网站的设置。
+4. 创建好网站后，点击对应网站的设置。
 5. 网站目录: 取消勾选防跨站攻击(open_basedir)，运行目录选择 /public 
 6. SSL子菜单，选择Let's Encrypt，一键申请证书
 7. 在 Composer 子菜单中，选择相应的 PHP 版本，执行参数设置为 install，其余保持默认设置，然后点击执行。
@@ -145,17 +145,9 @@ su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAI
 
 ## 问题排查
 
-如果不能正常跳转安装界面，查看 nginx error log。
+如果不能正常跳转安装界面，查看 error log。（/www/wwwlogs/域名.error.log）
 
-如果看不到错误，可能是 php-fpm 错误没有输出到 nginx error log。打开 www.conf（不知道在哪尝试 `whereis php-fpm`，能看到基本目录），找到 `catch_workers_out` 及 `php_admin_flag[log_errors]`，保证其为打开状态。
-
-修改重启 php-fpm 生效。
-```
-catch_workers_out = yes
-php_admin_flag[log_errors] = on
-```
-
-如果依然看不到错误，修改 `include/core.php` 约第 18 行，把 0 改为 1，把错误展示到页面上。
+如果看不到错误，修改 `include/core.php` 约第 18 行，把 0 改为 1，把错误展示到页面上。
 ``` php
 ini_set('display_errors', 1);
 ```
@@ -168,4 +160,6 @@ ini_set('display_errors', 1);
 
 ### 关于 https
 
-建议使用 cloudflare 的 DNS 解析服务，它会提供免费的 ssl 证书。在 SSL/TLS 菜单下，加密模式选择完全或严格，在 [源服务器] 子菜单下创建好证书，保存上传到源服务器，按上边文档所说配置即可。
+建议使用 cloudflare 的 DNS 解析服务，它会提供免费的 ssl 证书，免费的网站CDN，防止暴漏源站。
+
+在 SSL/TLS 菜单下，加密模式选择完全或严格，在 [源服务器] 子菜单下创建好证书，保存上传到源服务器，按上边文档所说配置即可。
