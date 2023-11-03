@@ -22,7 +22,8 @@ module.exports = {
         ariaLabel: '选择语言',
         sidebar: [
           ['start', '起步'],
-          ['installation', '安装'],
+          ['installation', '手动安装'],
+          ["installation_bt", "宝塔面板安装"],
           ['configuration', '设置'],
           ['update', '升级1.6'],
           ['update1.7', '升级1.7'],
@@ -40,6 +41,7 @@ module.exports = {
           '/en/': [
             ['start', 'Start'],
             ['installation', 'Installation'],
+            ['installation_bt', 'Installation By AAPannel'],
             ['configuration', 'Configuration'],
             ['update', 'Upgrade 1.6'],
             ['update1.7', 'Upgrade 1.7'],
