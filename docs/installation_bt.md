@@ -72,7 +72,7 @@ yum install -y libgmp-dev
 1. 在宝塔面板点击 `网站`，点击对应网站的根目录（/www/wwwroot/你的域名），进入文件管理界面。
 2. 上传你的程序到站点根目录下。
 3. 上传完成后解压。需要注意的是确保文件在网站根目录下，而不是子目录中。应确保 'public' 目录位于根目录的首层。
-4. 复制 nexus/Install/install 到 public/，保证最后 public/install/install.php 存在。
+4. 复制 `nexus/Install/install` 到 `public/`，保证最后 `public/install/install.php` 存在。
 
 
 ## 配置网站
