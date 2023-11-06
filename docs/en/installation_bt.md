@@ -71,6 +71,7 @@ When cloning, be sure to switch to a release to install. Do not use the latest d
 1. In AA Panel, click `Websites`, click the root directory of the corresponding website (/www/wwwroot/your domain), and enter the file management interface.
 2. Upload your program to the root directory of the site.
 3. After the upload is completed, unzip it. It is important to ensure that the files are in the root directory, not in a subdirectory. Ensure that the 'public' directory is at the top level of the root directory.
+4. Copy `nexus/Install/install` to `public/` and make sure `public/install/install.php` is there at the end.
 
 ## Configuring the Website
 
