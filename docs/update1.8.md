@@ -61,9 +61,12 @@ composer require xiaomlove/nexusphp-xxx:dev-master
 以下针对没有修改代码的用户：
 
 ```
-# 下载代码
+# 下载代码（如若要最新开发代码，--tag=dev）
 php artisan nexus:update --tag=1.8.x
 
 # 执行更新
 php artisan nexus:update
+
+# 重启 supervisor（宝塔用户在界面操作即可）
+supervisorctl reload
 ```

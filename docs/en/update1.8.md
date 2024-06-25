@@ -60,9 +60,12 @@ See [installation](./installation.md#create-queue-daemon-1-8-required)
 The following is for users who have not modified the code:
 
 ```
-## Download the code
+## Download the code(If you want the latest development code, --tag=dev)
 php artisan nexus:update --tag=1.8.x
 
 # Execute the update
 php artisan nexus:update
+
+# reload supervisor
+supervisorctl reload
 ```
