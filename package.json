@@ -16,5 +16,7 @@
     "vuepress": "^1.8.0",
     "vuepress-plugin-comment": "^0.7.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "watchman": "^1.0.0"
+  }
 }

@@ -10,7 +10,3 @@ features:
 - title: Free and open source
   details: The code is completely public and can be used and modified by anyone without paying for it
 ---
-
-<SocialAccount></SocialAccount>
-
-<ArticleTopAd></ArticleTopAd>

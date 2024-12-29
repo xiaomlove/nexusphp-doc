@@ -28,8 +28,7 @@ module.exports = {
           ['update', '升级1.6'],
           ['update1.7', '升级1.7'],
           ['update1.8', '升级1.8'],
-          ['development', '开发'],
-          ['downloads', '下载'],
+          ['update1.9', '升级1.9'],
           ['faq', '常见问题'],
         ],
       },
@@ -46,8 +45,6 @@ module.exports = {
             ['update', 'Upgrade 1.6'],
             ['update1.7', 'Upgrade 1.7'],
             ['update1.8', 'Upgrade 1.8'],
-            ['development', 'Devlopment'],
-            ['downloads', 'Downloads'],
             ['faq', 'FAQ'],
           ]
         }
