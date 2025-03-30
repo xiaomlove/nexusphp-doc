@@ -83,7 +83,8 @@ yum install -y libgmp-dev
 4. 创建好网站后，点击对应网站的设置。
 5. 网站目录: 取消勾选防跨站攻击(open_basedir)，运行目录选择 /public 
 6. SSL子菜单，选择Let's Encrypt，一键申请证书
-7. 在 Composer 子菜单中，选择相应的 PHP 版本，执行参数设置为 install，其余保持默认设置，然后点击执行。
+7. ~~在 Composer 子菜单中，选择相应的 PHP 版本，执行参数设置为 install，其余保持默认设置，然后点击执行。~~  
+打开终端，进入网站根目录，手工执行：`composer install`
 8. 伪静态，复制粘贴如下配置：
     ```
     location / {

@@ -14,7 +14,7 @@
 
 ## 环境要求
 
-- PHP: 8.2|8.3|8.4，必须扩展：`bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache, zip, intl`
+- PHP: 8.2，必须扩展：`bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache, zip, intl`
 - Mysql: 推荐 5.7 最新版或以上
 - Redis: 2.6.12 或以上
 
