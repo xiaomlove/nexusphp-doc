@@ -43,6 +43,7 @@ module.exports = {
             ['start', 'Start'],
             ['installation', 'Installation'],
             ['installation_bt', 'Installation By AAPannel'],
+            ['installation_docker', 'Installation By Docker'],
             ['configuration', 'Configuration'],
             ['update', 'Upgrade 1.6'],
             ['update1.7', 'Upgrade 1.7'],

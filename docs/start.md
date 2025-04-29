@@ -16,7 +16,7 @@
 
 ### PHP
 - 1.6～1.8: 8.0｜8.1｜8.2  
-- 1.9+: PHP 8.2｜8.3｜8.4
+- 1.9+: 8.2｜8.3｜8.4
 
 必须扩展：  
 `bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache, zip, intl`

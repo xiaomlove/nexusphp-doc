@@ -19,7 +19,7 @@ docker compose build
 - NP_MYSQL_ROOT_PWD，MySQL root 账号密码，默认为 root
 - NP_MYSQL_DB，安装要使用的数据库名，默认为 nexusphp。安装界面 DB_DATABASE 就是它
 - NP_MYSQL_USER, MySQL 用户名，默认为 nexusphp。安装界面 DB_USERNAME 就是它
-- NP_MYSQL_PWD，NP_MYSQL_USER 用户的登录密码。界面界面 DB_PASSWORD 就是它
+- NP_MYSQL_PWD，NP_MYSQL_USER 用户的登录密码, 默认为 nexusphp。界面界面 DB_PASSWORD 就是它
 
 如果要启用 https, 准备好证书，放到 `.docker/openresty/certs` 目录下，将证书文件命名为 `fullchain.pem`，将私钥文件命名为 `private.key`。  
 执行以下命令启动（其他参数若要修改，自行补充）：
@@ -28,14 +28,14 @@ docker compose build
 NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up
 ```
 
-如果不启用 https，NP_PORT 也不用传递，只需要指定 NP_DOMAIN。容器全部正常启动完成后，打开域名，将自动进入安装界面。其中 DB_HOST 填写 mysql, REDIS_HOST 填写 redis。
+如果不启用 https，NP_PORT 也不用传递，只需要指定 NP_DOMAIN。容器全部正常启动完成后，打开域名，将自动进入安装界面。其中 DB_HOST 填写 `mysql`, REDIS_HOST 填写 `redis`。
 
 全部启动完成后，可退出再添加 -d 后台启动。
 ```
 docker compose up -d
 ```
 
-至此，全部工作已经完成。其他如定时任务配置与队列执行器进程守护均已自动完成。
+至此，全部工作已经完成。其他如定时任务配置与队列执行器进程守护均已自动完成。同时也配置了 phpmyadmin,  通过二级域名 `phpmyadmin.NP_DOMAIN` 访问。
 
 ## 关于日志
 
