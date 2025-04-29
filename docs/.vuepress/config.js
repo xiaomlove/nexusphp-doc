@@ -24,6 +24,8 @@ module.exports = {
           ['start', '起步'],
           ['installation', '手动安装'],
           ["installation_bt", "宝塔面板安装"],
+          ["installation_1panel", "1Panel 安装"],
+          ["installation_docker", "Docker 安装"],
           ['configuration', '设置'],
           ['update', '升级1.6'],
           ['update1.7', '升级1.7'],

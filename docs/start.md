@@ -14,9 +14,19 @@
 
 ## 环境要求
 
-- PHP: 8.2，必须扩展：`bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache, zip, intl`
-- Mysql: 推荐 5.7 最新版或以上
+### PHP
+- 1.6～1.8: 8.0｜8.1｜8.2  
+- 1.9+: PHP 8.2｜8.3｜8.4
+
+必须扩展：  
+`bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache, zip, intl`
+
+### 数据库
+- Mysql: 推荐 5.7 最新版或以上  
 - Redis: 2.6.12 或以上
 
+### 其他
+- rsync，更新版本时对文件进行同步覆盖
+- supervisor，队列执行器进程守护
 
 
