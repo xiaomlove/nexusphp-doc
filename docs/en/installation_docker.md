@@ -1,4 +1,7 @@
-
+## Warning
+:::warning
+This section only applies to version 1.9 or above!
+:::
 ## Install Docker
 
 Visit [Docker official website](https://docs.docker.com/engine/install/) and follow the official documentation to install Docker + Docker compose.
@@ -13,7 +16,7 @@ docker compose build
 ## Start the container 
 supports the following environment variables:
 - NP_DOMAIN, domain name, required.
-- NP_PORT, the port used by the web server, 443 if https is enabled, otherwise 80. 80 is the default.
+- NP_PORT, the port used by the web service, 443 if https is enabled, otherwise 80. 80 is the default.
 - NP_MYSQL_ROOT_PWD, MySQL root account password, default is root.
 - NP_MYSQL_DB, the name of the database to be used for the installation, default is nexusphp.
 - NP_MYSQL_USER, MySQL user name, defaults to nexusphp.
@@ -30,8 +33,11 @@ If you don't enable https, you don't need to pass NP_PORT, you just need to spec
 
 After all startups are complete, you can exit and add -d to startup again.
 ``` 
-docker compose up -d 
+NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up -d
 ```
+:::warning
+Remember: NP_DOMAIN + NP_PORT are environment variables that must be added every time, otherwise they will take the default values. MySQL will persist the environment variables at that time when it is initialized, and the actual values will not be changed even though the environment variables have been changed subsequently.
+:::
 
 At this point, all the work is done. Other things such as schedule configuration and queue executor process daemon have been automated. We have also configured phpmyadmin, which is accessible via the second-level domain name `phpmyadmin.NP_DOMAIN`.
 
