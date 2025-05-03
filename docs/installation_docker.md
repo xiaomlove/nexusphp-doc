@@ -40,7 +40,12 @@ NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up -d
 :::warning
 切记：NP_DOMAIN + NP_PORT 这 2 个环境变量是每次启动都要添加的，否则会取默认值。MySQL 初始化时会将当时的环境变量持久化，后续环境变量虽然变了，但实际的值不再变化。
 :::
-至此，全部工作已经完成。其他如定时任务配置与队列执行器进程守护均已自动完成。同时也配置了 phpmyadmin,  通过二级域名 `phpmyadmin.NP_DOMAIN` 访问。
+至此，全部工作已经完成。其他如定时任务配置与队列执行器进程守护均已自动完成。
+
+## phpmyadmin
+为了方便数据库修改，同时也配置了 phpmyadmin。
+- 当 NP_DOMAIN 是顶级域名（如 aa.com）时，通过二级域名 `phpmyadmin.NP_DOMAIN(如 phpmyadmin.aa.com)` 访问
+- 当 NP_DOMAIN 是非顶级域名（如 nexusphp.aa.com）时，通过二级域名 `phpmyadmin-NP_DOMAIN(如 phpmyadmin-nexusphp.aa.com)` 访问
 
 ## 关于日志
 

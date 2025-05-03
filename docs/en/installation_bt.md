@@ -141,6 +141,17 @@ Startup Command: php ROOT_PATH/artisan queue:work --tries=3 --max-time=3600
 Number of Processes: 2
 ```
 
+:::tip
+For versions 1.9 and above, use horizon instead of queue:work.
+```
+Name: nexus-queue
+Startup User: PHP_USER
+Run Directory: ROOT_PATH
+Startup Command: php ROOT_PATH/artisan horizon
+Number of Processes: 2
+```
+:::
+
 ## Troubleshooting
 
 If you cannot normally redirect to the installation interface, check the nginx error log.

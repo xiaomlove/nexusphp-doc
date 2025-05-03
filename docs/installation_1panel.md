@@ -94,6 +94,14 @@ su -c "cd /www/sites/1panel.nexusphp.org/index && php artisan schedule:run" -s /
 ```
 php /www/artisan queue:work --no-interaction
 ```
+
+:::tip
+对于 1.9 以上版本，使用 horizon 代替 queue:work
+```
+php /www/artisan horizon --no-interaction
+```
+:::
+
 重启规则勾选一直重启。
 
 <img :src="$withBase('/images/1panel-queue.png')">

@@ -144,6 +144,17 @@ su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAI
 进程数量：2
 ```
 
+:::tip
+对于 1.9 以上版本，使用 horizon 代替 queue:work
+```
+名称：nexus-queue
+启动用户：PHP_USER
+运行目录: ROOT_PATH
+启动命令：php ROOT_PATH/horizon
+进程数量：2
+```
+:::
+
 
 ## 问题排查
 

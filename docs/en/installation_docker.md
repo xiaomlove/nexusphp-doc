@@ -39,7 +39,12 @@ NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up -d
 Remember: NP_DOMAIN + NP_PORT are environment variables that must be added every time, otherwise they will take the default values. MySQL will persist the environment variables at that time when it is initialized, and the actual values will not be changed even though the environment variables have been changed subsequently.
 :::
 
-At this point, all the work is done. Other things such as schedule configuration and queue executor process daemon have been automated. We have also configured phpmyadmin, which is accessible via the second-level domain name `phpmyadmin.NP_DOMAIN`.
+At this point, all the work is done. Other things such as schedule configuration and queue executor process daemon have been automated.
+
+## phpmyadmin
+To make it easier to modify the database, phpmyadmin is also configured.
+- When NP_DOMAIN is a top-level domain (e.g. aa.com), it is accessed through the second-level domain `phpmyadmin.NP_DOMAIN (e.g. phpmyadmin.aa.com)`.
+- When the NP_DOMAIN is a non-TLD (e.g. nexusphp.aa.com), access is via the second-level domain name `phpmyadmin-NP_DOMAIN (e.g. phpmyadmin-nexusphp.aa.com)`.
 
 ## About logs
 

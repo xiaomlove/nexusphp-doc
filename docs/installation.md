@@ -151,6 +151,25 @@ redirect_stderr=true
 stopwaitsecs=3600
 stdout_logfile=/tmp/nexus-queue.log
 ```
+
+:::tip
+对于 1.9 以上版本，使用 horizon 代替 queue:work
+```
+[program:nexus-queue]
+process_name=%(program_name)s_%(process_num)02d
+command=php ROOT_PATH/artisan horizon
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=PHP_USER
+numprocs=2
+redirect_stderr=true
+stopwaitsecs=3600
+stdout_logfile=/tmp/nexus-queue.log
+```
+:::
+
 保存好后执行以下命令启动之：
 ```
 # 启动
