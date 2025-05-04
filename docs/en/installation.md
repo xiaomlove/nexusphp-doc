@@ -182,6 +182,25 @@ redirect_stderr=true
 stopwaitsecs=3600
 stdout_logfile=/tmp/nexus-queue.log
 ```
+
+:::tip
+For versions 1.9 and above, use horizon instead of queue:work.
+```
+[program:nexus-queue]
+process_name=%(program_name)s_%(process_num)02d
+command=php ROOT_PATH/artisan horizon
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=PHP_USER
+numprocs=2
+redirect_stderr=true
+stopwaitsecs=3600
+stdout_logfile=/tmp/nexus-queue.log
+```
+:::
+
 After saving it, execute the following command to start it:
 ```
 # Start
