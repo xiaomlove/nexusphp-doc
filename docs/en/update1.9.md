@@ -5,7 +5,7 @@ This document guides you to upgrade from 1.8 to 1.9. For the original 1.5 versio
 
 ## Environment Requirements
 - Minimum PHP version is 8.2.
-- PHP extensions required are zip, intl
+- PHP extensions required add `zip, intl, pdo_sqlite, sqlite3`
 
 ## Perform the upgrade
 

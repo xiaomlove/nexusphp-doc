@@ -5,7 +5,7 @@
 
 ## 环境要求
 - PHP 最低版本要求升至 8.2
-- PHP 扩展要求新增 zip, intl
+- PHP 扩展要求新增 `zip, intl, pdo_sqlite, sqlite3`
 
 ## 执行升级
 

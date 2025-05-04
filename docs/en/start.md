@@ -19,7 +19,7 @@ The meanings of some of the proper nouns included in this document.
 - 1.9+: 8.2｜8.3｜8.4
 
 required extensions:  
-`bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache, zip, intl`
+`bcmath, ctype, curl, fileinfo, json, mbstring, openssl, pdo_mysql, tokenizer, xml, mysqli, gd, redis, pcntl, sockets, posix, gmp, opcache, zip, intl, pdo_sqlite, sqlite3`
 
 ### Database
 - Mysql: 5.7 latest version or above is recommended
