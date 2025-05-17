@@ -148,7 +148,7 @@ Name: nexus-queue
 Startup User: PHP_USER
 Run Directory: ROOT_PATH
 Startup Command: php ROOT_PATH/artisan horizon
-Number of Processes: 2
+Number of Processes: 1
 ```
 :::
 

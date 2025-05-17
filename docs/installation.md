@@ -163,7 +163,6 @@ autorestart=true
 stopasgroup=true
 killasgroup=true
 user=PHP_USER
-numprocs=2
 redirect_stderr=true
 stopwaitsecs=3600
 stdout_logfile=/tmp/nexus-queue.log

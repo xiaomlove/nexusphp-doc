@@ -49,3 +49,22 @@ To make it easier to modify the database, phpmyadmin is also configured.
 ## About logs
 
 All logs are collected by docker logs and do not write to the container.
+
+
+## About Backup
+
+The following is for using the backup function that comes with it.
+
+Management->Settings->Backup->Export path, this setting determines where the backup data is stored. You can set the environment variable `NP_BACKUP_EXPORT_PATH` to the same value when creating the container if you want to see it on the host. The backup is a .tar.gz archive containing all the data in the root directory of the site (except the vendor directory) and the database data.
+
+``` 
+root@v2202505270792336883:/tmp/nexusphp_backup# tar -tzf html.20250517.190720.tar.gz 
+html.web.20250517.190625.tar.gz 
+html. database.20250517.190713.sql 
+```
+
+As for offsite saving, you can enable ftp/sftp in the backup settings so that the self backup feature will transfer the backup data to the remote server you configured.
+
+Or if you have a more specialized solution, you can not enable ftp/sftp but use your own solution to transfer the exported files. If you don't even want to use built-in export function, just turn the backup feature off.
+
+**It is highly recommended to make backups, at least once a day, and to move them to an offsite location!**

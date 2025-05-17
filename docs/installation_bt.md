@@ -151,7 +151,7 @@ su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAI
 启动用户：PHP_USER
 运行目录: ROOT_PATH
 启动命令：php ROOT_PATH/artisan horizon
-进程数量：2
+进程数量：1
 ```
 :::
 

@@ -23,6 +23,7 @@ docker compose build
 - NP_MYSQL_DB，安装要使用的数据库名，默认为 nexusphp
 - NP_MYSQL_USER, MySQL 用户名，默认为 nexusphp
 - NP_MYSQL_PWD，NP_MYSQL_USER 用户的登录密码, 默认为 nexusphp
+- NP_BACKUP_EXPORT_PATH，创建备份目录映射，默认为 /tmp/nexusphp_backup
 
 如果要启用 https, 准备好证书，放到 `.docker/openresty/certs` 目录下，将证书文件命名为 `fullchain.pem`，将私钥文件命名为 `private.key`。  
 执行以下命令启动（其他参数若要修改，自行补充）：
@@ -50,3 +51,21 @@ NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up -d
 ## 关于日志
 
 全部日志已被 docker logs 收集，不会打到容器内部。
+
+## 关于备份
+
+以下针对使用自带的备份功能而言。
+
+管理后台->设置->备份->导出到目录，这个设置决定了备份数据存放的位置。你要在宿主机看到的话，在创建容器时可将环境变量 `NP_BACKUP_EXPORT_PATH` 设置为相同的值。备份是一个 .tar.gz 压缩包，里面包含网站根目录下的全部数据(vendor 目录除外)以及数据库数据。
+
+```
+root@v2202505270792336883:/tmp/nexusphp_backup# tar -tzf html.20250517.190720.tar.gz 
+html.web.20250517.190625.tar.gz
+html.database.20250517.190713.sql
+```
+
+至于异地保存，你可以在备份设置里启用 ftp/sftp，这样自带备份功能就会将备份数据传输到你配置的远程服务器。
+
+或者你有更专业的方案，可以不启用 ftp/sftp 而是用你自己的方案将导出的文件进行转移。如果连导出都不想用自带的，将备份功能关闭即可。
+
+**强烈建议做好备份，至少每天一备且转移到异地！**
