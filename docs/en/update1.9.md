@@ -58,6 +58,6 @@ php artisan nexus:update --tag=1.9.x
 # Execute the update 
 php artisan nexus:update
 
-# Reboot supervisor (Pagoda users can just do it from the interface) 
+# Reboot supervisor (AA Panel users can just do it from the interface, Docker users restart queue service) 
 supervisorctl reload 
 ```
