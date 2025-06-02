@@ -27,6 +27,7 @@ module.exports = {
           ["installation_1panel", "1Panel 安装"],
           ["installation_docker", "Docker 安装(>=1.9)"],
           ['configuration', '设置'],
+          ['go_tracker', 'Go Tracker'],
           ['update', '升级1.6'],
           ['update1.7', '升级1.7'],
           ['update1.8', '升级1.8'],

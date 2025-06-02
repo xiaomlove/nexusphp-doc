@@ -61,3 +61,4 @@ php artisan nexus:update
 # 重启 supervisor（宝塔用户在界面操作即可，使用 Docker 的重启 queue 服务即可）
 supervisorctl reload
 ```
+

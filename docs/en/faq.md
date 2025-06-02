@@ -103,3 +103,7 @@ location ^~ /filament {
 }
 ```
 **And have restarted Nginx.**
+
+## 1.9 Search function in admin backend not working
+
+Reference: issue [#326](https://github.com/xiaomlove/nexusphp/issues/326)

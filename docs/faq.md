@@ -117,3 +117,7 @@ location ^~ /filament {
 
 因此, 下载种子越多, 分母变大, 结果自然变小.  
 增加辅种, 分子变大, 分母不变, 可使平均做种时间变大.
+
+## 1.9 管理后台搜索功能无法使用
+
+参考：issue [#326](https://github.com/xiaomlove/nexusphp/issues/326)
