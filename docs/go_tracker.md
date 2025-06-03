@@ -24,7 +24,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJOZXh1c1BIUCDnlKjmiLciLCJleHAiOjQ
 ```
 
 ## 下载并启动 Go Tracker
-点此下载二进制文件，放到网站根目录下。使用 nohup 直接启动即可。可用参数：
+[点此](/downloads/tracker)下载二进制文件，放到网站根目录下。使用 nohup 直接启动即可。可用参数：
 - -env_file: 指定 env 文件路径，默认当前目录下
 - -log_level: 日志级别，默认 info. 可用：debug,info,warn,error
 - -is_enable_frequency_limit: 是否启用频率限制，默认 true. 可用: true,false
@@ -34,8 +34,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJOZXh1c1BIUCDnlKjmiLciLCJleHAiOjQ
 nohup ./tracker > tracker.log 2>&1 &
 ```
 打开日志输出文件，当看到类似 `going to start http server at: :7777` 则表示是启动成功了。打开管理后台 `Other -> Tracker` 菜单，在 Basic 部分，看到有效期，可以确定一切准备就绪。
-## 流量切换
-修改 nginx 配置，在偏上的位置（至少在 \.php$ 这个 location 之前）添加以下内容，将 announce.php + scrape.php 的流量转发到 Go Tracker 上来。
+## 流量转发
+修改 nginx 配置，在偏上的位置（至少在 \.php$ 这个 location 之前，比如在宝塔中就是在 include enable-php-xx 之前）添加转发代码，将 announce.php + scrape.php 的流量转发到 Go Tracker 上来。
 以下是示例（修改后记得重启）：
 ```
     listen 443 ssl;
@@ -85,3 +85,12 @@ nohup ./tracker > tracker.log 2>&1 &
 ## 使用回自带 Tracker
 如果想不用了，直接去掉上边一步添加的流量转发部分，再在辅助插件中把使用`前端是否使用 Tracker 接口` 改为 `no` 即可。   
 或者直接卸载辅助插件亦可，**注意去掉流量转发部分是必须的！**
+
+## 更新日志
+### 1.0.1(2025-06-03)
+- 修复 port 端口不能为 0
+- 修复种子优惠到期时间等时间字段包含时区信息导致错误
+- 修复 worker 同步时 peer_id 包含非法字符导致错误
+
+### 1.0.0(2025-06-02)
+- 初次发布

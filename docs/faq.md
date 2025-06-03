@@ -118,6 +118,19 @@ location ^~ /filament {
 因此, 下载种子越多, 分母变大, 结果自然变小.  
 增加辅种, 分子变大, 分母不变, 可使平均做种时间变大.
 
+## 登录方式不是正常却退出了怎么办
+
+设置里开启了秘密登录或者 passkey 登录又无法获取登录链接，要恢复正常登录模式按以下步骤操作：
+首先恢复数据库设置：  
+```
+update settings set value = 'normal' where name = 'security.guest_visit_type';
+```
+接着登录 redis 控制台，执行以下 2 个命令(分 2 次，一次执行一行)删除缓存：
+```
+del nexus_settings_in_nexus
+del nexus_settings_in_laravel
+```
+
 ## 1.9 管理后台搜索功能无法使用
 
 参考：issue [#326](https://github.com/xiaomlove/nexusphp/issues/326)
