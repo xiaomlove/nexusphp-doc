@@ -64,6 +64,49 @@ nohup ./tracker > tracker.log 2>&1 &
     }
 ```
 
+## 独立部署
+如果不想跟网站使用相同的域名，或者是想同时使用多个 tracker 域名，那么你可以将 tracker 部署为一个新的网站.  
+如下是一个示例，这里只接收 HTTP Get 请求，仅有汇报相关的 /announce + /scrape 两个路由，其他一律返回 404.
+```
+server {
+    listen 443 ssl;
+    # 替换为你自己的域名，有多个域名空格隔开
+    server_name tracker.nexusphp.org;
+    # 证书路径替换为你自己的
+    ssl_certificate /ssl/nexusphp.org.pem;
+    ssl_certificate_key /ssl/nexusphp.org.key;
+
+    # 匹配 /announce 或 /scrape
+    location ~ ^/(announce|scrape)$ {
+        # 替换为你自己的
+        proxy_pass http://tracker:7777;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # 限制仅允许 GET 请求
+        limit_except GET {
+            deny all;
+        }
+    }
+
+    # 其他所有路径不处理
+    location / {
+        return 404;
+    }
+
+    # 日志路径替换为你自己的
+    access_log /dev/stdout main;
+    error_log /dev/stderr;
+}
+```
+:::warning 
+流量转发和独立部署是二选一！！！  
+
+配置好后，Tracker 地址是 server_name + /announce，如示例中则是：https://tracker.nexusphp.org/announce
+:::
 ## 日志清理
 日志是输出到标准输出，启动时重定向到了日志文件，可以借助 logrotate 来切割并清理。  
 在 `/etc/logrotate.d/` 目录下，新建一个配置文件，如 go_tracker，内容如下：
@@ -87,6 +130,15 @@ nohup ./tracker > tracker.log 2>&1 &
 或者直接卸载辅助插件亦可，**注意去掉流量转发部分是必须的！**
 
 ## 更新日志
+### 1.1.0(2025-06-20)
+- 支持置顶促销插件
+- 修复删种后又被重新插入
+- 完善收费种子、H&R
+- 支持切换 Tracker URL(主程序要求 >= 1.9.5)
+
+### 1.0.2(2025-06-04)
+- 修复更多时间字段错误
+
 ### 1.0.1(2025-06-03)
 - 修复 port 端口不能为 0
 - 修复种子优惠到期时间等时间字段包含时区信息导致错误
