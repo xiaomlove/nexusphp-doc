@@ -13,6 +13,8 @@
 
 <img :src="$withBase('/images/1panel-php.png')">
 
+如果还是缺少扩展，尽量通过页面添加的方式添加。如果没得选择，可以点击左边容器大菜单，使用 root 用户进入容器内部通过 `docker-php-ext-install xxx` 的方式手工安装。
+
 ## 创建网站
 
 创建网站时，选择从运行环境创建，类型是 PHP，运行环境则是刚才安装的 PHP 环境，填写域名与代号，其他均默认即可。
@@ -87,7 +89,10 @@ su -c "cd /www/sites/1panel.nexusphp.org/index && php artisan schedule:run" -s /
 :::
 
 ## 守护队列工作器进程
-
+### V1
+:::warning
+注意这部分仅适合 1Panel V1 版本
+:::
 这里与手工安装或者宝塔均不同，无法使用 `supervisor`。我们单独起一个容器，添加入口命令运行队列工作器，通过重启规则为一直重启达到进程守护的目的。
 
 **镜像必须与创建网站时使用的镜像一致，且网络要选择同一个**。添加挂载本机目录，将网站根目录挂载到容器内，这里使用 /www。Command 添加以下内容：
@@ -109,6 +114,11 @@ php /www/artisan horizon --no-interaction
 确定后创建容器，至此安装工作全部结束。以上步骤一共创建了5个容器：
 
 <img :src="$withBase('/images/1panel-all-containers.png')">
+
+### V2
+1Panel 在 V2 版本中，支持了使用 supervisor 创建进程守护。我们在 网站->运行环境 大菜单中，在我们使用 PHP 的运行环境上点击更多 -> 进程守护 -> 创建守护进程。
+
+<img :src="$withBase('/images/1panel-v2-supervisor.png')">
 
 ## 关于日志
 

@@ -24,7 +24,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJOZXh1c1BIUCDnlKjmiLciLCJleHAiOjQ
 ```
 
 ## 下载并启动 Go Tracker
-[点此](/downloads/tracker)下载二进制文件，放到网站根目录下。使用 nohup 直接启动即可。可用参数：
+在下边附件下载部分下载二进制文件，放到网站根目录下。使用 nohup 直接启动即可。可用参数：
 - -env_file: 指定 env 文件路径，默认当前目录下
 - -log_level: 日志级别，默认 info. 可用：debug,info,warn,error
 - -is_enable_frequency_limit: 是否启用频率限制，默认 true. 可用: true,false
@@ -107,6 +107,12 @@ server {
 
 配置好后，Tracker 地址是 server_name + /announce，如示例中则是：https://tracker.nexusphp.org/announce
 :::
+## 特别提醒
+:::danger
+- 必须跟 Web 使用同一套配置，即 .env 要是同一个或内容完全一样！
+- 如果有多个站点，Redis 必须是不同的实例！类似 MySQL 是不同的库，Redis 不能单换库，要换实例！
+- 同一个站点，不能配置多个 go tracker 实例！否则数据错乱，你只可以配置多个域名！
+:::
 ## 日志清理
 日志是输出到标准输出，启动时重定向到了日志文件，可以借助 logrotate 来切割并清理。  
 在 `/etc/logrotate.d/` 目录下，新建一个配置文件，如 go_tracker，内容如下：
@@ -128,6 +134,10 @@ server {
 ## 使用回自带 Tracker
 如果想不用了，直接去掉上边一步添加的流量转发部分，再在辅助插件中把使用`前端是否使用 Tracker 接口` 改为 `no` 即可。   
 或者直接卸载辅助插件亦可，**注意去掉流量转发部分是必须的！**
+
+## 附件下载
+- [amd64](/downloads/tracker), BuildID=Rxxkmbq6p2MpwbxfhLSl/TcHMcIfSXkEW-0dgIwBq/Qo6ECK9ON7X3gE3_YOyO/5aB2M_ZC33dXXM84EpFc
+- [arm64](/downloads/tracker_arm), BuildID=SICON9-CqXeXI-9bu8uz/c4AzdRv0QD-MI4NG9cd6/bnZ_HLhtjf25jLTZKB8x/IKYm4WPYuvW3z-fOrs34
 
 ## 更新日志
 ### 1.1.0(2025-06-20)
