@@ -112,6 +112,7 @@ server {
 - 必须跟 Web 使用同一套配置，即 .env 要是同一个或内容完全一样！
 - 如果有多个站点，Redis 必须是不同的实例！类似 MySQL 是不同的库，Redis 不能单换库，要换实例！
 - 同一个站点，不能配置多个 go tracker 实例！否则数据错乱，你只可以配置多个域名！
+- 关于异地部署，参考此 [issue](https://github.com/xiaomlove/nexusphp/issues/224) 讨论
 :::
 ## 日志清理
 日志是输出到标准输出，启动时重定向到了日志文件，可以借助 logrotate 来切割并清理。  
