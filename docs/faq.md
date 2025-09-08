@@ -134,3 +134,10 @@ del nexus_settings_in_laravel
 ## 1.9 管理后台搜索功能无法使用
 
 参考：issue [#326](https://github.com/xiaomlove/nexusphp/issues/326)
+
+## 创建令牌报错
+如果在控制面板创建令牌时报错: `Target class [config] does not exist`，很可能是没生成 passport 加密密钥。
+进入网站根目录，执行以下命令：
+```
+php artisan passport:keys
+```

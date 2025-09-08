@@ -107,3 +107,11 @@ location ^~ /filament {
 ## 1.9 Search function in admin backend not working
 
 Reference: issue [#326](https://github.com/xiaomlove/nexusphp/issues/326)
+
+## Error occurred while creating token
+
+If you encounter the error `Target class [config] does not exist` when creating a token in the control panel, it is likely that the Passport encryption key has not been generated.
+Navigate to the website's root directory and execute the following command:
+```
+php artisan passport:keys
+```

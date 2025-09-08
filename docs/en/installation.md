@@ -132,6 +132,12 @@ After the above preparations are done, open the website domain and the installat
 ### Execute the installation
 Fill in each step according to the actual situation, **pay attention to choose the right time zone, otherwise the time is not correct, more likely the client can not report**. Click Next until you are done.
 
+### Generates encryption keys for Passport
+Goto the web root path, then execute the command below:
+```
+ php artisan passport:keys
+```
+
 ### Create background task
 **------Manual users look here------**  
 Create a timed task for user PHP_USER, execute: crontab -u PHP_USER -e, and enter the following in the opened interface.

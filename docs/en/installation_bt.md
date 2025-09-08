@@ -105,6 +105,12 @@ Fill in each step according to the actual situation, **be sure to choose the cor
 
 that the client cannot report as expected**. Click next until finished.
 
+### Generates encryption keys for Passport
+Goto the web root path, then execute the command below:
+```
+ php artisan passport:keys
+```
+
 ## Creating Scheduled Tasks
 
 Click on Scheduled Tasks on the left side of AA. Create two scheduled tasks:

@@ -59,6 +59,12 @@ location ^~ /filament {
 
 选择正确的时区，一直下一步即可。
 
+## 生成 Passport 加密密钥
+进入容器内网站根目录，执行以下命令：
+```
+ php artisan passport:keys
+```
+
 ## 创建后台任务
 
 点击 1Panel 大菜单——计划任务，创建计划任务：
