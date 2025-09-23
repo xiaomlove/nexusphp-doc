@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# 升级 1.7
 
 ## 说明
 本文档指引你从 1.6 升级到 1.7。原始 1.5 版本的建议先升级到 1.6 后再按此文档进行升级。
@@ -23,7 +23,7 @@
 `--tag=1.x.x` 指定某一版本号(最新开发代码用 `dev`)。  
 `--include_composer` 是否更新 composer，当依赖有更新时候(看发版公告)需要，否则不需要。若更新了，插件需要重新安装，具体看[博客说明](https://nexusphp.org/plugin-usage/)。  
 
-```
+```shell
 # >= 1.7.10 先安装依赖
 composer install
 

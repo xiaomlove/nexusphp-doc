@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Upgrade 1.8
 
 ## Instructions
 This document guides you through the upgrade from 1.7 to 1.8. The original 1.5 version is recommended to be upgraded to 1.6 first and then in order.
@@ -18,7 +18,7 @@ wget https://raw.githubusercontent.com/xiaomlove/nexusphp/php8/app/Console/Comma
 ```
 
 **No plug-in users**, just use the command line to upgrade:
-```
+```shell
 # Download the latest code, note to --include_composer
 php artisan nexus:update --tag=1.8.0 --include_composer
 
@@ -32,10 +32,10 @@ php artisan filament:upgrade
 
 **with plugin user**, change the dependencies manually. As shown below, add `zend-opcache` to the extension, change filament to `2.17.14`, add `"meilisearch/meilisearch-php":"^1.1",`
 
-<img :src="$withBase('/images/composer.json_1.8.png')">
+<img src="/images/composer.json_1.8.png">
 
 Then delete `composer.lock` and finally execute the command:
-```
+```shell
 # Download the latest code
 php artisan nexus:update --tag=1.8.0
 
@@ -59,7 +59,7 @@ See [installation](./installation.md#create-queue-daemon-1-8-required)
 
 The following is for users who have not modified the code:
 
-```
+```shell
 ## Download the code(If you want the latest development code, --tag=dev)
 php artisan nexus:update --tag=1.8.x
 

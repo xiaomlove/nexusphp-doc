@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# 1Panel 安装
 
 
 ## 安装 1Panel
@@ -11,7 +11,7 @@
 
 对于 PHP ，建议安装 8.2 版本。来源选择应用商店，扩展模板选择 Default, 再额外添加 redis + gmp + opcache 即可。
 
-<img :src="$withBase('/images/1panel-php.png')">
+<img src="./images/1panel-php.png">
 
 如果还是缺少扩展，尽量通过页面添加的方式添加。如果没得选择，可以点击左边容器大菜单，使用 root 用户进入容器内部通过 `docker-php-ext-install xxx` 的方式手工安装。
 
@@ -22,7 +22,7 @@
 在网站配置，在网站目录一项，将运行目录选择为 `/public`，点击保存并重截。对于运行用户/组一项要求你保存的，也点击保存。
 
 切换至下边的伪静态一项，粘贴以下内容后点击保存并重载：
-```
+```bash
 location / {
     index index.html index.php;
     try_files $uri $uri/ /nexus.php$is_args$args;
@@ -47,7 +47,7 @@ location ^~ /filament {
 点击 1Panel 容器大菜单，创建网站会自动创建一个 PHP 容器，点击终端按钮，在弹出的页面中什么都不用做直接点击连接，进入容器内部。
 默认是在 /www 目录，一直走入到内容内部的网站根目录 `/www/sites/1panel.nexusphp.org/index`，执行 `composer install` 安装依赖：
 
-<img :src="$withBase('/images/1panel-composer-install.png')">
+<img src="./images/1panel-composer-install.png">
 
 ## 安装程序
 
@@ -55,13 +55,13 @@ location ^~ /filament {
 回到网站配置，在运行用户/组，如果有提示保存，点击保存之。  
 打开域名，会进入到安装界面。连接信息，Mysql+Redis要使用容器连接部分的地址和端口。
 
-<img :src="$withBase('/images/1panel-database-connections.png')">
+<img src="./images/1panel-database-connections.png">
 
 选择正确的时区，一直下一步即可。
 
 ## 生成 Passport 加密密钥
 进入容器内网站根目录，执行以下命令：
-```
+```bash
  php artisan passport:keys
 ```
 
@@ -76,15 +76,15 @@ location ^~ /filament {
 - 选择创建网站使用的 PHP 容器
 
 脚本内容如下(记得修改为自己的真实的容器内网站根目录)：
-```
+```bash
 su -c "php /www/sites/1panel.nexusphp.org/index/include/cleanup_cli.php" -s /bin/sh www-data
 ```
-<img :src="$withBase('/images/1panel-cleanup.png')">
+<img src="./images/1panel-cleanup.png">
 
 ## 创建任务调度
 
 同后台任务，脚本内容如下：
-```
+```bash
 su -c "cd /www/sites/1panel.nexusphp.org/index && php artisan schedule:run" -s /bin/sh www-data
 ```
 
@@ -102,41 +102,41 @@ su -c "cd /www/sites/1panel.nexusphp.org/index && php artisan schedule:run" -s /
 这里与手工安装或者宝塔均不同，无法使用 `supervisor`。我们单独起一个容器，添加入口命令运行队列工作器，通过重启规则为一直重启达到进程守护的目的。
 
 **镜像必须与创建网站时使用的镜像一致，且网络要选择同一个**。添加挂载本机目录，将网站根目录挂载到容器内，这里使用 /www。Command 添加以下内容：
-```
+```bash
 php /www/artisan queue:work --no-interaction
 ```
 
 :::tip
 对于 1.9 以上版本，使用 horizon 代替 queue:work
-```
+```bash
 php /www/artisan horizon --no-interaction
 ```
 :::
 
 重启规则勾选一直重启。
 
-<img :src="$withBase('/images/1panel-queue.png')">
+<img src="./images/1panel-queue.png">
 
 确定后创建容器，至此安装工作全部结束。以上步骤一共创建了5个容器：
 
-<img :src="$withBase('/images/1panel-all-containers.png')">
+<img src="./images/1panel-all-containers.png">
 
 ### V2
 1Panel 在 V2 版本中，支持了使用 supervisor 创建进程守护。我们在 网站->运行环境 大菜单中，在我们使用 PHP 的运行环境上点击更多 -> 进程守护 -> 创建守护进程。
 
-<img :src="$withBase('/images/1panel-v2-supervisor.png')">
+<img src="./images/1panel-v2-supervisor.png">
 
 ## 关于日志
 
 NP 默认日志是写到 /tmp 目录下。容器内查看如果觉得不便，可以写到标准输出，编辑 .env 文件修改以下配置项：
-```
+```shell
 LOG_FILE=php://stdout
 ```
 如果习惯原始的写到文件的方式，编辑容器，将容器的 /tmp 目录映射到宿主机。
 
 ## 关于更新
 更新依赖于 rsync，进入容器执行以下安装之：
-```
+```bash
 apk add rsync
 ```
 之后就是跟其他安装方式一样的了。

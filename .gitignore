@@ -1,6 +1,4 @@
-/node_modules/*
-/.temp/*
-/docs/.vuepress/dist/*
-.DS_Store
-*.zip
-deploy*
+node_modules
+/docs/.vitepress/dist
+/docs/.vitepress/cache
+.directory

@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# ClickHouse
 
 ## 说明
 对于某些数量较大而又不是很重要的数据，如做种魔力记录，之前是写文本，现改为存储到 ClickHouse 中，以方便使用。ClickHouse 的数据不需要定时备份，这些数据可以丢失。
@@ -10,14 +10,14 @@
 ## 宝塔面板安装
 直接点击宝塔面板 Docker 大菜单，搜索 ClickHouse。点击安装，取消勾选允许外部访问，点击确定即可。
 
-<img :src="$withBase('/images/bt_clickhouse_install.png')">
+<img src="./images/bt_clickhouse_install.png">
 
 宝塔默认没有设置密码，现在高版本要求必须设置密码。点击顶部的[容器编排]，编辑其 docker-compose 文件内容，在 environment(没有就新增) 中指定密码：
 ```
 environment:
    - CLICKHOUSE_PASSWORD=yourpassword
 ```
-<img :src="$withBase('/images/bt_clickhouse_password2.png')">
+<img src="./images/bt_clickhouse_password2.png">
 
 最后点击保存->确定即可。
 

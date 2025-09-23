@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Development
 
 ## NP Basics
 

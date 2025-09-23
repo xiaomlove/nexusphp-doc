@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Upgrade 1.7
 
 ## Description
 This document guides you to upgrade from 1.6 to 1.7. For the original 1.5 version, it is recommended to upgrade to 1.6 first and then follow this document.
@@ -23,7 +23,7 @@ Since 1.7.20, we support downloading remote code directly to overwrite and insta
 `--tag=1.x.x` specifies a certain version number (`dev` for the latest development code).  
 `---include_composer` Whether to update composer, when the dependency has been updated (see the release announcement) need, otherwise not. If updated, the plugin needs to be reinstalled, see [blog description](https://nexusphp.org/plugin-usage/).
 
-```
+```shell
 # >= 1.7.10, Install the dependencies first
 composer install
 

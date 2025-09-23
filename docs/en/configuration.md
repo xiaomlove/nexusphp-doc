@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Configuration
 
 ## Email Delivery
 
@@ -17,7 +17,7 @@ SMTP Settings】-> [mail function type], choose external. The following is QQ ma
 
 Finish these two steps, there is a test address under [SMTP Settings], click over to open the mail test page, fill in an incoming mailbox address and click send. If there is no abnormality, the incoming email will receive the following email.
 
-<img :src="$withBase('/images/nexus_email_test.png')">
+<img src="/images/nexus_email_test.png">
 
 ## PT-Gen
 
@@ -29,7 +29,7 @@ By default, the original author demo interface is used, if there is any problem,
 
 ## Set popular, recommended, etc.
 
-In the edit seed, you must be a [Picker](Picker) to see this option, and the system administrator is not allowed. Therefore, to set popular, recommended, etc., edit another user, set `rank` to at least: `[Site Settings]->Permissions Settings->Manage Seeds` in the rank, and set `Critic` to: `Yes`.
+In the edit seed, you must be a Picker to see this option, and the system administrator is not allowed. Therefore, to set popular, recommended, etc., edit another user, set `rank` to at least: `[Site Settings]->Permissions Settings->Manage Seeds` in the rank, and set `Critic` to: `Yes`.
 
 ## New exam
 
