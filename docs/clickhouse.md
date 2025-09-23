@@ -41,10 +41,15 @@ services:
     environment:
       - CLICKHOUSE_PASSWORD=yourpassword
 ```
+## 执行迁移
 
+在网站根目录下执行以下命令完成数据表迁移：
+```
+php artisan clickhouse:migrate
+```
 ## 配置并启用
 
-安装好后，在 .env 中配置好 ClickHouse 的相关参数。以下根据实际情况调整为真实的数值。如果你按此教程只修改了密码，那么以下除了密码其他保持一致即可。
+在 .env 中配置好 ClickHouse 的相关参数。以下根据实际情况调整为真实的数值。如果你按此教程只修改了密码，那么以下除了密码其他保持一致即可。
 ```
 CLICKHOUSE_HOST=127.0.0.1
 CLICKHOUSE_HTTP_PORT=8123
