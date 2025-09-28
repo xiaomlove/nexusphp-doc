@@ -147,3 +147,10 @@ php artisan passport:keys
 ```
 composer config repositories.post-like vcs https://github.com/xiaomlove/nexusphp-post-like.git
 ```
+
+## 安装插件 GitDownloader.php 报错
+
+出现如下错误，不是令牌问题，是 Git 发现仓库目录的所有者（owner）与当前执行 git 的用户不一致，会拒绝操作，防止恶意仓库劫持。
+你可以复制它给出的提示 `git config --global --add safe.directory /...` 执行即可。
+
+<img :src="$withBase('/images/dubious_ownership.jpg')">
