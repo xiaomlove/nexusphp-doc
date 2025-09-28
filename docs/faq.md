@@ -141,3 +141,9 @@ del nexus_settings_in_laravel
 ```
 php artisan passport:keys
 ```
+
+## 安装插件很慢
+添加插件地址时 `repositories.xxx` 后面要写 `vcs` , 不要写 `github` 或者 `git`。如：
+```
+composer config repositories.post-like vcs https://github.com/xiaomlove/nexusphp-post-like.git
+```
