@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# 手动安装
 
 ## 获取程序
 
@@ -10,7 +10,7 @@
 ## 创建数据库
 
 首先登录 Mysql，新建一个数据库，字符集(charset)及排序规则(collate)选择 `utf8 + utf8_general_ci` 或 `utf8mb4 + utf8mb4_general_ci` 。后者支持存储 emoji 表情，前者不支持。
-```
+```sql
 mysql> create database `nexusphp` default charset=utf8mb4 collate utf8mb4_general_ci;
 Query OK, 1 row affected (0.06 sec)
 ```
@@ -25,7 +25,7 @@ Query OK, 1 row affected (0.06 sec)
 ### 不启用 https 配置
 以 nginx 为例，只需要最基本的配置即可。在 nginx 配置目录（一般为 /etc/nginx/conf.d/）下新增一个 nexusphp.conf
 
-```
+```nginx
 server {
 
     # 以实际为准
@@ -57,7 +57,7 @@ server {
 
 ### 启用 https 配置
 启用 https，首先得准备好证书（参见下方 [关于 https]）。
-```
+```nginx
 server {
     listen 443 ssl;
     ssl_certificate /SOME/PATH/DOMAIN.pem;
@@ -119,19 +119,19 @@ server {
 
 ### 生成 Passport 加密密钥
 进入网站根目录，执行以下命令：
-```
+```shell
  php artisan passport:keys
 ```
 
 ### 创建后台任务
 
 创建用户 PHP_USER 的定时任务，执行：crontab -u PHP_USER -e，在打开的界面输入以下：
-```
+```shell
 * * * * * cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
 * * * * * cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
 如果没有生效，查看 `/etc` 下是否有 `crontab` 文件，如果有，在里边编辑亦可：
-```
+```shell
 * * * * * PHP_USER cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
 * * * * * PHP_USER cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
@@ -143,7 +143,7 @@ server {
 ### 创建队列守护进程(>=1.8需要)
 
 安装好 supervisor，在其配置目录（一般为 /etc/supervisor/conf.d/）下新增一个配置文件 nexus-queue.conf，**注意替换 ROOT_PATH, PHP_USER**，其中 numprocs 是启动的进程数，一般为自己 CPU 核心数即可。
-```
+```ini
 [program:nexus-queue]
 process_name=%(program_name)s_%(process_num)02d
 command=php ROOT_PATH/artisan queue:work --tries=3 --max-time=3600
@@ -160,7 +160,7 @@ stdout_logfile=/tmp/nexus-queue.log
 
 :::tip
 对于 1.9 以上版本，使用 horizon 代替 queue:work
-```
+```ini
 [program:nexus-queue]
 process_name=%(program_name)s_%(process_num)02d
 command=php ROOT_PATH/artisan horizon
@@ -176,7 +176,7 @@ stdout_logfile=/tmp/nexus-queue.log
 :::
 
 保存好后执行以下命令启动之：
-```
+```shell
 # 启动
 supervisord -c /etc/supervisor/supervisord.conf
 
@@ -197,7 +197,7 @@ supervisorctl start nexus-queue:*
 如果看不到错误，可能是 php-fpm 错误没有输出到 nginx error log。打开 www.conf（不知道在哪尝试 `whereis php-fpm`，能看到基本目录），找到 `catch_workers_out` 及 `php_admin_flag[log_errors]`，保证其为打开状态。  
 
 修改重启 php-fpm 生效。
-```
+```ini
 catch_workers_out = yes
 php_admin_flag[log_errors] = on
 ```

@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# 升级 1.9
 
 ## 说明
 本文档指引你从 1.8 升级到 1.9。原始 1.5 版本的建议先升级到 1.6 后再按顺序升级。  
@@ -16,7 +16,7 @@
 :::
 
 首先下载升级命令的执行文件 `app/Console/Commands/NexusUpdate.php` 进行覆盖之。可直接通过 wget 命令下载再复制到相应目录：
-```
+```shell
 wget https://raw.githubusercontent.com/xiaomlove/nexusphp/php8/app/Console/Commands/NexusUpdate.php
 ```
 
@@ -29,7 +29,7 @@ wget https://raw.githubusercontent.com/xiaomlove/nexusphp/php8/app/Console/Comma
 
 接着删除 `composer.lock`，最后执行命令：
 
-```
+```shell
 # 下载最新代码
 php artisan nexus:update --tag=1.9.0 --include_composer
 
@@ -53,7 +53,7 @@ php artisan filament:upgrade
 
 以下针对没有修改代码的用户：
 
-```
+```shell
 # 下载代码（如若要最新开发代码，--tag=dev）
 php artisan nexus:update --tag=1.9.x
 

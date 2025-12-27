@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# 升级 1.6
 
 ## 说明
 
@@ -30,12 +30,12 @@
 ### 建立新的数据库
 导出原网站数据库，导入到一个新建的数据库中。  
 `peers` 表使用的是 `memory` 引擎，如果数据量较大，为确保导入顺利，在 `my.cnf`（一般为 /etc/my.cnf）`[mysqld]`部分添加以下值保证表能装下全部数据，加完记得重启：
-```
+```ini
 tmp_table_size = 10G
 max_heap_table_size = 10G
 ```
 为加快导入速度，登录终端后执行以下语句再使用`source`命令导入：
-```
+```sql
 set sql_mode = '';
 set foreign_key_checks = 0;
 set unique_checks = 0;
@@ -59,7 +59,7 @@ set sql_log_bin = 0;
 |pic|public/pic|
 
 将以上文件夹覆盖之后，打开`config/allconfig.php`，将`BASEURL`和`announce_url`修改为新的：
-```
+```php
 $BASIC=array(
 	'SITENAME' => 'NexusPHP',
 	'BASEURL' => 'localhost',
@@ -81,7 +81,7 @@ $BASIC=array(
 打开 `<新网站域名>/update/update.php`，将进入升级界面。按步骤填写，**注意过程中数据库要使用新建立的那个！** ，下一步，直到完成。
 
 最后登录数据库，选择新建立的数据库，执行以下语句将与旧域名相关的项目改为新域名：
-```
+```sql
 update `settings` set `value` = replace(`value`, '旧域名', '新域名') where `value` like '%旧域名%';
 ```
 
@@ -107,7 +107,7 @@ update `settings` set `value` = replace(`value`, '旧域名', '新域名') where
 
 ### 清理签到数据
 如果你网站原来已经有签到功能，它是每签到一次记录一条数据，新版改为每个用户一条数据，在根目录下执行以下命令进行多余数据的清理：
-```
+```shell
 php artisan attendance:cleanup
 ```
 

@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# 设置
 
 ## 邮件发送
 
@@ -17,7 +17,7 @@
 
 完成这两步，在【SMTP 设定】下边有测试地址，点击过去打开邮件测试页面，填写一个收件邮箱地址，点击发送。如果无异常，收件邮箱会收到如下邮件。
 
-<img :src="$withBase('/images/nexus_email_test.png')">
+<img src="./images/nexus_email_test.png">
 
 ## PT-Gen
 

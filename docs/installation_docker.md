@@ -1,4 +1,5 @@
-<ArticleTopAd></ArticleTopAd>
+# Docker 安装
+
 ## 注意
 :::warning
 此部分仅适用于 1.9 或以上版本！
@@ -11,7 +12,7 @@
 ## 构建镜像
 
 到 Github 下载程序最新版 [release](https://github.com/xiaomlove/nexusphp/releases/latest)。解压后进入根目录，直接执行：
-```
+```shell
 docker compose build
 ```
 
@@ -28,14 +29,14 @@ docker compose build
 如果要启用 https, 准备好证书，放到 `.docker/openresty/certs` 目录下，将证书文件命名为 `fullchain.pem`，将私钥文件命名为 `private.key`。  
 执行以下命令启动（其他参数若要修改，自行补充）：
 
-```
+```shell
 NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up
 ```
 
 如果不启用 https，NP_PORT 也不用传递，只需要指定 NP_DOMAIN。容器全部正常启动完成后，打开域名，将自动进入安装界面。其中 DB_HOST 填写 `mysql`, REDIS_HOST 填写 `redis`。
 
 全部启动完成后，可退出再添加 -d 后台启动。
-```
+```shell
 NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up -d
 ```
 :::warning
@@ -58,7 +59,7 @@ NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up -d
 
 管理后台->设置->备份->导出到目录，这个设置决定了备份数据存放的位置。你要在宿主机看到的话，在创建容器时可将环境变量 `NP_BACKUP_EXPORT_PATH` 设置为相同的值。备份是一个 .tar.gz 压缩包，里面包含网站根目录下的全部数据(vendor 目录除外)以及数据库数据。
 
-```
+```shell
 root@v2202505270792336883:/tmp/nexusphp_backup# tar -tzf html.20250517.190720.tar.gz 
 html.web.20250517.190625.tar.gz
 html.database.20250517.190713.sql

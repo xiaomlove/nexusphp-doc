@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Upgrade 1.9
 
 ## Description   
 This document guides you to upgrade from 1.8 to 1.9. For the original 1.5 version, it is recommended to upgrade to 1.6 first, and then upgrade sequentially.
@@ -14,7 +14,7 @@ It is recommended to stop (e.g. stop Nginx) the update due to changes in data ta
 :::
 
 First download the update command executable `app/Console/Commands/NexusUpdate.php` and overwrite it. You can download and copy the file directly to the appropriate directory with the wget command: 
-``` 
+``` shell
 wget https://raw.githubusercontent.com/xiaomlove/nexusphp/php8/app/Console/Commands/NexusUpdate.php 
 ```
 
@@ -27,7 +27,7 @@ Due to the large dependency changes, we will use the `--include_composer` option
 
 Then delete `composer.lock` and finally execute the command:
 
-```
+```shell
 # Download the latest code 
 php artisan nexus:update --tag=1.9.0 --include_composer
 
@@ -51,7 +51,7 @@ As of 1.9, horizon is used instead of queue:work. Please refer to the correspond
 
 The following is for users who have not changed their code:
 
-```
+```shell
 # Download the code (--tag=dev if you want the latest development code) 
 php artisan nexus:update --tag=1.9.x
 

@@ -1,3 +1,5 @@
+# Installation By Docker (>=1.9)
+
 ## Warning
 :::warning
 This section only applies to version 1.9 or above!
@@ -9,7 +11,7 @@ Visit [Docker official website](https://docs.docker.com/engine/install/) and fol
 ## Build the image
 
 Go to Github and download the latest version of the program [release](https://github.com/xiaomlove/nexusphp/releases/latest). Unzip it, go to the directory, and run: 
-``` 
+``` shell
 docker compose build 
 ```
 
@@ -25,14 +27,14 @@ supports the following environment variables:
 If you want to enable https, prepare the certificate and put it in the `.docker/openresty/certs` directory, name the certificate file as `fullchain.pem` and the private key file as `private.key`.  
 Execute the following command to start (add other parameters if you want to change them):
 
-``` 
+``` shell
 NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up 
 ```
 
 If you don't enable https, you don't need to pass NP_PORT, you just need to specify NP_DOMAIN. after the containers start up normally, you can open the domain name, and it will open the installation page. The DB_HOST should be `mysql` and REDIS_HOST should be `redis`.
 
 After all startups are complete, you can exit and add -d to startup again.
-``` 
+``` shell
 NP_DOMAIN=Your_Domain NP_PORT=443 docker compose up -d
 ```
 :::warning
@@ -57,7 +59,7 @@ The following is for using the backup function that comes with it.
 
 Management->Settings->Backup->Export path, this setting determines where the backup data is stored. You can set the environment variable `NP_BACKUP_EXPORT_PATH` to the same value when creating the container if you want to see it on the host. The backup is a .tar.gz archive containing all the data in the root directory of the site (except the vendor directory) and the database data.
 
-``` 
+``` shell
 root@v2202505270792336883:/tmp/nexusphp_backup# tar -tzf html.20250517.190720.tar.gz 
 html.web.20250517.190625.tar.gz 
 html. database.20250517.190713.sql 

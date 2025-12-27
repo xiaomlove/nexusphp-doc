@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# 常见问题
 
 ## 日志怎么看
 
@@ -9,7 +9,7 @@
 - Nginx 的错误日志，在宝塔上：网站设置->网站日志->错误日志 可查看
 
 **没有错误日志，一切免谈！**
-<img :src="$withBase('/images/show-the-error-log.jpg')">
+<img src="./images/show-the-error-log.jpg">
 
 **实在找不到相关的日志，可以把错误展示在页面上，解决问题后再关闭错误展示。**
 ### 正常页面
@@ -26,7 +26,7 @@ ini_set('display_errors', 1);
 
 ## 日志太多撑爆硬盘
 NexusPHP 默认的日志级别为 `info` 即一般的日志都记录，如果过多可以修改为 `error` 只记录错误日志，将 .env 文件中 `LOG_LEVEL` 修改为 `error`：
-```
+```shell
 LOG_LEVEL=error
 ```
 另外 PHP-FPM 的错误日志级别也可以修改为 `error` 以减少其日志输出。
@@ -36,7 +36,7 @@ LOG_LEVEL=error
 可以选择保留最近几天的日志，定时删除过旧的日志。  
 以下示例：每天凌晨 03 点删除 7 天以前的日志（注意替换自己的过滤关键字）
 
-```
+```shell
 0 3 * * * find /tmp/ -mtime +7 |grep -E 'nexus' |xargs rm -rf
 ```
 :::
@@ -52,7 +52,7 @@ LOG_LEVEL=error
 ## can not make symbolic link
 
 无法创建软链接。这一般是 PHP 权限不足，保证把 ROOT_PATH 拥有者设置为了 PHP_USER，或者直接设置了 777 权限。如果还是不行，可以手工创建：
-```
+```shell
 ln -s /你的ROOT_PATH路径/bitbucket /你的ROOT_PATH路径/public
 ln -s /你的ROOT_PATH路径/attachments /你的ROOT_PATH路径/public
 ```
@@ -66,7 +66,7 @@ ln -s /你的ROOT_PATH路径/attachments /你的ROOT_PATH路径/public
 ## 宝塔面板装不上 gmp 扩展
 
 一般发生在 Debian 或 Ubuntu 系统上，尝试先安装 `libgmp-dev`: 
-```
+```shell
 apt-get install libgmp-dev
 ```
 
@@ -74,7 +74,7 @@ apt-get install libgmp-dev
 
 可以执行命令重置。参数是：UID 新密码 确认新密码。  
 在网站根目录下：
-```
+```shell
 php artisan user:reset_password {uid} {password} {password_confirmation}
 ```
 
@@ -82,7 +82,7 @@ php artisan user:reset_password {uid} {password} {password_confirmation}
 
 做种积分就是原始无加成的做种魔力。用户可以在 [魔力使用] 页，[每小时合计获得的魔力值] 部分中，[基本奖励] 行 [基础魔力] 字段就是做种积分。
 
-<img :src="$withBase('/images/seed_points.png')">
+<img src="./images/seed_points.png">
 
 ## 如何快速获得做种积分
 
@@ -90,14 +90,14 @@ php artisan user:reset_password {uid} {password} {password_confirmation}
 
 ## 管理后台 500 错误
 极有可能是日志文件 `/tmp/nexus-202x-xx-xx.log` 无法写入，可以尝试执行 
-```
+```shell
 chmod 777 /tmp/nexus-202x-xx-xx.log
 ```
 或者直接删除之。如果还是无法解决，请参考本页开头查看相关日志。
 
 ## 管理后台 404
 确保网站的 Nginx 配置文件已经有如下内容：
-```
+```nginx
 location / {
     index index.html index.php;
     try_files $uri $uri/ /nexus.php$is_args$args;
@@ -122,11 +122,11 @@ location ^~ /filament {
 
 设置里开启了秘密登录或者 passkey 登录又无法获取登录链接，要恢复正常登录模式按以下步骤操作：
 首先恢复数据库设置：  
-```
+```sql
 update settings set value = 'normal' where name = 'security.guest_visit_type';
 ```
 接着登录 redis 控制台，执行以下 2 个命令(分 2 次，一次执行一行)删除缓存：
-```
+```shell
 del nexus_settings_in_nexus
 del nexus_settings_in_laravel
 ```
@@ -138,7 +138,7 @@ del nexus_settings_in_laravel
 ## 创建令牌报错
 如果在控制面板创建令牌时报错: `Target class [config] does not exist`，很可能是没生成 passport 加密密钥。
 进入网站根目录，执行以下命令：
-```
+```shell
 php artisan passport:keys
 ```
 

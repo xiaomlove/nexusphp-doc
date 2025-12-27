@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Upgrade 1.6
 
 ## Description
 
@@ -30,12 +30,12 @@ Do not check the box for BT panel: Anti-cross-site attack (open_basedir).
 ### Create a new database
 Export the original site database and import it into a new one.  
 The `peers` table uses the `memory` engine, so if you have a large amount of data, add the following values to the `[mysqld]` section of `my.cnf` (usually /etc/my.cnf) to ensure that the table can hold all the data, and remember to restart after adding.
-```
+```ini
 tmp_table_size = 10G
 max_heap_table_size = 10G
 ```
 To speed up the import, log into a terminal and execute the following statement before using the `source` command to import.
-```
+```sql
 set sql_mode = '';
 set foreign_key_checks = 0;
 set unique_checks = 0;
@@ -59,7 +59,7 @@ Copy the following folders from the old site to the corresponding folders on the
 |pic|public/pic|
 
 After overwriting the above folders, open `config/allconfig.php` and change `BASEURL` and `announce_url` to the new.
-```
+```php
 $BASIC=array(
 	'SITENAME' => 'NexusPHP',
 	'BASEURL' => 'localhost',
@@ -81,7 +81,7 @@ Copy `nexus/Install/update/update.php` to `public/update/update.php` in the new 
 Open `<new website domain>/update/update.php` and you will be taken to the update screen. Fill in the steps, **note that the database should use the newly created one during the process!** , next until it is done.
 
 Finally, log in to the database, select the newly created one and execute the following statement to change the items related to the old domain to the new one.
-```
+```sql
 update `settings` set `value` = replace(`value`, 'old domain', 'new domain') where `value` like '%old domain%';
 ```
 

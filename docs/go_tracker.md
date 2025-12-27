@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Go Tracker
 
 ## 说明
 如果你站点规模较大，服务器配置一般，平时负载较高，可以试试这个全新的 tracker 程序。  
@@ -13,7 +13,7 @@
 
 ## 安装辅助插件
 在网站根目录下执行：
-```
+```shell
 composer config repositories.tracker-helper git https://github.com/xiaomlove/nexusphp-tracker-helper.git
 composer require xiaomlove/nexusphp-tracker-helper
 php artisan plugin install xiaomlove/nexusphp-tracker-helper
@@ -30,14 +30,14 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJOZXh1c1BIUCDnlKjmiLciLCJleHAiOjQ
 - -is_enable_frequency_limit: 是否启用频率限制，默认 true. 可用: true,false
 - -http_port: HTTP 端口，默认: 7777
 
-```
+```shell
 nohup ./tracker > tracker.log 2>&1 &
 ```
 打开日志输出文件，当看到类似 `going to start http server at: :7777` 则表示是启动成功了。打开管理后台 `Other -> Tracker` 菜单，在 Basic 部分，看到有效期，可以确定一切准备就绪。
 ## 流量转发
 修改 nginx 配置，在偏上的位置（至少在 \.php$ 这个 location 之前，比如在宝塔中就是在 include enable-php-xx 之前）添加转发代码，将 announce.php + scrape.php 的流量转发到 Go Tracker 上来。
 以下是示例（修改后记得重启）：
-```
+```nginx
     listen 443 ssl;
     http2 on;
     server_name dev.nexusphp.org;
@@ -67,7 +67,7 @@ nohup ./tracker > tracker.log 2>&1 &
 ## 独立部署
 如果不想跟网站使用相同的域名，或者是想同时使用多个 tracker 域名，那么你可以将 tracker 部署为一个新的网站.  
 如下是一个示例，这里只接收 HTTP Get 请求，仅有汇报相关的 /announce + /scrape 两个路由，其他一律返回 404.
-```
+```nginx
 server {
     listen 443 ssl;
     # 替换为你自己的域名，有多个域名空格隔开
@@ -117,7 +117,7 @@ server {
 ## 日志清理
 日志是输出到标准输出，启动时重定向到了日志文件，可以借助 logrotate 来切割并清理。  
 在 `/etc/logrotate.d/` 目录下，新建一个配置文件，如 go_tracker，内容如下：
-```
+```nginx
 /your/tracker/log/path/tracker.log {
     daily
     rotate 7
@@ -137,8 +137,8 @@ server {
 或者直接卸载辅助插件亦可，**注意去掉流量转发部分是必须的！**
 
 ## 附件下载
-- [amd64](/downloads/tracker), BuildID=Rxxkmbq6p2MpwbxfhLSl/TcHMcIfSXkEW-0dgIwBq/Qo6ECK9ON7X3gE3_YOyO/5aB2M_ZC33dXXM84EpFc
-- [arm64](/downloads/tracker_arm), BuildID=SICON9-CqXeXI-9bu8uz/c4AzdRv0QD-MI4NG9cd6/bnZ_HLhtjf25jLTZKB8x/IKYm4WPYuvW3z-fOrs34
+- [amd64](https://nexusphp.org/downloads/tracker), BuildID=Rxxkmbq6p2MpwbxfhLSl/TcHMcIfSXkEW-0dgIwBq/Qo6ECK9ON7X3gE3_YOyO/5aB2M_ZC33dXXM84EpFc
+- [arm64](https://nexusphp.org/downloads/tracker_arm), BuildID=SICON9-CqXeXI-9bu8uz/c4AzdRv0QD-MI4NG9cd6/bnZ_HLhtjf25jLTZKB8x/IKYm4WPYuvW3z-fOrs34
 
 ## 更新日志
 ### 1.1.0(2025-06-20)

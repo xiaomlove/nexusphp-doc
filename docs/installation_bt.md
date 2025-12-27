@@ -1,4 +1,5 @@
-<ArticleTopAd></ArticleTopAd>
+# 宝塔安装
+
 
 ## 关于宝塔面板
 
@@ -39,7 +40,7 @@ Nginx 建议直接最新版，MySQL建议8.0，PHP 需要8.0+
 apt install -y libgmp-dev
 ```
 或者（针对CentOS/Redhat/Fedora）
-```
+```shell
 yum install -y libgmp-dev
 ```
 
@@ -86,7 +87,7 @@ yum install -y libgmp-dev
 7. ~~在 Composer 子菜单中，选择相应的 PHP 版本，执行参数设置为 install，其余保持默认设置，然后点击执行。~~  
 打开终端，进入网站根目录，手工执行：`composer install`
 8. 伪静态，复制粘贴如下配置：
-    ```
+    ```nginx
     location / {
         index index.html index.php;
         try_files $uri $uri/ /nexus.php$is_args$args;
@@ -110,7 +111,7 @@ yum install -y libgmp-dev
 
 ### 生成 Passport 加密密钥
 进入网站根目录，执行以下命令：
-```
+```shell
  php artisan passport:keys
 ```
 
@@ -123,7 +124,7 @@ yum install -y libgmp-dev
 
 脚本内容如下（记得把 DOMAIN 替换为自己的域名）：
 
-```
+```shell
 su -c "cd /www/wwwroot/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
 
 su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
@@ -131,7 +132,7 @@ su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAI
 
 其中一个示例如下(注意是配置两个独立的任务，每个任务使用上方的一行脚本，而非将两行脚本用于单一任务。)：
 
-<img :src="$withBase('/images/NexusPHP_crontab.png')">
+<img src="./images/NexusPHP_crontab.png">
 
 :::danger
 **特别提醒：执行周期是每分钟，不能修改！这里的配置只是一个入口，实际运行频率是程序控制的，修改频率整个网站运行不正常！比如魔力不会如期增涨！**
@@ -188,4 +189,4 @@ ini_set('display_errors', 1);
 :::warning
 宝塔默认 PHP 脚本最大使用内存是 128M，对于网页端请求可能足够，但对于整个 NP 来说是不够的。安装升级依赖以及一些后台任务如定时清理、认领结算等需要循环大量的用户数据，内存不够可能产生一些莫名其妙的问题，因此建议在"PHP 管理" -> "配置修改"中，将 `memory_limit` 脚本内存限制修改为 2048 MB。具体依配置而定。
 :::
-<img :src="$withBase('/images/bt_memory_limit.png')">
+<img src="./images/bt_memory_limit.png">

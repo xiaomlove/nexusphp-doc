@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Start
 
 ## Applicable Versions
 

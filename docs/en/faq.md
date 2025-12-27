@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# FAQ
 
 ## How to see the logs
 
@@ -9,7 +9,7 @@ It is best to ask questions with error logs, otherwise the gods can not help you
 - Nginx error log
 
 **No error logs, all bets are off!**
-<img :src="$withBase('/images/show-the-error-log.jpg')">
+<img src="/images/show-the-error-log.jpg">
 
 **If you really can't find the relevant log, you can display the error on the page and turn off the error display after you solve the problem.**
 ### Normal page
@@ -26,7 +26,7 @@ ini_set('display_errors', 1);
 
 ## Too many logs to fill up the hard drive
 The default log level of NexusPHP is `info`, which means that all general logs are recorded, if there are too many, you can change it to `error` to log only errors, change `LOG_LEVEL` to `error` in the .env file.
-```
+```shell
 LOG_LEVEL=error
 ```
 Also the error logging level of PHP-FPM can be changed to `error` to reduce its log output.
@@ -36,7 +36,7 @@ Logging helps to restore the scene and is crucial for troubleshooting problems. 
 You can choose to keep the logs from the last few days and delete the old logs regularly.  
 Here's an example: delete logs 7 days old at 03:00 am every day (note the replacement of your own filter keywords)
 
-```
+```shell
 0 3 * * * * find /tmp/ -mtime +7 |grep -E 'nexus' |xargs rm -rf
 ```
 :::
@@ -53,7 +53,7 @@ Please refer to [configuration](./configuration.md#smtp-settings) section for co
 ## can not make symbolic link
 
 Cannot create soft links. This is usually due to insufficient PHP permissions, so make sure you set the ROOT_PATH owner to PHP_USER, or just set the 777 permissions. If this does not work, you can create it manually by
-```
+```shell
 ln -s /your ROOT_PATH path/bitbucket /your ROOT_PATH path/public
 ln -s /your ROOT_PATH path/attachments /your ROOT_PATH path/public
 ```
@@ -68,7 +68,7 @@ Popular modules need to show the cover, please make sure the imdb link is filled
 
 You can execute the command to reset it. The parameters are: {UID} {New password} {Confirm the new password}.  
 In the site root directory: 
-```
+```shell
 php artisan user:reset_password {uid} {password} {password_confirmation}
 ```
 
@@ -76,7 +76,7 @@ php artisan user:reset_password {uid} {password} {password_confirmation}
 
 Seeding points are the raw un-added seeding bonus. Users can find seeding points in the [base bonus] row of the [base bonus] field in the [bonus use] page, in the [bonus gained per hour total] section.
 
-<img :src="$withBase('/images/seed_points.png')">
+<img src="/images/seed_points.png">
 
 ## How to get seeding points quickly
 
@@ -84,14 +84,14 @@ The speed of seeding points acquisition is set by the administrator, generally t
 
 ## Admin backend 500 error
 Most likely the log file `/tmp/nexus-202x-xx-xx.log` could not be written, you can try to execute 
-```
+```shell
 chmod 777 /tmp/nexus-202x-xx-xx.log
 ```
 or just delete it. If you still can't solve it, please refer to the beginning of this page to check the related logs.
 
 ## Admin backend 404
 Make sure that the site's Nginx configuration file already has the following content:
-```
+```nginx
 location / {
     index index.html index.php.
     try_files $uri $uri/ /nexus.php$is_args$args.
@@ -112,6 +112,6 @@ Reference: issue [#326](https://github.com/xiaomlove/nexusphp/issues/326)
 
 If you encounter the error `Target class [config] does not exist` when creating a token in the control panel, it is likely that the Passport encryption key has not been generated.
 Navigate to the website's root directory and execute the following command:
-```
+```shell
 php artisan passport:keys
 ```

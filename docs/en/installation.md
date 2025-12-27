@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Installation
 
 ## Get the program
 
@@ -10,7 +10,7 @@ Be sure to switch to a release for installation when cloning. Do not use the lat
 ## Create a database
 
 First login to Mysql, create a new database, and choose `utf8 + utf8_general_ci` or `utf8mb4 + utf8mb4_general_ci` for the charset and sorting rules (collate). The latter supports storing emoji expressions, the former does not.
-```
+```sql
 mysql> create database `nexusphp` default charset=utf8mb4 collate utf8mb4_general_ci;
 Query OK, 1 row affected (0.06 sec)
 ```
@@ -25,7 +25,7 @@ Query OK, 1 row affected (0.06 sec)
 ### Do not enable https configuration
 In the case of nginx, only the most basic configuration is required. Add a new nexusphp.conf to the nginx configuration directory (usually /etc/nginx/conf.d/)
 
-```
+```nginx
 server {
 
     # whichever is more appropriate
@@ -57,7 +57,7 @@ server {
 
 ### Enable https configuration
 To enable https, you first have to prepare the certificate, see [About https] below.
-```
+```nginx
 server {
     listen 443 ssl;
     ssl_certificate /SOME/PATH/DOMAIN.pem;
@@ -104,7 +104,7 @@ After adding, `nginx -t` test for errors, no errors `nginx -s reload` restart to
 ::: tip
 If it's a BT panel, make sure the following functions are not disabled: `symlink, putenv, proc_open, proc_get_status, exec, pcntl_signal, pcntl_alarm, pcntl_async_signals`. Do not check: prevent cross-site attacks (open_basedir).
 **After the BT is created site well and add the following to the configuration file.**
-```
+```nginx
 location / {
     index index.html index.php;
     try_files $uri $uri/ /nexus.php$is_args$args;
@@ -134,20 +134,20 @@ Fill in each step according to the actual situation, **pay attention to choose t
 
 ### Generates encryption keys for Passport
 Goto the web root path, then execute the command below:
-```
+```shell
  php artisan passport:keys
 ```
 
 ### Create background task
 **------Manual users look here------**  
 Create a timed task for user PHP_USER, execute: crontab -u PHP_USER -e, and enter the following in the opened interface.
-```
+```shell
 * * * * * cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
 * * * * * cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
 
 If it doesn't work, check to see if there is a `crontab` file under `/etc`, and if so, edit it there as well
-```
+```shell
 * * * * * PHP_USER cd ROOT_PATH && php artisan schedule:run >> /tmp/schedule_DOMAIN.log
 * * * * * PHP_USER cd ROOT_PATH && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log
 ```
@@ -155,14 +155,14 @@ You can determine if the redirect file is in effect by checking to see if there 
 
 **------BT panel users look here, the upper side does not need to do------**  
 If it is a BT panel, create two scheduled tasks with the following script (remember to replace DOMAIN with your own domain name).
-```
+```shell
 su -c "cd /www/wwwroot/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
 
 su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
 ```
 One of the examples is as follows (note that it is configured 2, a task with one of the lines, not a task to write 2 lines.):
 
-<img :src="$withBase('/images/NexusPHP_crontab.png')">
+<img src="/images/NexusPHP_crontab.png">
 
 :::danger
 Special reminder: the implementation cycle is every minute, can not be modified! Here the configuration is only an entrance, the actual frequency of operation is program control, modify the frequency of the entire site does not run properly! For example, the bonus will not increase as expected!  
@@ -174,7 +174,7 @@ When finished, delete the `public/install` directory. The installation logs cont
 
 **------ manual users look here ------**  
 After installing the supervisor, add a new configuration file nexus-queue.conf to its configuration directory (usually /etc/supervisor/conf.d/), **Note that you replace ROOT_PATH, PHP_USER**, where numprocs is the number of processes started, usually the number of your own CPU cores is the number of CPU cores you have.
-```
+```ini
 [program:nexus-queue]
 process_name=%(program_name)s_%(process_num)02d
 command=php ROOT_PATH/artisan queue:work --tries=3 --max-time=3600
@@ -191,7 +191,7 @@ stdout_logfile=/tmp/nexus-queue.log
 
 :::tip
 For versions 1.9 and above, use horizon instead of queue:work.
-```
+```ini
 [program:nexus-queue]
 process_name=%(program_name)s_%(process_num)02d
 command=php ROOT_PATH/artisan horizon
@@ -207,7 +207,7 @@ stdout_logfile=/tmp/nexus-queue.log
 :::
 
 After saving it, execute the following command to start it:
-```
+```shell
 # Start
 supervisord -c /etc/supervisor/supervisord.conf
 
@@ -238,7 +238,7 @@ If you cannot jump to the installation screen properly, check the nginx error lo
 If you do not see errors, php-fpm errors may not be output to the nginx error log. Open www.conf (try `whereis php-fpm` if you don't know where, you can see the base directory), find `catch_workers_out` and `php_admin_flag[log_ errors]`, make sure they are open.  
 
 Restart php-fpm and the changes will take effect.
-```
+```ini
 catch_workers_out = yes
 php_admin_flag[log_errors] = on
 ```

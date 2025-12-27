@@ -1,4 +1,4 @@
-<ArticleTopAd></ArticleTopAd>
+# Installation By AAPanel
 
 ## About AA Panel
 
@@ -39,7 +39,7 @@ Note: If the installation of gmp is unsuccessful, please execute the following c
 apt install -y libgmp-dev
 ```
 or (for CentOS/Redhat/Fedora):
-```
+```shell
 yum install -y libgmp-dev
 ```
 
@@ -83,7 +83,7 @@ When cloning, be sure to switch to a release to install. Do not use the latest d
 6. SSL submenu, select Let's Encrypt, and apply for the certificate with one click.
 7. In the Composer submenu, select the corresponding PHP version, set the execution parameter to install, keep the rest of the settings default, then click execute.
 8. For pseudo-static, copy and paste the following configuration:
-    ```
+    ```nginx
     location / {
         index index.html index.php;
         try_files $uri $uri/ /nexus.php$is_args$args;
@@ -107,7 +107,7 @@ that the client cannot report as expected**. Click next until finished.
 
 ### Generates encryption keys for Passport
 Goto the web root path, then execute the command below:
-```
+```shell
  php artisan passport:keys
 ```
 
@@ -120,7 +120,7 @@ Click on Scheduled Tasks on the left side of AA. Create two scheduled tasks:
 
 The script content is as follows (remember to replace DOMAIN with your own domain):
 
-```
+```shell
 su -c "cd /www/wwwroot/DOMAIN && php include/cleanup_cli.php >> /tmp/cleanup_cli_DOMAIN.log" -s /bin/sh www
 
 su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAIN.log" -s /bin/sh www
@@ -128,7 +128,7 @@ su -c "cd /www/wwwroot/DOMAIN && php artisan schedule:run >> /tmp/schedule_DOMAI
 
 One example of a task is as follows (note that two separate tasks are configured, each task uses one of the above lines of script, not both lines of script for a single task.):
 
-<img :src="$withBase('/images/NexusPHP_crontab.png')">
+<img src="/images/NexusPHP_crontab.png">
 
 :::danger
 **Special reminder: The execution cycle is every minute and cannot be changed! The configuration here is just an entry point, the actual running frequency is controlled by the program, changing the frequency will cause the entire website to run abnormally! For example, magic power will not increase as scheduled!**
@@ -165,7 +165,7 @@ If you cannot normally redirect to the installation interface, check the nginx e
 If no errors are seen, it may be that the php-fpm error is not outputting to the nginx error log. Open www.conf (if you don't know where, try `whereis php-fpm`, you can see the basic directory), find `catch_workers_output` and `php_admin_flag[log_errors]`, and make sure they are turned on.
 
 Modify and restart php-fpm to take effect.
-```
+```ini
 catch_workers_output = yes
 php_admin_flag[log_errors] = on
 ```
