@@ -95,7 +95,7 @@ chmod 777 /tmp/nexus-202x-xx-xx.log
 ```
 或者直接删除之。如果还是无法解决，请参考本页开头查看相关日志。
 
-## 管理后台 404
+## 管理后台 404 或登录时 SyntaxError: Unexpected token '<'
 确保网站的 Nginx 配置文件已经有如下内容：
 ```
 location / {

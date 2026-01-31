@@ -89,7 +89,7 @@ chmod 777 /tmp/nexus-202x-xx-xx.log
 ```
 or just delete it. If you still can't solve it, please refer to the beginning of this page to check the related logs.
 
-## Admin backend 404
+## Admin backend 404 or SyntaxError: Unexpected token '<'
 Make sure that the site's Nginx configuration file already has the following content:
 ```
 location / {

@@ -33,6 +33,7 @@ module.exports = {
           ['update1.7', '升级1.7'],
           ['update1.8', '升级1.8'],
           ['update1.9', '升级1.9'],
+          ['update1.10', '升级1.10'],
           ['faq', '常见问题'],
         ],
       },
@@ -51,6 +52,7 @@ module.exports = {
             ['update1.7', 'Upgrade 1.7'],
             ['update1.8', 'Upgrade 1.8'],
             ['update1.9', 'Upgrade 1.9'],
+            ['update1.10', 'Upgrade 1.10'],
             ['faq', 'FAQ'],
           ]
         }
